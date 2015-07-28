@@ -9,11 +9,16 @@
 /* Begin PBXBuildFile section */
 		C3CF650C1B674F7C00167D70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF650B1B674F7C00167D70 /* main.m */; };
 		C3CF650F1B674F7C00167D70 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF650E1B674F7C00167D70 /* AppDelegate.m */; };
-		C3CF65121B674F7C00167D70 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF65111B674F7C00167D70 /* ViewController.m */; };
 		C3CF65151B674F7C00167D70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3CF65131B674F7C00167D70 /* Main.storyboard */; };
 		C3CF65171B674F7C00167D70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3CF65161B674F7C00167D70 /* Images.xcassets */; };
 		C3CF651A1B674F7C00167D70 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3CF65181B674F7C00167D70 /* LaunchScreen.xib */; };
 		C3CF65261B674F7C00167D70 /* The_Knights_ClubTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF65251B674F7C00167D70 /* The_Knights_ClubTests.m */; };
+		C3CF65381B675C4000167D70 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF65371B675C4000167D70 /* SignInViewController.m */; };
+		C3CF653B1B675C5C00167D70 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF653A1B675C5C00167D70 /* SignUpViewController.m */; };
+		C3CF653E1B67E54A00167D70 /* KCCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF653D1B67E54A00167D70 /* KCCustomer.m */; };
+		C3CF65411B67E85C00167D70 /* KCConnectCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF65401B67E85C00167D70 /* KCConnectCustomer.m */; };
+		C3CF65441B67F52500167D70 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF65431B67F52500167D70 /* MenuViewController.m */; };
+		C3CF65471B6802EE00167D70 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF65461B6802EE00167D70 /* MenuTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +37,24 @@
 		C3CF650B1B674F7C00167D70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C3CF650D1B674F7C00167D70 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C3CF650E1B674F7C00167D70 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C3CF65101B674F7C00167D70 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C3CF65111B674F7C00167D70 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C3CF65141B674F7C00167D70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C3CF65161B674F7C00167D70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C3CF65191B674F7C00167D70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		C3CF651F1B674F7C00167D70 /* The Knights ClubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "The Knights ClubTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3CF65241B674F7C00167D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3CF65251B674F7C00167D70 /* The_Knights_ClubTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = The_Knights_ClubTests.m; sourceTree = "<group>"; };
+		C3CF65361B675C4000167D70 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		C3CF65371B675C4000167D70 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		C3CF65391B675C5C00167D70 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		C3CF653A1B675C5C00167D70 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		C3CF653C1B67E54A00167D70 /* KCCustomer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCCustomer.h; sourceTree = "<group>"; };
+		C3CF653D1B67E54A00167D70 /* KCCustomer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCCustomer.m; sourceTree = "<group>"; };
+		C3CF653F1B67E85C00167D70 /* KCConnectCustomer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCConnectCustomer.h; sourceTree = "<group>"; };
+		C3CF65401B67E85C00167D70 /* KCConnectCustomer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCConnectCustomer.m; sourceTree = "<group>"; };
+		C3CF65421B67F52500167D70 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		C3CF65431B67F52500167D70 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		C3CF65451B6802EE00167D70 /* MenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewCell.h; sourceTree = "<group>"; };
+		C3CF65461B6802EE00167D70 /* MenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +78,12 @@
 		C3CF64FD1B674F7C00167D70 = {
 			isa = PBXGroup;
 			children = (
+				C3CF65351B675C0500167D70 /* KC Abstract */,
+				C3CF65341B67505F00167D70 /* KC Pay */,
+				C3CF65331B67505700167D70 /* KC Cart */,
+				C3CF65311B67500D00167D70 /* KC Customer */,
+				C3CF65301B674FF400167D70 /* KC Sign In */,
+				C3CF652F1B674FCD00167D70 /* KC Menu */,
 				C3CF65081B674F7C00167D70 /* The Knights Club */,
 				C3CF65221B674F7C00167D70 /* The Knights ClubTests */,
 				C3CF65071B674F7C00167D70 /* Products */,
@@ -83,8 +104,6 @@
 			children = (
 				C3CF650D1B674F7C00167D70 /* AppDelegate.h */,
 				C3CF650E1B674F7C00167D70 /* AppDelegate.m */,
-				C3CF65101B674F7C00167D70 /* ViewController.h */,
-				C3CF65111B674F7C00167D70 /* ViewController.m */,
 				C3CF65131B674F7C00167D70 /* Main.storyboard */,
 				C3CF65161B674F7C00167D70 /* Images.xcassets */,
 				C3CF65181B674F7C00167D70 /* LaunchScreen.xib */,
@@ -117,6 +136,60 @@
 				C3CF65241B674F7C00167D70 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C3CF652F1B674FCD00167D70 /* KC Menu */ = {
+			isa = PBXGroup;
+			children = (
+				C3CF65421B67F52500167D70 /* MenuViewController.h */,
+				C3CF65431B67F52500167D70 /* MenuViewController.m */,
+				C3CF65451B6802EE00167D70 /* MenuTableViewCell.h */,
+				C3CF65461B6802EE00167D70 /* MenuTableViewCell.m */,
+			);
+			name = "KC Menu";
+			sourceTree = "<group>";
+		};
+		C3CF65301B674FF400167D70 /* KC Sign In */ = {
+			isa = PBXGroup;
+			children = (
+				C3CF65361B675C4000167D70 /* SignInViewController.h */,
+				C3CF65371B675C4000167D70 /* SignInViewController.m */,
+				C3CF65391B675C5C00167D70 /* SignUpViewController.h */,
+				C3CF653A1B675C5C00167D70 /* SignUpViewController.m */,
+			);
+			name = "KC Sign In";
+			sourceTree = "<group>";
+		};
+		C3CF65311B67500D00167D70 /* KC Customer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "KC Customer";
+			sourceTree = "<group>";
+		};
+		C3CF65331B67505700167D70 /* KC Cart */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "KC Cart";
+			sourceTree = "<group>";
+		};
+		C3CF65341B67505F00167D70 /* KC Pay */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "KC Pay";
+			sourceTree = "<group>";
+		};
+		C3CF65351B675C0500167D70 /* KC Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				C3CF653C1B67E54A00167D70 /* KCCustomer.h */,
+				C3CF653D1B67E54A00167D70 /* KCCustomer.m */,
+				C3CF653F1B67E85C00167D70 /* KCConnectCustomer.h */,
+				C3CF65401B67E85C00167D70 /* KCConnectCustomer.m */,
+			);
+			name = "KC Abstract";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,8 +292,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3CF65121B674F7C00167D70 /* ViewController.m in Sources */,
 				C3CF650F1B674F7C00167D70 /* AppDelegate.m in Sources */,
+				C3CF65381B675C4000167D70 /* SignInViewController.m in Sources */,
+				C3CF65411B67E85C00167D70 /* KCConnectCustomer.m in Sources */,
+				C3CF653E1B67E54A00167D70 /* KCCustomer.m in Sources */,
+				C3CF65441B67F52500167D70 /* MenuViewController.m in Sources */,
+				C3CF653B1B675C5C00167D70 /* SignUpViewController.m in Sources */,
+				C3CF65471B6802EE00167D70 /* MenuTableViewCell.m in Sources */,
 				C3CF650C1B674F7C00167D70 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
