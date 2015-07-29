@@ -102,12 +102,25 @@
                                                   delegate:nil
                                          cancelButtonTitle:@"Let's Roll!"
                                          otherButtonTitles:nil];
+    signUpFinishAlert.tag = 100;
+    signUpFinishAlert.delegate = self;
+    
     missInformation = [[UIAlertView alloc] initWithTitle:@"Incomplete Information"
                                                  message:@"Please Enter all the information."
                                                 delegate:nil
                                        cancelButtonTitle:@"OK"
                                        otherButtonTitles:nil];
 
+    
+}
+
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (alertView.tag == 100) {
+        if (buttonIndex == 0) {// 1st Other Button
+            [self performSegueWithIdentifier:@"signUpMenu" sender:self];  
+        }
+    }
     
 }
 

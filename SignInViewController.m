@@ -61,7 +61,7 @@
         _loginCustomer = [[KCCustomer alloc]initWithContentDictionary:dataDictionary];
         
         if ([_passwordField.text isEqualToString:[_loginCustomer networkPassword]]) {
-            [self performSegueWithIdentifier:@"signInRestaurantHunting" sender:self];
+            [self performSegueWithIdentifier:@"loginMenu" sender:self];
         }else{
             [wrongPassword show];
         }

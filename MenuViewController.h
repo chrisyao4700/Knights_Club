@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuTableViewCell.h"
+#import "KCConnectDish.h"
 
 @interface MenuViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UITableView *menuTable;
 
 @end

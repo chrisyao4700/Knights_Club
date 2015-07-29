@@ -8,7 +8,14 @@
 
 #import "MenuViewController.h"
 
-@interface MenuViewController ()
+@interface MenuViewController (){
+    NSMutableData * _downloadedData;
+    NSMutableArray * knightsClubMenu;
+    NSMutableArray * sectionList;
+    NSMutableArray * sectionDataArray;
+    NSDictionary * retrivedMenu;
+    
+}
 
 @end
 
@@ -16,6 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initAllVars];
+    [self readMenuFromDatabase];
     // Do any additional setup after loading the view.
 }
 
@@ -24,6 +33,120 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+/* Table View Data */
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    // Return the number of sections.
+    return sectionDataArray.count;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [sectionList objectAtIndex:section];
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    // Return the number of rows in the section.
+    return [[sectionDataArray objectAtIndex:section] count];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    MenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"contentCell" forIndexPath:indexPath];
+    
+    NSArray * dishSection = [sectionDataArray objectAtIndex:indexPath.section];
+    KCDish * dish = [dishSection objectAtIndex:indexPath.row];
+    cell.nameLabel.text = dish.dishName;
+    cell.priceLabel.text = [NSString stringWithFormat:@"$%@",dish.dishPrice];
+    cell.imageView.image = [self configImages];
+    
+    
+    // cell.numberLabel.text = tableNumbers[indexPath.row];
+    
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+}
+
+
+
+/* Database Connection */
+
+-(void) readMenuFromDatabase{
+    [KCConnectDish readDishesFromDatabaseWithDelegate:self];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    _downloadedData = [[NSMutableData alloc] init];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    // Append the newly downloaded data
+    [_downloadedData appendData:data];
+}
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSError *error;
+    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:_downloadedData options:NSJSONReadingAllowFragments error:&error];
+    for (NSDictionary * contentDictionary in jsonArray) {
+        KCDish * dish = [[KCDish alloc] initWithContentDictionary:contentDictionary];
+        [knightsClubMenu addObject:dish];
+      
+        }
+     [self configTableData];
+}
+-(void) initAllVars{
+    knightsClubMenu = [[NSMutableArray alloc]init];
+    sectionList = [[NSMutableArray alloc]init];
+    
+}
+-(void) configTableData{
+    sectionDataArray = [[NSMutableArray alloc]init];
+    for (KCDish * dish in knightsClubMenu) {
+        BOOL catagoryFound = NO;
+        for (NSString * catagory in sectionList) {
+            
+            if ([dish.dishCategory isEqualToString:catagory]) {
+                catagoryFound = YES;
+                for (NSMutableArray * sct in sectionDataArray) {
+                    if ([[[sct objectAtIndex:0] dishCategory] isEqualToString:catagory]) {
+                        [sct addObject:dish];
+                    }
+                }
+            }
+        }
+        if (catagoryFound == NO) {
+            [sectionList addObject:dish.dishCategory];
+            NSMutableArray * section = [[NSMutableArray alloc]init];
+            [section addObject:dish];
+            [sectionDataArray addObject:section];
+        }
+    }
+    
+    
+    retrivedMenu =[[NSDictionary alloc] initWithObjects:sectionDataArray forKeys:sectionList];
+    
+
+    
+    
+     [_menuTable reloadData];
+}
+-(UIImage *) configImages{
+    //[KCConnectDish readImageFromServerWithDish:[[KCDish alloc]init] andDelegate:self];
+    NSString *url_Img1 = @"http://chrisyao4700.com/Knights_Club/Knights_Menu/menu_icon/GU_Full_Logo.png";
+   // NSString *url_Img2 = @"GU_Full_Logo.png";
+    
+   // NSString *url_Img_FULL = [url_Img1 stringByAppendingPathComponent:url_Img2];
+    
+    NSLog(@"Show url_Img_FULL: %@",url_Img1);
+    UIImage * image;
+    image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url_Img1]]];
+    return image;
+}
 /*
 #pragma mark - Navigation
 

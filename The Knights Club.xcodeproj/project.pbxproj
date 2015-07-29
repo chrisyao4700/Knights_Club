@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3BCBBB41B688ECA001B97D2 /* KCDish.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB31B688ECA001B97D2 /* KCDish.m */; };
+		C3BCBBB71B688F90001B97D2 /* KCConnectDish.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB61B688F90001B97D2 /* KCConnectDish.m */; };
 		C3CF650C1B674F7C00167D70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF650B1B674F7C00167D70 /* main.m */; };
 		C3CF650F1B674F7C00167D70 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF650E1B674F7C00167D70 /* AppDelegate.m */; };
 		C3CF65151B674F7C00167D70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3CF65131B674F7C00167D70 /* Main.storyboard */; };
@@ -32,6 +34,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C3BCBBB21B688ECA001B97D2 /* KCDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCDish.h; sourceTree = "<group>"; };
+		C3BCBBB31B688ECA001B97D2 /* KCDish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCDish.m; sourceTree = "<group>"; };
+		C3BCBBB51B688F90001B97D2 /* KCConnectDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCConnectDish.h; sourceTree = "<group>"; };
+		C3BCBBB61B688F90001B97D2 /* KCConnectDish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCConnectDish.m; sourceTree = "<group>"; };
 		C3CF65061B674F7C00167D70 /* The Knights Club.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Knights Club.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3CF650A1B674F7C00167D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3CF650B1B674F7C00167D70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -188,6 +194,10 @@
 				C3CF653D1B67E54A00167D70 /* KCCustomer.m */,
 				C3CF653F1B67E85C00167D70 /* KCConnectCustomer.h */,
 				C3CF65401B67E85C00167D70 /* KCConnectCustomer.m */,
+				C3BCBBB21B688ECA001B97D2 /* KCDish.h */,
+				C3BCBBB31B688ECA001B97D2 /* KCDish.m */,
+				C3BCBBB51B688F90001B97D2 /* KCConnectDish.h */,
+				C3BCBBB61B688F90001B97D2 /* KCConnectDish.m */,
 			);
 			name = "KC Abstract";
 			sourceTree = "<group>";
@@ -293,6 +303,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3CF650F1B674F7C00167D70 /* AppDelegate.m in Sources */,
+				C3BCBBB41B688ECA001B97D2 /* KCDish.m in Sources */,
+				C3BCBBB71B688F90001B97D2 /* KCConnectDish.m in Sources */,
 				C3CF65381B675C4000167D70 /* SignInViewController.m in Sources */,
 				C3CF65411B67E85C00167D70 /* KCConnectCustomer.m in Sources */,
 				C3CF653E1B67E54A00167D70 /* KCCustomer.m in Sources */,
@@ -494,6 +506,7 @@
 				C3CF652B1B674F7C00167D70 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C3CF652C1B674F7C00167D70 /* Build configuration list for PBXNativeTarget "The Knights ClubTests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +515,7 @@
 				C3CF652E1B674F7C00167D70 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
