@@ -7,10 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "KCDish.h"
 
 @interface KCConnectDish : NSObject
 +(NSURLConnection *) readDishesFromDatabaseWithDelegate:(id) delegate;
 +(NSURLConnection *) readImageFromServerWithDish:(KCDish *) dish
                                      andDelegate: (id) delegate;
++(UIImage *) configImagesWithDish: (KCDish *) dish;
+
+
++(NSString *) urlHandler: (NSString *) value;
 @end

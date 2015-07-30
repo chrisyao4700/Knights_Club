@@ -60,7 +60,8 @@
     KCDish * dish = [dishSection objectAtIndex:indexPath.row];
     cell.nameLabel.text = dish.dishName;
     cell.priceLabel.text = [NSString stringWithFormat:@"$%@",dish.dishPrice];
-    cell.imageView.image = [self configImages];
+    cell.m_imageView.contentMode = UIViewContentModeScaleAspectFit;
+    cell.m_imageView.image = [KCConnectDish configImagesWithDish:dish];
     
     
     // cell.numberLabel.text = tableNumbers[indexPath.row];
@@ -135,26 +136,26 @@
     
      [_menuTable reloadData];
 }
--(UIImage *) configImages{
-    //[KCConnectDish readImageFromServerWithDish:[[KCDish alloc]init] andDelegate:self];
-    NSString *url_Img1 = @"http://chrisyao4700.com/Knights_Club/Knights_Menu/menu_icon/GU_Full_Logo.png";
-   // NSString *url_Img2 = @"GU_Full_Logo.png";
-    
-   // NSString *url_Img_FULL = [url_Img1 stringByAppendingPathComponent:url_Img2];
-    
-    NSLog(@"Show url_Img_FULL: %@",url_Img1);
-    UIImage * image;
-    image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url_Img1]]];
-    return image;
+- (IBAction)hitSearch:(id)sender {
+    [self performSegueWithIdentifier:@"menuToSearch" sender:self];
 }
-/*
+
+
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"menuToSearch"]) {
+        SearchMenuViewController * smvc = (SearchMenuViewController *)[segue destinationViewController];
+        smvc.menuDataArray = knightsClubMenu;
+        smvc.selectedItems = _selectedItems;
+    }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end
