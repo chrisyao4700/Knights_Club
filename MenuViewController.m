@@ -8,13 +8,18 @@
 
 #import "MenuViewController.h"
 
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
 @interface MenuViewController (){
     NSMutableData * _downloadedData;
     NSMutableArray * knightsClubMenu;
     NSMutableArray * sectionList;
     NSMutableArray * sectionDataArray;
     NSDictionary * retrivedMenu;
+        
     
+    KCDish * selectedDish;
+    CGRect  screenRect;
 }
 
 @end
@@ -25,7 +30,7 @@
     [super viewDidLoad];
     [self initAllVars];
     [self readMenuFromDatabase];
-    // Do any additional setup after loading the view.
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,12 +61,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"contentCell" forIndexPath:indexPath];
     
-    NSArray * dishSection = [sectionDataArray objectAtIndex:indexPath.section];
-    KCDish * dish = [dishSection objectAtIndex:indexPath.row];
+    
+    KCDish * dish = [[sectionDataArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.nameLabel.text = dish.dishName;
     cell.priceLabel.text = [NSString stringWithFormat:@"$%@",dish.dishPrice];
     cell.m_imageView.contentMode = UIViewContentModeScaleAspectFit;
-    cell.m_imageView.image = [KCConnectDish configImagesWithDish:dish];
+    UIImage * dishImage = [UIImage imageWithData:[_imageDictionary objectForKey:dish.dishName]];
+    
+
+    if (dishImage) {
+        cell.m_imageView.image = dishImage;
+    }else{
+        cell.m_imageView.image = [UIImage imageNamed:@"lulu"];
+    }
+    
     
     
     // cell.numberLabel.text = tableNumbers[indexPath.row];
@@ -70,6 +83,11 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    KCDish * dish = [[sectionDataArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    selectedDish = dish;
+    [self performSegueWithIdentifier:@"mainMenuToDetail" sender:self];
+    
+    
 }
 
 
@@ -101,10 +119,23 @@
      [self configTableData];
 }
 -(void) initAllVars{
+  
+    _imageDictionary = [[NSMutableDictionary alloc]init];
     knightsClubMenu = [[NSMutableArray alloc]init];
     sectionList = [[NSMutableArray alloc]init];
     
+    screenRect = [[UIScreen mainScreen] bounds];
+    
+    [_menuItem setWidth:screenRect.size.width/5];
+    [_meItem setWidth:screenRect.size.width/5];
+    [_eventItem setWidth:screenRect.size.width/5];
+    [_cartItem setWidth:screenRect.size.width/5];
+    
+    
+   
+    
 }
+
 -(void) configTableData{
     sectionDataArray = [[NSMutableArray alloc]init];
     for (KCDish * dish in knightsClubMenu) {
@@ -127,19 +158,42 @@
             [sectionDataArray addObject:section];
         }
     }
+   // sleep(5);
+    [_menuTable reloadData];
+    dispatch_async(kBgQueue, ^{
+       [self configImageDictionary];
+        [_menuTable reloadData];
+    });
     
     
-    retrivedMenu =[[NSDictionary alloc] initWithObjects:sectionDataArray forKeys:sectionList];
     
+    //retrivedMenu =[[NSDictionary alloc] initWithObjects:sectionDataArray forKeys:sectionList];
+    //   [_menuTable reloadData];
+   
+    
+}
 
+-(void) configImageDictionary{
+   
     
+    for (KCDish * dish in knightsClubMenu) {
+        NSData * data = [KCConnectDish configImagesWithDish:dish andDelegate:self];
+        [_imageDictionary setObject: data forKey:dish.dishName];
+        }
     
-     [_menuTable reloadData];
 }
 - (IBAction)hitSearch:(id)sender {
     [self performSegueWithIdentifier:@"menuToSearch" sender:self];
 }
+- (IBAction)hitMenu:(id)sender {
+}
 
+- (IBAction)hitCart:(id)sender {
+}
+- (IBAction)hitEvent:(id)sender {
+}
+- (IBAction)hitMe:(id)sender {
+}
 
 
 
@@ -152,6 +206,15 @@
         SearchMenuViewController * smvc = (SearchMenuViewController *)[segue destinationViewController];
         smvc.menuDataArray = knightsClubMenu;
         smvc.selectedItems = _selectedItems;
+        smvc.imageDictionary = _imageDictionary;
+    }else if([segue.identifier isEqualToString:@"mainMenuToDetail"]){
+        MenuDetailViewController * mdvc = (MenuDetailViewController *)[segue destinationViewController];
+        mdvc.currentDish = selectedDish;
+        if ([_imageDictionary objectForKey:selectedDish.dishName]) {
+            mdvc.imageData = [_imageDictionary objectForKey:selectedDish.dishName];
+        }else{
+        
+        }
     }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

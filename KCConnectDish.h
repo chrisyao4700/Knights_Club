@@ -12,9 +12,9 @@
 
 @interface KCConnectDish : NSObject
 +(NSURLConnection *) readDishesFromDatabaseWithDelegate:(id) delegate;
-+(NSURLConnection *) readImageFromServerWithDish:(KCDish *) dish
-                                     andDelegate: (id) delegate;
-+(UIImage *) configImagesWithDish: (KCDish *) dish;
+
++(NSData *) configImagesWithDish: (KCDish *) dish
+                      andDelegate:(id) delegate;
 
 
 +(NSString *) urlHandler: (NSString *) value;

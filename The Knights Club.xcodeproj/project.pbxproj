@@ -12,6 +12,7 @@
 		C3BCBBBA1B698D58001B97D2 /* SearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB91B698D58001B97D2 /* SearchMenuViewController.m */; };
 		C3BCBBBD1B6990A1001B97D2 /* KCSelectedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBBC1B6990A1001B97D2 /* KCSelectedItem.m */; };
 		C3BCBBC01B69AB9F001B97D2 /* MenuDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBBF1B69AB9F001B97D2 /* MenuDetailViewController.m */; };
+		C3BCBBCA1B69E00F001B97D2 /* DishDetailScrllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBC81B69E00F001B97D2 /* DishDetailScrllViewController.m */; };
 		C3CF650C1B674F7C00167D70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF650B1B674F7C00167D70 /* main.m */; };
 		C3CF650F1B674F7C00167D70 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF650E1B674F7C00167D70 /* AppDelegate.m */; };
 		C3CF65151B674F7C00167D70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3CF65131B674F7C00167D70 /* Main.storyboard */; };
@@ -47,6 +48,8 @@
 		C3BCBBBC1B6990A1001B97D2 /* KCSelectedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCSelectedItem.m; sourceTree = "<group>"; };
 		C3BCBBBE1B69AB9F001B97D2 /* MenuDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuDetailViewController.h; sourceTree = "<group>"; };
 		C3BCBBBF1B69AB9F001B97D2 /* MenuDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuDetailViewController.m; sourceTree = "<group>"; };
+		C3BCBBC71B69E00F001B97D2 /* DishDetailScrllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishDetailScrllViewController.h; sourceTree = "<group>"; };
+		C3BCBBC81B69E00F001B97D2 /* DishDetailScrllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishDetailScrllViewController.m; sourceTree = "<group>"; };
 		C3CF65061B674F7C00167D70 /* The Knights Club.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Knights Club.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3CF650A1B674F7C00167D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3CF650B1B674F7C00167D70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 				C3BCBBB91B698D58001B97D2 /* SearchMenuViewController.m */,
 				C3BCBBBE1B69AB9F001B97D2 /* MenuDetailViewController.h */,
 				C3BCBBBF1B69AB9F001B97D2 /* MenuDetailViewController.m */,
+				C3BCBBC71B69E00F001B97D2 /* DishDetailScrllViewController.h */,
+				C3BCBBC81B69E00F001B97D2 /* DishDetailScrllViewController.m */,
 			);
 			name = "KC Menu";
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 			files = (
 				C3CF650F1B674F7C00167D70 /* AppDelegate.m in Sources */,
 				C3BCBBBD1B6990A1001B97D2 /* KCSelectedItem.m in Sources */,
+				C3BCBBCA1B69E00F001B97D2 /* DishDetailScrllViewController.m in Sources */,
 				C3BCBBB41B688ECA001B97D2 /* KCDish.m in Sources */,
 				C3BCBBB71B688F90001B97D2 /* KCConnectDish.m in Sources */,
 				C3CF65381B675C4000167D70 /* SignInViewController.m in Sources */,

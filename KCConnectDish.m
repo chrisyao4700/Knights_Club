@@ -20,30 +20,20 @@
     return readConnection;
 }
 
-+(NSURLConnection *) readImageFromServerWithDish:(KCDish *) dish
-                                     andDelegate: (id) delegate{
-    NSString *strURL = [[NSString alloc]initWithFormat:@"http://chrisyao4700.com/Knights_Club/Knights_Menu/menu_icon/GU_Full_Logo.png"];
-    
-    NSURL *insertURL = [NSURL URLWithString:strURL];
-    NSLog(@"%@", strURL);
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:insertURL];
-    [request setHTTPMethod:@"GET"];
-    NSURLConnection * readConnection = [NSURLConnection connectionWithRequest:request delegate:delegate];
-    
-    return readConnection;
-}
-+(UIImage *) configImagesWithDish: (KCDish *) dish{
-    //[KCConnectDish readImageFromServerWithDish:[[KCDish alloc]init] andDelegate:self];
-    NSMutableString *url_Img1 = [[NSMutableString alloc] initWithString:@"http://chrisyao4700.com/Knights_Club/Knights_Menu/menu_icon/"];
-    [url_Img1 appendFormat:@"%@.png",dish.dishName];
-    //[url_Img1 appendString:@"GU_Full_Logo.png"];
-    UIImage * image;
-    NSString * url_full = [KCConnectDish urlHandler:url_Img1];
-    image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url_full]]];
++(NSData *) configImagesWithDish: (KCDish *) dish andDelegate:(id)delegate{
+   
+    NSString * stringURL= [NSString stringWithFormat:@"http://chrisyao4700.com/Knights_Club/Knights_Menu/menu_icon/%@.png",[dish dishName]];
+
+   // UIImage * image;
+    stringURL = [KCConnectDish urlHandler:stringURL];
+    NSURL * imageURL= [NSURL URLWithString:stringURL];
+    NSData * imageData =  [NSData dataWithContentsOfURL:imageURL];
+  
+  // image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url_full]]];
     
     
-    NSLog(@"%@", url_full);
-    return image;
+  // NSLog(@"%@", stringURL);
+    return imageData;
 }
 +(NSString *) urlHandler: (NSString *) value{
     value = [value stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
