@@ -119,6 +119,8 @@
      [self configTableData];
 }
 -(void) initAllVars{
+    
+    _selectedItemList = [[KCItemList alloc]init];
   
     _imageDictionary = [[NSMutableDictionary alloc]init];
     knightsClubMenu = [[NSMutableArray alloc]init];
@@ -189,6 +191,7 @@
 }
 
 - (IBAction)hitCart:(id)sender {
+    [self performSegueWithIdentifier:@"menuToCart" sender:self];
 }
 - (IBAction)hitEvent:(id)sender {
 }
@@ -205,16 +208,19 @@
     if ([segue.identifier isEqualToString:@"menuToSearch"]) {
         SearchMenuViewController * smvc = (SearchMenuViewController *)[segue destinationViewController];
         smvc.menuDataArray = knightsClubMenu;
-        smvc.selectedItems = _selectedItems;
+        smvc.selectedItemList = _selectedItemList;
         smvc.imageDictionary = _imageDictionary;
     }else if([segue.identifier isEqualToString:@"mainMenuToDetail"]){
         MenuDetailViewController * mdvc = (MenuDetailViewController *)[segue destinationViewController];
         mdvc.currentDish = selectedDish;
+        mdvc.selectedItemList = _selectedItemList;
         if ([_imageDictionary objectForKey:selectedDish.dishName]) {
             mdvc.imageData = [_imageDictionary objectForKey:selectedDish.dishName];
-        }else{
-        
         }
+    }else if ([segue.identifier isEqualToString:@"menuToCart"] ){
+        CartViewController * cvc = (CartViewController *) [segue destinationViewController];
+        cvc.selectedItemList = _selectedItemList;
+        
     }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

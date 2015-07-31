@@ -10,21 +10,21 @@
 #import "MenuTableViewCell.h"
 #import "SearchMenuViewController.h"
 #import "MenuDetailViewController.h"
+#import "CartViewController.h"
 #import "KCConnectDish.h"
+#import "KCItemList.h"
 
 @interface MenuViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITableView *menuTable;
-
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *menuItem;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *cartItem;
-
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *eventItem;
-
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *meItem;
 
-@property NSMutableDictionary * imageDictionary;
+@property NSString * lastCall;
 
-@property NSMutableArray *selectedItems;
+@property NSMutableDictionary * imageDictionary;
+@property KCItemList * selectedItemList;
 
 
 @end

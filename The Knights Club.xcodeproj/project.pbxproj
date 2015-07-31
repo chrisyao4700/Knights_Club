@@ -10,9 +10,13 @@
 		C3BCBBB41B688ECA001B97D2 /* KCDish.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB31B688ECA001B97D2 /* KCDish.m */; };
 		C3BCBBB71B688F90001B97D2 /* KCConnectDish.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB61B688F90001B97D2 /* KCConnectDish.m */; };
 		C3BCBBBA1B698D58001B97D2 /* SearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB91B698D58001B97D2 /* SearchMenuViewController.m */; };
-		C3BCBBBD1B6990A1001B97D2 /* KCSelectedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBBC1B6990A1001B97D2 /* KCSelectedItem.m */; };
 		C3BCBBC01B69AB9F001B97D2 /* MenuDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBBF1B69AB9F001B97D2 /* MenuDetailViewController.m */; };
 		C3BCBBCA1B69E00F001B97D2 /* DishDetailScrllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBC81B69E00F001B97D2 /* DishDetailScrllViewController.m */; };
+		C3BCBBCE1B6ABADD001B97D2 /* KCItemList.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBCD1B6ABADD001B97D2 /* KCItemList.m */; };
+		C3BCBBD11B6ABAEC001B97D2 /* KCItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBD01B6ABAEC001B97D2 /* KCItem.m */; };
+		C3BCBBD41B6ABB0F001B97D2 /* KCHandleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBD31B6ABB0F001B97D2 /* KCHandleItem.m */; };
+		C3BCBBD71B6AD540001B97D2 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBD61B6AD540001B97D2 /* CartViewController.m */; };
+		C3BCBBDA1B6ADC92001B97D2 /* CartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBD91B6ADC92001B97D2 /* CartTableViewCell.m */; };
 		C3CF650C1B674F7C00167D70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF650B1B674F7C00167D70 /* main.m */; };
 		C3CF650F1B674F7C00167D70 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF650E1B674F7C00167D70 /* AppDelegate.m */; };
 		C3CF65151B674F7C00167D70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3CF65131B674F7C00167D70 /* Main.storyboard */; };
@@ -44,12 +48,20 @@
 		C3BCBBB61B688F90001B97D2 /* KCConnectDish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCConnectDish.m; sourceTree = "<group>"; };
 		C3BCBBB81B698D58001B97D2 /* SearchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMenuViewController.h; sourceTree = "<group>"; };
 		C3BCBBB91B698D58001B97D2 /* SearchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMenuViewController.m; sourceTree = "<group>"; };
-		C3BCBBBB1B6990A1001B97D2 /* KCSelectedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCSelectedItem.h; sourceTree = "<group>"; };
-		C3BCBBBC1B6990A1001B97D2 /* KCSelectedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCSelectedItem.m; sourceTree = "<group>"; };
 		C3BCBBBE1B69AB9F001B97D2 /* MenuDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuDetailViewController.h; sourceTree = "<group>"; };
 		C3BCBBBF1B69AB9F001B97D2 /* MenuDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuDetailViewController.m; sourceTree = "<group>"; };
 		C3BCBBC71B69E00F001B97D2 /* DishDetailScrllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishDetailScrllViewController.h; sourceTree = "<group>"; };
 		C3BCBBC81B69E00F001B97D2 /* DishDetailScrllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishDetailScrllViewController.m; sourceTree = "<group>"; };
+		C3BCBBCC1B6ABADD001B97D2 /* KCItemList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCItemList.h; sourceTree = "<group>"; };
+		C3BCBBCD1B6ABADD001B97D2 /* KCItemList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCItemList.m; sourceTree = "<group>"; };
+		C3BCBBCF1B6ABAEC001B97D2 /* KCItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCItem.h; sourceTree = "<group>"; };
+		C3BCBBD01B6ABAEC001B97D2 /* KCItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCItem.m; sourceTree = "<group>"; };
+		C3BCBBD21B6ABB0F001B97D2 /* KCHandleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCHandleItem.h; sourceTree = "<group>"; };
+		C3BCBBD31B6ABB0F001B97D2 /* KCHandleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCHandleItem.m; sourceTree = "<group>"; };
+		C3BCBBD51B6AD540001B97D2 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
+		C3BCBBD61B6AD540001B97D2 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
+		C3BCBBD81B6ADC92001B97D2 /* CartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartTableViewCell.h; sourceTree = "<group>"; };
+		C3BCBBD91B6ADC92001B97D2 /* CartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartTableViewCell.m; sourceTree = "<group>"; };
 		C3CF65061B674F7C00167D70 /* The Knights Club.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Knights Club.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3CF650A1B674F7C00167D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3CF650B1B674F7C00167D70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -194,6 +206,10 @@
 		C3CF65331B67505700167D70 /* KC Cart */ = {
 			isa = PBXGroup;
 			children = (
+				C3BCBBD51B6AD540001B97D2 /* CartViewController.h */,
+				C3BCBBD61B6AD540001B97D2 /* CartViewController.m */,
+				C3BCBBD81B6ADC92001B97D2 /* CartTableViewCell.h */,
+				C3BCBBD91B6ADC92001B97D2 /* CartTableViewCell.m */,
 			);
 			name = "KC Cart";
 			sourceTree = "<group>";
@@ -216,8 +232,12 @@
 				C3BCBBB31B688ECA001B97D2 /* KCDish.m */,
 				C3BCBBB51B688F90001B97D2 /* KCConnectDish.h */,
 				C3BCBBB61B688F90001B97D2 /* KCConnectDish.m */,
-				C3BCBBBB1B6990A1001B97D2 /* KCSelectedItem.h */,
-				C3BCBBBC1B6990A1001B97D2 /* KCSelectedItem.m */,
+				C3BCBBCC1B6ABADD001B97D2 /* KCItemList.h */,
+				C3BCBBCD1B6ABADD001B97D2 /* KCItemList.m */,
+				C3BCBBCF1B6ABAEC001B97D2 /* KCItem.h */,
+				C3BCBBD01B6ABAEC001B97D2 /* KCItem.m */,
+				C3BCBBD21B6ABB0F001B97D2 /* KCHandleItem.h */,
+				C3BCBBD31B6ABB0F001B97D2 /* KCHandleItem.m */,
 			);
 			name = "KC Abstract";
 			sourceTree = "<group>";
@@ -322,18 +342,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3BCBBD11B6ABAEC001B97D2 /* KCItem.m in Sources */,
+				C3BCBBDA1B6ADC92001B97D2 /* CartTableViewCell.m in Sources */,
 				C3CF650F1B674F7C00167D70 /* AppDelegate.m in Sources */,
-				C3BCBBBD1B6990A1001B97D2 /* KCSelectedItem.m in Sources */,
 				C3BCBBCA1B69E00F001B97D2 /* DishDetailScrllViewController.m in Sources */,
 				C3BCBBB41B688ECA001B97D2 /* KCDish.m in Sources */,
 				C3BCBBB71B688F90001B97D2 /* KCConnectDish.m in Sources */,
 				C3CF65381B675C4000167D70 /* SignInViewController.m in Sources */,
+				C3BCBBCE1B6ABADD001B97D2 /* KCItemList.m in Sources */,
 				C3CF65411B67E85C00167D70 /* KCConnectCustomer.m in Sources */,
 				C3BCBBBA1B698D58001B97D2 /* SearchMenuViewController.m in Sources */,
 				C3CF653E1B67E54A00167D70 /* KCCustomer.m in Sources */,
 				C3BCBBC01B69AB9F001B97D2 /* MenuDetailViewController.m in Sources */,
 				C3CF65441B67F52500167D70 /* MenuViewController.m in Sources */,
 				C3CF653B1B675C5C00167D70 /* SignUpViewController.m in Sources */,
+				C3BCBBD41B6ABB0F001B97D2 /* KCHandleItem.m in Sources */,
+				C3BCBBD71B6AD540001B97D2 /* CartViewController.m in Sources */,
 				C3CF65471B6802EE00167D70 /* MenuTableViewCell.m in Sources */,
 				C3CF650C1B674F7C00167D70 /* main.m in Sources */,
 			);

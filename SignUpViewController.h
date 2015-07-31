@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KCConnectCustomer.h"
 
-@interface SignUpViewController : UIViewController<UIAlertViewDelegate>
+@interface SignUpViewController : UIViewController<UIAlertViewDelegate,UITextFieldDelegate>
 @property NSString * netWorkID;
 @property NSString * netWorkPassword;
 
