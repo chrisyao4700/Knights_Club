@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C35529351B6B5AB10093D62C /* KCImageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C35529341B6B5AB10093D62C /* KCImageHandler.m */; };
 		C3BCBBB41B688ECA001B97D2 /* KCDish.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB31B688ECA001B97D2 /* KCDish.m */; };
 		C3BCBBB71B688F90001B97D2 /* KCConnectDish.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB61B688F90001B97D2 /* KCConnectDish.m */; };
 		C3BCBBBA1B698D58001B97D2 /* SearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB91B698D58001B97D2 /* SearchMenuViewController.m */; };
@@ -43,6 +44,9 @@
 
 /* Begin PBXFileReference section */
 		C35529311B6B3EDA0093D62C /* DetailBackToCartRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailBackToCartRefresh.h; sourceTree = "<group>"; };
+		C35529321B6B55D70093D62C /* DismissFatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissFatherViewController.h; sourceTree = "<group>"; };
+		C35529331B6B5AB10093D62C /* KCImageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCImageHandler.h; sourceTree = "<group>"; };
+		C35529341B6B5AB10093D62C /* KCImageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCImageHandler.m; sourceTree = "<group>"; };
 		C3BCBBB21B688ECA001B97D2 /* KCDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCDish.h; sourceTree = "<group>"; };
 		C3BCBBB31B688ECA001B97D2 /* KCDish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCDish.m; sourceTree = "<group>"; };
 		C3BCBBB51B688F90001B97D2 /* KCConnectDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCConnectDish.h; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 		C3CF65331B67505700167D70 /* KC Cart */ = {
 			isa = PBXGroup;
 			children = (
+				C35529321B6B55D70093D62C /* DismissFatherViewController.h */,
 				C3BCBBD51B6AD540001B97D2 /* CartViewController.h */,
 				C3BCBBD61B6AD540001B97D2 /* CartViewController.m */,
 				C3BCBBD81B6ADC92001B97D2 /* CartTableViewCell.h */,
@@ -240,6 +245,8 @@
 				C3BCBBD01B6ABAEC001B97D2 /* KCItem.m */,
 				C3BCBBD21B6ABB0F001B97D2 /* KCHandleItem.h */,
 				C3BCBBD31B6ABB0F001B97D2 /* KCHandleItem.m */,
+				C35529331B6B5AB10093D62C /* KCImageHandler.h */,
+				C35529341B6B5AB10093D62C /* KCImageHandler.m */,
 			);
 			name = "KC Abstract";
 			sourceTree = "<group>";
@@ -361,6 +368,7 @@
 				C3BCBBD41B6ABB0F001B97D2 /* KCHandleItem.m in Sources */,
 				C3BCBBD71B6AD540001B97D2 /* CartViewController.m in Sources */,
 				C3CF65471B6802EE00167D70 /* MenuTableViewCell.m in Sources */,
+				C35529351B6B5AB10093D62C /* KCImageHandler.m in Sources */,
 				C3CF650C1B674F7C00167D70 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

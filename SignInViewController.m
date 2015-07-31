@@ -43,7 +43,9 @@
     [self performSegueWithIdentifier:@"toSignUp" sender:self];
 }
 
-
+-(void)closeFatherController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
@@ -131,7 +133,11 @@
         }
         
     } else if([segue.identifier isEqualToString:@"loginMenu"]){
-       // [self dismissViewControllerAnimated:YES completion:nil];
+        
+            MenuViewController * mvc = (MenuViewController *) [segue destinationViewController];
+            mvc.closeControllerDelegate = self;
+        
+
     }
     
     // Get the new view controller using [segue destinationViewController].

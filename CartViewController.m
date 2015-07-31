@@ -104,6 +104,7 @@
 }
 
 - (IBAction)hitMenu:(id)sender {
+    [self performSegueWithIdentifier:@"cartToMenu" sender:self];
 }
 - (IBAction)hitCart:(id)sender {
 }
@@ -279,7 +280,9 @@
                                                   object:nil];
 }
 /* End Text View */
-
+-(void) closeFatherController{
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
 
 #pragma mark - Navigation
 
@@ -295,9 +298,13 @@
         mdvc.si_requirement = selectedItem.kc_requirement;
         
     
+    }else if ([segue.identifier isEqualToString:@"cartToMenu"]){
+        MenuViewController * mvc = (MenuViewController *) [segue destinationViewController];
+        mvc.selectedItemList = _selectedItemList;
+        mvc.closeControllerDelegate = self;
+        
     }
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+   
 }
 
 @end

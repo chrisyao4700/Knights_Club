@@ -74,12 +74,7 @@
     }else{
         cell.m_imageView.image = [UIImage imageNamed:@"lulu"];
     }
-    
-    
-    
-    // cell.numberLabel.text = tableNumbers[indexPath.row];
-    
-    return cell;
+      return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -119,8 +114,11 @@
      [self configTableData];
 }
 -(void) initAllVars{
+    [_closeControllerDelegate closeFatherController];
+    if (!_selectedItemList) {
+        _selectedItemList = [[KCItemList alloc]init];
+    }
     
-    _selectedItemList = [[KCItemList alloc]init];
   
     _imageDictionary = [[NSMutableDictionary alloc]init];
     knightsClubMenu = [[NSMutableArray alloc]init];
@@ -160,10 +158,11 @@
             [sectionDataArray addObject:section];
         }
     }
-   // sleep(5);
+    _imageDictionary = [[NSMutableDictionary alloc]initWithDictionary:[KCImageHandler readImagesFromFile]];
     [_menuTable reloadData];
     dispatch_async(kBgQueue, ^{
        [self configImageDictionary];
+        [KCImageHandler saveImagesToLocalFileWithImageDictionary:_imageDictionary];
         [_menuTable reloadData];
     });
     
@@ -188,6 +187,8 @@
     [self performSegueWithIdentifier:@"menuToSearch" sender:self];
 }
 - (IBAction)hitMenu:(id)sender {
+   
+    
 }
 
 - (IBAction)hitCart:(id)sender {

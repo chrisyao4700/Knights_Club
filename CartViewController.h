@@ -10,8 +10,11 @@
 #import "KCItemList.h"
 #import "CartTableViewCell.h"
 #import "MenuDetailViewController.h"
+#import "MenuViewController.h"
+#import "DismissFatherViewController.h"
 
-@interface CartViewController : UIViewController<UITextViewDelegate,UITextFieldDelegate,DetailBackToCartRefresh>
+
+@interface CartViewController : UIViewController<UITextViewDelegate,UITextFieldDelegate,DetailBackToCartRefresh,DismissFatherViewController>
 
 
 

@@ -72,7 +72,9 @@
     
 }
 
-
+-(void)closeFatherController{
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
 -(void) initAllVars{
     if (_netWorkID) {
         _usernameField.text = _netWorkID;
@@ -253,14 +255,18 @@
 }
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"signUpMenu"]) {
+        MenuViewController * mvc = (MenuViewController *) [segue destinationViewController];
+        mvc.closeControllerDelegate = self;
+    }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end
