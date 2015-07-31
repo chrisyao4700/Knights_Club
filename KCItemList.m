@@ -25,7 +25,7 @@
     }
 }
 
--(void) deleteItemWithIndext:(NSInteger *)index{
+-(void) deleteItemWithIndext:(NSInteger)index{
     if (_selectedItemArray) {
         [_selectedItemArray removeObjectAtIndex:(NSUInteger)index];
     }

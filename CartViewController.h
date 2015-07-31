@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "KCItemList.h"
 #import "CartTableViewCell.h"
-@interface CartViewController : UIViewController<UITextViewDelegate,UITextFieldDelegate>
+#import "MenuDetailViewController.h"
+
+@interface CartViewController : UIViewController<UITextViewDelegate,UITextFieldDelegate,DetailBackToCartRefresh>
 
 
 

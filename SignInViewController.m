@@ -130,6 +130,8 @@
             suvc.netWorkPassword = _passwordField.text;
         }
         
+    } else if([segue.identifier isEqualToString:@"loginMenu"]){
+       // [self dismissViewControllerAnimated:YES completion:nil];
     }
     
     // Get the new view controller using [segue destinationViewController].

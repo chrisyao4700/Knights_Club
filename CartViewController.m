@@ -11,7 +11,7 @@
 @interface CartViewController (){
     CGRect screenRect;
     
-    KCDish * selectedDish;
+    KCItem * selectedItem;
     BOOL isUped;
     
     
@@ -52,9 +52,8 @@
     [_meItem setWidth:screenRect.size.width/5];
     [_eventItem setWidth:screenRect.size.width/5];
     [_cartItem setWidth:screenRect.size.width/5];
-    CGRect  checkoutFrame = _checkoutButton.frame;
     
-    _checkoutButton.frame = CGRectMake(screenRect.size.width/2.0 - checkoutFrame.size.width/2.0, screenRect.size.height-80, 102.0, 30.0);
+   
     
     UIImageView * backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
     backgroundImageView.image = [UIImage imageNamed:@"Background"];
@@ -80,7 +79,21 @@
     _orderPriceLabel.text = str_totalPrice;
     _totalChargeLabel.text = str_totalCharge;
     _tipsField.placeholder = [NSString stringWithFormat:@"15%%:%.2f", (fl_totalPrice + fl_tax) *0.15];
+    [_orderTable reloadData];
     
+}
+
+
+-(void)updateItemList: (KCItemList *) updatedList{
+    _selectedItemList = updatedList;
+    [self initAllVars];
+}
+
+- (IBAction)tipsChange:(id)sender {
+    fl_tips = _tipsField.text.floatValue;
+    fl_totalCharge = fl_totalPrice + fl_tax + fl_tips;
+    str_totalPrice = [NSString stringWithFormat:@"$%.2f", fl_totalCharge];
+    _totalChargeLabel.text = str_totalPrice;
 }
 
 - (IBAction)hitBack:(id)sender {
@@ -129,7 +142,7 @@
         cell.requirementView.editable = NO;
     }else{
         cell.requirementView.text = item.kc_requirement;
-        cell.requirementView.editable = YES;
+        cell.requirementView.editable = NO;
     }
     
     UIImage * dishImage = [UIImage imageWithData:item.kc_imageData];
@@ -144,10 +157,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    KCItem* item = [_selectedItemList.selectedItemArray objectAtIndex:indexPath.row];
-    KCDish * dish = item.kc_selectedDish;
-    selectedDish = dish;
-    [self performSegueWithIdentifier:@"mainMenuToDetail" sender:self];
+    selectedItem = [[KCItem alloc]initWithDictionary:[[_selectedItemList.selectedItemArray objectAtIndex:indexPath.row] copy]];
+    [_selectedItemList deleteItemWithIndext:indexPath.row];
+    [self performSegueWithIdentifier:@"cartToDetail" sender:self];
     
     
 }
@@ -268,14 +280,24 @@
 }
 /* End Text View */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"cartToDetail"]) {
+        MenuDetailViewController * mdvc = (MenuDetailViewController *)[segue destinationViewController];
+        mdvc.selectedItemList = _selectedItemList;
+        mdvc.currentDish = [selectedItem kc_selectedDish];
+        mdvc.imageData = selectedItem.kc_imageData;
+        mdvc.updateItemListDelegate = self;
+        mdvc.si_quantity = selectedItem.kc_quantity;
+        mdvc.si_requirement = selectedItem.kc_requirement;
+        
+    
+    }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
 
 @end

@@ -664,6 +664,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                        <connections>
+                                            <action selector="tipsChange:" destination="Ic7-K7-cjX" eventType="editingChanged" id="uDr-HA-0qK"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tc6-9Y-jF9">
                                         <rect key="frame" x="478" y="196" width="102" height="30"/>
@@ -766,6 +769,7 @@
                         <outlet property="taxValueLabel" destination="iba-ZW-Jpc" id="kOf-f8-oSg"/>
                         <outlet property="tipsField" destination="bVk-aw-R7B" id="qmk-o6-3Zn"/>
                         <outlet property="totalChargeLabel" destination="Iga-52-OE0" id="pkI-wG-LSC"/>
+                        <segue destination="TIt-wJ-ZDB" kind="presentation" identifier="cartToDetail" id="K2r-om-xXF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CyJ-h8-Axb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -784,22 +788,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6JP-ua-m8b">
-                                <rect key="frame" x="259" y="562" width="82" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="E3F-u4-hML"/>
-                                    <constraint firstAttribute="width" constant="82" id="UfS-iX-DIz"/>
-                                </constraints>
-                                <state key="normal" title="Add To Cart">
-                                    <color key="titleColor" red="1" green="0.48866807820000002" blue="0.24060452130000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="pushAddToCart:" destination="TIt-wJ-ZDB" eventType="touchUpInside" id="crb-dn-QiV"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Obf-5S-z64">
-                                <rect key="frame" x="0.0" y="350" width="600" height="204"/>
+                                <rect key="frame" x="0.0" y="350" width="600" height="250"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How Many?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRK-X8-8cG">
                                         <rect key="frame" x="8" y="7" width="92" height="30"/>
@@ -844,11 +834,26 @@
                                             <action selector="sliderChanged:" destination="TIt-wJ-ZDB" eventType="valueChanged" id="yde-zj-IDe"/>
                                         </connections>
                                     </slider>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18R-Dt-Tv7">
+                                        <rect key="frame" x="259" y="212" width="82" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="82" id="Ddt-uw-9PV"/>
+                                            <constraint firstAttribute="height" constant="30" id="pac-3k-h2S"/>
+                                        </constraints>
+                                        <state key="normal" title="Add To Cart">
+                                            <color key="titleColor" red="1" green="0.48866807820000002" blue="0.24060452130000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pushAddToCart:" destination="TIt-wJ-ZDB" eventType="touchUpInside" id="etn-Ig-npF"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.78000000000000003" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="h7n-hk-VGc" secondAttribute="trailing" constant="8" id="9zO-W3-8EI"/>
                                     <constraint firstItem="Sxq-pw-kce" firstAttribute="top" secondItem="CRK-X8-8cG" secondAttribute="bottom" constant="26" id="Em7-YZ-1xI"/>
+                                    <constraint firstAttribute="bottom" secondItem="18R-Dt-Tv7" secondAttribute="bottom" constant="8" id="Ffm-if-zxp"/>
                                     <constraint firstItem="CRK-X8-8cG" firstAttribute="leading" secondItem="Obf-5S-z64" secondAttribute="leading" constant="8" id="Fni-4C-AMc"/>
                                     <constraint firstAttribute="trailing" secondItem="A0Q-Io-YrT" secondAttribute="trailing" constant="8" id="Hmd-yp-Yc5"/>
                                     <constraint firstItem="A0Q-Io-YrT" firstAttribute="top" secondItem="Sxq-pw-kce" secondAttribute="bottom" constant="8" id="K2b-be-wT1"/>
@@ -856,11 +861,12 @@
                                     <constraint firstItem="A0Q-Io-YrT" firstAttribute="leading" secondItem="Obf-5S-z64" secondAttribute="leading" constant="8" id="UzK-IZ-kmW"/>
                                     <constraint firstItem="Sxq-pw-kce" firstAttribute="leading" secondItem="Obf-5S-z64" secondAttribute="leading" constant="8" id="V6a-GS-nhM"/>
                                     <constraint firstItem="CRK-X8-8cG" firstAttribute="top" secondItem="Obf-5S-z64" secondAttribute="top" constant="7" id="Wt7-Tg-GqJ"/>
-                                    <constraint firstAttribute="height" constant="204" id="Y7R-87-uBO"/>
-                                    <constraint firstAttribute="bottom" secondItem="A0Q-Io-YrT" secondAttribute="bottom" id="dyj-be-P8C"/>
+                                    <constraint firstAttribute="height" constant="250" id="Y7R-87-uBO"/>
+                                    <constraint firstAttribute="bottom" secondItem="A0Q-Io-YrT" secondAttribute="bottom" constant="46" id="dyj-be-P8C"/>
                                     <constraint firstItem="2D1-cU-22E" firstAttribute="top" secondItem="Obf-5S-z64" secondAttribute="top" constant="7" id="qL4-ef-hsf"/>
                                     <constraint firstItem="h7n-hk-VGc" firstAttribute="top" secondItem="Obf-5S-z64" secondAttribute="top" constant="7" id="qeG-fI-0s2"/>
                                     <constraint firstItem="2D1-cU-22E" firstAttribute="leading" secondItem="CRK-X8-8cG" secondAttribute="trailing" constant="23" id="qoe-uA-TCs"/>
+                                    <constraint firstAttribute="centerX" secondItem="18R-Dt-Tv7" secondAttribute="centerX" id="wez-d9-RZ5"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FIs-yU-YHL">
@@ -870,9 +876,9 @@
                                         <rect key="frame" x="58" y="10" width="504" height="35"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BtP-hZ-dHG">
-                                        <rect key="frame" x="8" y="13" width="42" height="34"/>
+                                        <rect key="frame" x="0.0" y="11" width="52" height="34"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="42" id="bjF-3y-1zw"/>
+                                            <constraint firstAttribute="width" constant="52" id="bjF-3y-1zw"/>
                                             <constraint firstAttribute="height" constant="34" id="gOv-rN-sOu"/>
                                         </constraints>
                                         <state key="normal" title="Back">
@@ -887,11 +893,11 @@
                                 <color key="backgroundColor" red="0.5450980392" green="0.039215686270000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="2b9-gx-FUa" firstAttribute="top" secondItem="FIs-yU-YHL" secondAttribute="top" constant="10" id="4Fr-PP-9pH"/>
-                                    <constraint firstItem="BtP-hZ-dHG" firstAttribute="top" secondItem="FIs-yU-YHL" secondAttribute="top" constant="13" id="Yi9-Vb-exd"/>
-                                    <constraint firstItem="2b9-gx-FUa" firstAttribute="leading" secondItem="BtP-hZ-dHG" secondAttribute="trailing" constant="8" id="jrN-Rc-iQu"/>
+                                    <constraint firstItem="BtP-hZ-dHG" firstAttribute="top" secondItem="FIs-yU-YHL" secondAttribute="top" constant="11" id="Yi9-Vb-exd"/>
+                                    <constraint firstItem="2b9-gx-FUa" firstAttribute="leading" secondItem="BtP-hZ-dHG" secondAttribute="trailing" constant="6" id="jrN-Rc-iQu"/>
                                     <constraint firstAttribute="bottom" secondItem="2b9-gx-FUa" secondAttribute="bottom" constant="10" id="rzm-jo-dt9"/>
                                     <constraint firstAttribute="height" constant="55" id="sGV-4q-uS8"/>
-                                    <constraint firstItem="BtP-hZ-dHG" firstAttribute="leading" secondItem="FIs-yU-YHL" secondAttribute="leading" constant="8" id="stc-aY-yTY"/>
+                                    <constraint firstItem="BtP-hZ-dHG" firstAttribute="leading" secondItem="FIs-yU-YHL" secondAttribute="leading" id="stc-aY-yTY"/>
                                     <constraint firstAttribute="trailing" secondItem="2b9-gx-FUa" secondAttribute="trailing" constant="38" id="zHc-oA-hGu"/>
                                 </constraints>
                             </view>
@@ -910,15 +916,15 @@
                             <constraint firstAttribute="trailingMargin" secondItem="4Qn-Ex-PaR" secondAttribute="trailing" constant="-16" id="OVf-mX-Xxm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FIs-yU-YHL" secondAttribute="trailing" constant="-16" id="OjH-P7-6jc"/>
                             <constraint firstItem="Obf-5S-z64" firstAttribute="trailing" secondItem="R8b-UD-beh" secondAttribute="trailingMargin" constant="16" id="PTv-dL-LRp"/>
-                            <constraint firstAttribute="centerX" secondItem="6JP-ua-m8b" secondAttribute="centerX" id="Xfp-6R-hki"/>
-                            <constraint firstItem="6hB-kk-Hew" firstAttribute="top" secondItem="Obf-5S-z64" secondAttribute="bottom" constant="46" id="Yfz-NX-maY"/>
+                            <constraint firstItem="6hB-kk-Hew" firstAttribute="top" secondItem="Obf-5S-z64" secondAttribute="bottom" id="Yfz-NX-maY"/>
                             <constraint firstItem="FIs-yU-YHL" firstAttribute="leading" secondItem="R8b-UD-beh" secondAttribute="leadingMargin" constant="-16" id="bVl-kq-ftF"/>
-                            <constraint firstItem="6hB-kk-Hew" firstAttribute="top" secondItem="6JP-ua-m8b" secondAttribute="bottom" constant="8" id="jdh-bP-ynF"/>
                             <constraint firstItem="Obf-5S-z64" firstAttribute="leading" secondItem="R8b-UD-beh" secondAttribute="leadingMargin" constant="-16" id="pxX-Er-n94"/>
                             <constraint firstItem="FIs-yU-YHL" firstAttribute="top" secondItem="Vaf-md-ddx" secondAttribute="bottom" id="wD5-ds-osY"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addCartButton" destination="18R-Dt-Tv7" id="gG8-ZM-sKj"/>
+                        <outlet property="backButton" destination="BtP-hZ-dHG" id="fm8-5K-Zku"/>
                         <outlet property="quantityLabel" destination="2D1-cU-22E" id="iCp-51-G5J"/>
                         <outlet property="quantitySlider" destination="h7n-hk-VGc" id="ad8-vb-FE2"/>
                         <outlet property="requirementView" destination="A0Q-Io-YrT" id="mJH-W5-5Vj"/>
@@ -926,7 +932,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ou-b4-eZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-932" y="951"/>
+            <point key="canvasLocation" x="-698" y="2583"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="B5e-Wd-yv4">

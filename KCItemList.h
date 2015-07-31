@@ -15,7 +15,7 @@
 
 - (id)init;
 -(void) addItem: (KCItem *) item;
--(void) deleteItemWithIndext: (NSInteger *) index;
+-(void) deleteItemWithIndext: (NSInteger) index;
 -(void) resetList;
 
 @end

@@ -42,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C35529311B6B3EDA0093D62C /* DetailBackToCartRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailBackToCartRefresh.h; sourceTree = "<group>"; };
 		C3BCBBB21B688ECA001B97D2 /* KCDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCDish.h; sourceTree = "<group>"; };
 		C3BCBBB31B688ECA001B97D2 /* KCDish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCDish.m; sourceTree = "<group>"; };
 		C3BCBBB51B688F90001B97D2 /* KCConnectDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCConnectDish.h; sourceTree = "<group>"; };
@@ -210,6 +211,7 @@
 				C3BCBBD61B6AD540001B97D2 /* CartViewController.m */,
 				C3BCBBD81B6ADC92001B97D2 /* CartTableViewCell.h */,
 				C3BCBBD91B6ADC92001B97D2 /* CartTableViewCell.m */,
+				C35529311B6B3EDA0093D62C /* DetailBackToCartRefresh.h */,
 			);
 			name = "KC Cart";
 			sourceTree = "<group>";

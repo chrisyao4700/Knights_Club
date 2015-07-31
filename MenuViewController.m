@@ -212,14 +212,20 @@
         smvc.imageDictionary = _imageDictionary;
     }else if([segue.identifier isEqualToString:@"mainMenuToDetail"]){
         MenuDetailViewController * mdvc = (MenuDetailViewController *)[segue destinationViewController];
-        mdvc.currentDish = selectedDish;
+        KCDish * copy_dish = [[KCDish alloc]initWithContentArray:[selectedDish.contentArray copy]];
+        mdvc.currentDish =  copy_dish;
         mdvc.selectedItemList = _selectedItemList;
         if ([_imageDictionary objectForKey:selectedDish.dishName]) {
-            mdvc.imageData = [_imageDictionary objectForKey:selectedDish.dishName];
+            mdvc.imageData = [[_imageDictionary objectForKey:selectedDish.dishName] copy];
+        }else{
+            UIImage * luluImage = [UIImage imageNamed:@"lulu"];
+            NSData * luluDataPic = UIImagePNGRepresentation(luluImage);
+            mdvc.imageData = luluDataPic;
         }
     }else if ([segue.identifier isEqualToString:@"menuToCart"] ){
         CartViewController * cvc = (CartViewController *) [segue destinationViewController];
         cvc.selectedItemList = _selectedItemList;
+      //  [self dismissViewControllerAnimated:YES completion:nil];
         
     }
     // Get the new view controller using [segue destinationViewController].
