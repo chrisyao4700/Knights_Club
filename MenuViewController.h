@@ -16,6 +16,7 @@
 #import "KCConnectDish.h"
 #import "KCItemListHandler.h"
 #import "DismissFatherViewController.h"
+#import "EventViewController.h"
 
 @interface MenuViewController : UIViewController<DismissFatherViewController>
 

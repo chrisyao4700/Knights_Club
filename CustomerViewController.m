@@ -42,6 +42,7 @@
     [self performSegueWithIdentifier:@"meToCart" sender:self];
 }
 - (IBAction)hitEventItem:(id)sender {
+    [self performSegueWithIdentifier:@"meToEvent" sender:self];
 }
 - (IBAction)hitMeItem:(id)sender {
 }
@@ -70,7 +71,7 @@
 }
 
 -(void) initAllVars{
-    screenRect = [[UIScreen mainScreen] bounds];
+    
 
     [_dismisViewDelegate closeFatherController];
     
@@ -84,6 +85,7 @@
     updatedEmail = _defaultCustomer.email;
     updatedGUNum = _defaultCustomer.guNumber;
     
+    screenRect = [[UIScreen mainScreen] bounds];
     [_menuItem setWidth:screenRect.size.width/5];
     [_meItem setWidth:screenRect.size.width/5];
     [_eventItem setWidth:screenRect.size.width/5];
@@ -193,6 +195,9 @@
     }else if ([segue.identifier isEqualToString:@"meToCart"]){
         CartViewController * cvc = (CartViewController *) [segue destinationViewController];
         cvc.dismisViewDelegate = self;
+    }else if ([segue.identifier isEqualToString:@"meToEvent"]){
+        EventViewController * evc = (EventViewController *) [segue destinationViewController];
+        evc.dismissFatherViewDelegate = self;
     }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

@@ -12,6 +12,7 @@
 		C355293D1B6B64F60093D62C /* CustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C355293C1B6B64F60093D62C /* CustomerViewController.m */; };
 		C35529401B6B66A70093D62C /* KCCustomerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C355293F1B6B66A70093D62C /* KCCustomerHandler.m */; };
 		C35529431B6C03E60093D62C /* KCItemListHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C35529421B6C03E60093D62C /* KCItemListHandler.m */; };
+		C3A074E31B6CCDF50082540E /* KCOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A074E21B6CCDF50082540E /* KCOrder.m */; };
 		C3BCBBB41B688ECA001B97D2 /* KCDish.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB31B688ECA001B97D2 /* KCDish.m */; };
 		C3BCBBB71B688F90001B97D2 /* KCConnectDish.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB61B688F90001B97D2 /* KCConnectDish.m */; };
 		C3BCBBBA1B698D58001B97D2 /* SearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB91B698D58001B97D2 /* SearchMenuViewController.m */; };
@@ -22,6 +23,7 @@
 		C3BCBBD41B6ABB0F001B97D2 /* KCHandleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBD31B6ABB0F001B97D2 /* KCHandleItem.m */; };
 		C3BCBBD71B6AD540001B97D2 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBD61B6AD540001B97D2 /* CartViewController.m */; };
 		C3BCBBDA1B6ADC92001B97D2 /* CartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBD91B6ADC92001B97D2 /* CartTableViewCell.m */; };
+		C3C773F31B6CBDA6003DF48B /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C773F11B6CBDA6003DF48B /* EventViewController.m */; };
 		C3CF650C1B674F7C00167D70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF650B1B674F7C00167D70 /* main.m */; };
 		C3CF650F1B674F7C00167D70 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CF650E1B674F7C00167D70 /* AppDelegate.m */; };
 		C3CF65151B674F7C00167D70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3CF65131B674F7C00167D70 /* Main.storyboard */; };
@@ -59,6 +61,8 @@
 		C355293F1B6B66A70093D62C /* KCCustomerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCCustomerHandler.m; sourceTree = "<group>"; };
 		C35529411B6C03E60093D62C /* KCItemListHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCItemListHandler.h; sourceTree = "<group>"; };
 		C35529421B6C03E60093D62C /* KCItemListHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCItemListHandler.m; sourceTree = "<group>"; };
+		C3A074E11B6CCDF50082540E /* KCOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCOrder.h; sourceTree = "<group>"; };
+		C3A074E21B6CCDF50082540E /* KCOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCOrder.m; sourceTree = "<group>"; };
 		C3BCBBB21B688ECA001B97D2 /* KCDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCDish.h; sourceTree = "<group>"; };
 		C3BCBBB31B688ECA001B97D2 /* KCDish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCDish.m; sourceTree = "<group>"; };
 		C3BCBBB51B688F90001B97D2 /* KCConnectDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCConnectDish.h; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 		C3BCBBD61B6AD540001B97D2 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 		C3BCBBD81B6ADC92001B97D2 /* CartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartTableViewCell.h; sourceTree = "<group>"; };
 		C3BCBBD91B6ADC92001B97D2 /* CartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartTableViewCell.m; sourceTree = "<group>"; };
+		C3C773F01B6CBDA6003DF48B /* EventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventViewController.h; sourceTree = "<group>"; };
+		C3C773F11B6CBDA6003DF48B /* EventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventViewController.m; sourceTree = "<group>"; };
 		C3CF65061B674F7C00167D70 /* The Knights Club.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Knights Club.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3CF650A1B674F7C00167D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3CF650B1B674F7C00167D70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -122,9 +128,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C3C773EF1B6CBD77003DF48B /* KC Event */ = {
+			isa = PBXGroup;
+			children = (
+				C3C773F01B6CBDA6003DF48B /* EventViewController.h */,
+				C3C773F11B6CBDA6003DF48B /* EventViewController.m */,
+			);
+			name = "KC Event";
+			sourceTree = "<group>";
+		};
 		C3CF64FD1B674F7C00167D70 = {
 			isa = PBXGroup;
 			children = (
+				C3C773EF1B6CBD77003DF48B /* KC Event */,
 				C3CF65351B675C0500167D70 /* KC Abstract */,
 				C3CF65341B67505F00167D70 /* KC Pay */,
 				C3CF65331B67505700167D70 /* KC Cart */,
@@ -257,6 +273,8 @@
 				C3BCBBB61B688F90001B97D2 /* KCConnectDish.m */,
 				C3BCBBCC1B6ABADD001B97D2 /* KCItemList.h */,
 				C3BCBBCD1B6ABADD001B97D2 /* KCItemList.m */,
+				C3A074E11B6CCDF50082540E /* KCOrder.h */,
+				C3A074E21B6CCDF50082540E /* KCOrder.m */,
 				C3BCBBCF1B6ABAEC001B97D2 /* KCItem.h */,
 				C3BCBBD01B6ABAEC001B97D2 /* KCItem.m */,
 				C3BCBBD21B6ABB0F001B97D2 /* KCHandleItem.h */,
@@ -380,7 +398,9 @@
 				C3BCBBB71B688F90001B97D2 /* KCConnectDish.m in Sources */,
 				C3CF65381B675C4000167D70 /* SignInViewController.m in Sources */,
 				C355293D1B6B64F60093D62C /* CustomerViewController.m in Sources */,
+				C3C773F31B6CBDA6003DF48B /* EventViewController.m in Sources */,
 				C3BCBBCE1B6ABADD001B97D2 /* KCItemList.m in Sources */,
+				C3A074E31B6CCDF50082540E /* KCOrder.m in Sources */,
 				C3CF65411B67E85C00167D70 /* KCConnectCustomer.m in Sources */,
 				C3BCBBBA1B698D58001B97D2 /* SearchMenuViewController.m in Sources */,
 				C3CF653E1B67E54A00167D70 /* KCCustomer.m in Sources */,

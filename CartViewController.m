@@ -64,9 +64,20 @@
     UIImageView * backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
     backgroundImageView.image = [UIImage imageNamed:@"Background"];
     [self.view insertSubview:backgroundImageView atIndex:0];
+    [self configLabels];
+    
+}
+
+
+-(void)updateItemList: (KCItemList *) updatedList{
+    _selectedItemList = updatedList;
+    //[self initAllVars];
+    //[_orderTable reloadData];
+    [self configLabels];
+}
+
+-(void) configLabels{
     fl_totalPrice = 0.0;
-    
-    
     for (NSDictionary * itemDic in _selectedItemList.selectedItemArray) {
         KCItem * item = [[KCItem alloc]initWithDictionary:itemDic];
         KCDish * dish = item.kc_selectedDish;
@@ -86,15 +97,9 @@
     _totalChargeLabel.text = str_totalCharge;
     _tipsField.placeholder = [NSString stringWithFormat:@"15%%:%.2f", (fl_totalPrice + fl_tax) *0.15];
     [_orderTable reloadData];
-    
+
 }
 
-
--(void)updateItemList: (KCItemList *) updatedList{
-    _selectedItemList = updatedList;
-    //[self initAllVars];
-    [_orderTable reloadData];
-}
 
 - (IBAction)tipsChange:(id)sender {
     fl_tips = _tipsField.text.floatValue;
@@ -114,6 +119,7 @@
 - (IBAction)hitCart:(id)sender {
 }
 - (IBAction)hitEvent:(id)sender {
+    [self performSegueWithIdentifier:@"cartToEvent" sender:self];
 }
 - (IBAction)hitMe:(id)sender {
     [self performSegueWithIdentifier:@"cartToMe" sender:self];
@@ -121,7 +127,8 @@
 - (IBAction)hitClear:(id)sender {
     [KCItemListHandler deleteItemListInFile];
     [_selectedItemList resetList];
-    [_orderTable reloadData];
+    [self configLabels];
+   // [_orderTable reloadData];
 }
 
 /* Table View */
@@ -319,6 +326,9 @@
         mvc.selectedItemList = _selectedItemList;
         mvc.closeControllerDelegate = self;
         
+    }else if ([segue.identifier isEqualToString:@"cartToEvent"]){
+        EventViewController * evc = (EventViewController *) [segue destinationViewController];
+        evc.dismissFatherViewDelegate = self;
     }
    
 }

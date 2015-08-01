@@ -267,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVM-gW-Wta" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1669" y="1287"/>
+            <point key="canvasLocation" x="-3485" y="727"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="GA7-X7-UIT">
@@ -443,11 +443,12 @@
                         <segue destination="TIt-wJ-ZDB" kind="presentation" identifier="mainMenuToDetail" id="32C-u5-fEg"/>
                         <segue destination="Ic7-K7-cjX" kind="presentation" identifier="menuToCart" id="MDH-m3-yv5"/>
                         <segue destination="ahS-pP-Gr8" kind="presentation" identifier="menuToMe" id="QO3-eu-0zu"/>
+                        <segue destination="F3w-uR-ygq" kind="presentation" identifier="menuToEvent" id="p3d-rE-acF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Gc-TD-2B9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1024" y="1287"/>
+            <point key="canvasLocation" x="-168" y="1743"/>
         </scene>
         <!--Cart View Controller-->
         <scene sceneID="fRi-h1-n6K">
@@ -774,11 +775,139 @@
                         <segue destination="TIt-wJ-ZDB" kind="presentation" identifier="cartToDetail" id="K2r-om-xXF"/>
                         <segue destination="CXU-RC-NaE" kind="presentation" identifier="cartToMenu" id="H8n-Zh-7qc"/>
                         <segue destination="ahS-pP-Gr8" kind="presentation" identifier="cartToMe" modalPresentationStyle="pageSheet" id="Ris-c8-Gdo"/>
+                        <segue destination="F3w-uR-ygq" kind="presentation" identifier="cartToEvent" id="ObP-3b-5sd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CyJ-h8-Axb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-675" y="2137"/>
+            <point key="canvasLocation" x="-843" y="-111"/>
+        </scene>
+        <!--Event View Controller-->
+        <scene sceneID="wC0-Lc-x2c">
+            <objects>
+                <viewController id="F3w-uR-ygq" customClass="EventViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sKf-5E-wQs"/>
+                        <viewControllerLayoutGuide type="bottom" id="nx8-yr-m3P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dIJ-wX-qhl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mrx-gp-sBN">
+                                <rect key="frame" x="0.0" y="20" width="600" height="55"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Jzw-cy-EyM">
+                                        <rect key="frame" x="51" y="10" width="487" height="35"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DmR-Lm-fHR">
+                                        <rect key="frame" x="8" y="13" width="35" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="QSd-zt-JfA"/>
+                                            <constraint firstAttribute="height" constant="30" id="duY-yS-GnP"/>
+                                        </constraints>
+                                        <state key="normal" title="Back">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="hitBack:" destination="F3w-uR-ygq" eventType="touchUpInside" id="6Nf-p1-b2W"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bY2-Pr-zXa">
+                                        <rect key="frame" x="546" y="13" width="41" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="41" id="90B-jd-Gt2"/>
+                                            <constraint firstAttribute="height" constant="30" id="Bd2-ga-6gO"/>
+                                        </constraints>
+                                        <state key="normal" title="Home">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="hitHome:" destination="F3w-uR-ygq" eventType="touchUpInside" id="xpN-cZ-eRJ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.5450980392" green="0.039215686270000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="bY2-Pr-zXa" firstAttribute="leading" secondItem="Jzw-cy-EyM" secondAttribute="trailing" constant="8" id="5ZH-mZ-VkT"/>
+                                    <constraint firstItem="DmR-Lm-fHR" firstAttribute="leading" secondItem="Mrx-gp-sBN" secondAttribute="leading" constant="8" id="DLA-er-JdG"/>
+                                    <constraint firstAttribute="height" constant="55" id="YXQ-qI-ZRe"/>
+                                    <constraint firstItem="bY2-Pr-zXa" firstAttribute="top" secondItem="Mrx-gp-sBN" secondAttribute="top" constant="13" id="cKF-s7-2TR"/>
+                                    <constraint firstItem="DmR-Lm-fHR" firstAttribute="top" secondItem="Mrx-gp-sBN" secondAttribute="top" constant="13" id="cWz-pC-247"/>
+                                    <constraint firstItem="Jzw-cy-EyM" firstAttribute="top" secondItem="Mrx-gp-sBN" secondAttribute="top" constant="10" id="dq4-SL-LKh"/>
+                                    <constraint firstAttribute="trailing" secondItem="bY2-Pr-zXa" secondAttribute="trailing" constant="13" id="ea6-76-wIb"/>
+                                    <constraint firstAttribute="bottom" secondItem="Jzw-cy-EyM" secondAttribute="bottom" constant="10" id="oOa-U7-2VD"/>
+                                    <constraint firstItem="Jzw-cy-EyM" firstAttribute="leading" secondItem="DmR-Lm-fHR" secondAttribute="trailing" constant="8" id="wE2-Q4-mYe"/>
+                                </constraints>
+                            </view>
+                            <toolbar clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zkG-Vc-Ha3">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <color key="backgroundColor" red="0.46274509800000002" green="0.0" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="SuM-BJ-NUD"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Menu" id="xeu-8U-vjC">
+                                        <color key="tintColor" red="1" green="0.48866807820000002" blue="0.24060452130000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="hitMenu:" destination="F3w-uR-ygq" id="omQ-CS-wIC"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Cart" id="YFp-r9-GJE">
+                                        <color key="tintColor" red="1" green="0.48866807820000002" blue="0.24060452130000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="hitCart:" destination="F3w-uR-ygq" id="DrX-kt-yDt"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Event" id="VFf-bo-zY7">
+                                        <color key="tintColor" red="1" green="0.48866807820000002" blue="0.24060452130000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="hitEvent:" destination="Ic7-K7-cjX" id="hiG-7V-Czu"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Me" id="gSj-WN-Suy">
+                                        <color key="tintColor" red="1" green="0.48866807820000002" blue="0.24060452130000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="hitMe:" destination="F3w-uR-ygq" id="MHh-O1-gEI"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3T6-bu-bvY">
+                                <rect key="frame" x="0.0" y="73" width="600" height="483"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zkG-Vc-Ha3" firstAttribute="top" secondItem="3T6-bu-bvY" secondAttribute="bottom" id="75P-Yt-Jlv"/>
+                            <constraint firstItem="Mrx-gp-sBN" firstAttribute="top" secondItem="sKf-5E-wQs" secondAttribute="bottom" id="C5z-bC-Sk4"/>
+                            <constraint firstItem="zkG-Vc-Ha3" firstAttribute="leading" secondItem="dIJ-wX-qhl" secondAttribute="leadingMargin" constant="-16" id="Hc0-k5-pTg"/>
+                            <constraint firstItem="zkG-Vc-Ha3" firstAttribute="trailing" secondItem="dIJ-wX-qhl" secondAttribute="trailingMargin" constant="16" id="Uwd-0r-grd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3T6-bu-bvY" secondAttribute="trailing" constant="-16" id="V43-sI-wwD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Mrx-gp-sBN" secondAttribute="trailing" constant="-16" id="WPa-h1-xuR"/>
+                            <constraint firstItem="3T6-bu-bvY" firstAttribute="leading" secondItem="dIJ-wX-qhl" secondAttribute="leadingMargin" constant="-16" id="Yzs-ES-Zjb"/>
+                            <constraint firstItem="Mrx-gp-sBN" firstAttribute="leading" secondItem="dIJ-wX-qhl" secondAttribute="leadingMargin" constant="-16" id="Zg3-6d-5vm"/>
+                            <constraint firstItem="nx8-yr-m3P" firstAttribute="top" secondItem="zkG-Vc-Ha3" secondAttribute="bottom" id="kne-z8-R0e"/>
+                            <constraint firstItem="3T6-bu-bvY" firstAttribute="top" secondItem="Mrx-gp-sBN" secondAttribute="bottom" constant="-2" id="pRs-2i-O5U"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cartItem" destination="YFp-r9-GJE" id="JIP-SX-AYl"/>
+                        <outlet property="contentWebView" destination="3T6-bu-bvY" id="N1q-TE-ohi"/>
+                        <outlet property="eventItem" destination="VFf-bo-zY7" id="yql-bA-5JF"/>
+                        <outlet property="meItem" destination="gSj-WN-Suy" id="tYD-jX-mlK"/>
+                        <outlet property="menuItem" destination="xeu-8U-vjC" id="BG6-Q0-SCX"/>
+                        <segue destination="Ic7-K7-cjX" kind="presentation" identifier="eventToCart" id="bak-rV-tbP"/>
+                        <segue destination="ahS-pP-Gr8" kind="presentation" identifier="eventToMe" id="MIT-1l-rD4"/>
+                        <segue destination="CXU-RC-NaE" kind="presentation" identifier="eventToMenu" id="402-HH-Lxg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SNm-pQ-Qnb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2173" y="-62"/>
         </scene>
         <!--Menu Detail View Controller-->
         <scene sceneID="DJB-JU-cbc">
@@ -936,7 +1065,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ou-b4-eZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1658" y="2079"/>
+            <point key="canvasLocation" x="-3485" y="1799"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="B5e-Wd-yv4">
@@ -1282,11 +1411,12 @@
                         <segue destination="vXZ-lx-hvc" kind="presentation" identifier="meToLogin" id="jAf-SP-z6U"/>
                         <segue destination="CXU-RC-NaE" kind="presentation" identifier="meToMenu" id="FcS-0G-1BS"/>
                         <segue destination="Ic7-K7-cjX" kind="presentation" identifier="meToCart" id="ORt-xh-YXB"/>
+                        <segue destination="F3w-uR-ygq" kind="presentation" identifier="meToEvent" id="xWV-Sq-rV8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NpT-q6-uRj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="206" y="1398"/>
+            <point key="canvasLocation" x="-2127" y="2235"/>
         </scene>
         <!--Dish Detail Scrll View Controller-->
         <scene sceneID="qhL-Vg-LVB">
@@ -1337,7 +1467,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IIs-YD-2ZO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1658" y="2800"/>
+            <point key="canvasLocation" x="-3514" y="2680"/>
         </scene>
     </scenes>
     <resources>
@@ -1348,9 +1478,10 @@
         <image name="whiteLogo" width="650" height="87"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ris-c8-Gdo"/>
-        <segue reference="ORt-xh-YXB"/>
-        <segue reference="K2r-om-xXF"/>
-        <segue reference="H8n-Zh-7qc"/>
+        <segue reference="bak-rV-tbP"/>
+        <segue reference="ObP-3b-5sd"/>
+        <segue reference="MIT-1l-rD4"/>
+        <segue reference="402-HH-Lxg"/>
+        <segue reference="32C-u5-fEg"/>
     </inferredMetricsTieBreakers>
 </document>

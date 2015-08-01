@@ -205,6 +205,7 @@
     [self performSegueWithIdentifier:@"menuToCart" sender:self];
 }
 - (IBAction)hitEvent:(id)sender {
+    [self performSegueWithIdentifier:@"menuToEvent" sender:self];
 }
 - (IBAction)hitMe:(id)sender {
     [self performSegueWithIdentifier:@"menuToMe" sender:self];
@@ -246,6 +247,9 @@
     }else if([segue.identifier isEqualToString:@"menuToMe"]){
         CustomerViewController * ctvc = (CustomerViewController *) [segue destinationViewController];
         ctvc.dismisViewDelegate = self;
+    }else if([segue.identifier isEqualToString:@"menuToEvent"]){
+        EventViewController * evc = (EventViewController *) [segue destinationViewController];
+        evc.dismissFatherViewDelegate = self;
     }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
