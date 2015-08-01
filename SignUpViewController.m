@@ -125,6 +125,7 @@
     
     if (alertView.tag == 100) {
         if (buttonIndex == 0) {// 1st Other Button
+            [KCCustomerHandler saveCustomerToFileWithCustomer:_customer];
             [self performSegueWithIdentifier:@"signUpMenu" sender:self];  
         }
     }

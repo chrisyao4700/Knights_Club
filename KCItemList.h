@@ -12,8 +12,12 @@
 @interface KCItemList : NSObject
 
 @property NSMutableArray * selectedItemArray;
+@property NSMutableArray * dataArray;
 
 - (id)init;
+
+-(id) initWithDataArray:(NSArray *) dataArray;
+
 -(void) addItem: (KCItem *) item;
 -(void) deleteItemWithIndext: (NSInteger) index;
 -(void) resetList;

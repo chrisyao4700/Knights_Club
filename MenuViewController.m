@@ -72,7 +72,7 @@
     if (dishImage) {
         cell.m_imageView.image = dishImage;
     }else{
-        cell.m_imageView.image = [UIImage imageNamed:@"lulu"];
+        cell.m_imageView.image = [UIImage imageNamed:[self configLoadingImageNameWithInterger:indexPath.row%5]];
     }
       return cell;
 }
@@ -115,6 +115,9 @@
 }
 -(void) initAllVars{
     [_closeControllerDelegate closeFatherController];
+    if (!_selectedItemList) {
+        _selectedItemList = [KCItemListHandler readItemListFromFile];
+    }
     if (!_selectedItemList) {
         _selectedItemList = [[KCItemList alloc]init];
     }
@@ -173,13 +176,20 @@
    
     
 }
+-(NSString *) configLoadingImageNameWithInterger: (NSInteger) row{
+    NSString * img_name = [NSString stringWithFormat:@"lulu%zd", row];
+    return img_name;
+}
 
 -(void) configImageDictionary{
    
     
     for (KCDish * dish in knightsClubMenu) {
         NSData * data = [KCConnectDish configImagesWithDish:dish andDelegate:self];
-        [_imageDictionary setObject: data forKey:dish.dishName];
+        if (data) {
+             [_imageDictionary setObject: data forKey:dish.dishName];
+        }
+       
         }
     
 }
@@ -197,14 +207,18 @@
 - (IBAction)hitEvent:(id)sender {
 }
 - (IBAction)hitMe:(id)sender {
+    [self performSegueWithIdentifier:@"menuToMe" sender:self];
 }
-
+-(void)closeFatherController{
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
 
 
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [KCItemListHandler saveItemListToFileWithList:_selectedItemList];
     
     if ([segue.identifier isEqualToString:@"menuToSearch"]) {
         SearchMenuViewController * smvc = (SearchMenuViewController *)[segue destinationViewController];
@@ -226,8 +240,12 @@
     }else if ([segue.identifier isEqualToString:@"menuToCart"] ){
         CartViewController * cvc = (CartViewController *) [segue destinationViewController];
         cvc.selectedItemList = _selectedItemList;
+        cvc.dismisViewDelegate = self;
       //  [self dismissViewControllerAnimated:YES completion:nil];
         
+    }else if([segue.identifier isEqualToString:@"menuToMe"]){
+        CustomerViewController * ctvc = (CustomerViewController *) [segue destinationViewController];
+        ctvc.dismisViewDelegate = self;
     }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

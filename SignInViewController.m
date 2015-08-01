@@ -70,6 +70,7 @@
         _loginCustomer = [[KCCustomer alloc]initWithContentDictionary:dataDictionary];
         
         if ([_passwordField.text isEqualToString:[_loginCustomer networkPassword]]) {
+            [KCCustomerHandler saveCustomerToFileWithCustomer:_loginCustomer];
             [self performSegueWithIdentifier:@"loginMenu" sender:self];
         }else{
             [wrongPassword show];
@@ -86,6 +87,17 @@
 }
 
 -(void) initAllVars{
+    if (_dismisViewDelegate) {
+        [_dismisViewDelegate closeFatherController];
+    }
+    _loginCustomer = [KCCustomerHandler readCustomerFromFile];
+    if (_loginCustomer) {
+        _userNameField.text = _loginCustomer.networkID;
+        _passwordField.text = _loginCustomer.networkPassword;
+        [KCConnectCustomer readCustomerFromDatabaseWithUsername:_userNameField.text andPassword:_passwordField.text andDelegate:self];
+    }
+    
+    
     _passwordField.secureTextEntry = YES;
     
     _userNameField.placeholder = @"(e.g. yao002)";

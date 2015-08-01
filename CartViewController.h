@@ -12,6 +12,7 @@
 #import "MenuDetailViewController.h"
 #import "MenuViewController.h"
 #import "DismissFatherViewController.h"
+#import "KCItemListHandler.h"
 
 
 @interface CartViewController : UIViewController<UITextViewDelegate,UITextFieldDelegate,DetailBackToCartRefresh,DismissFatherViewController>
@@ -21,6 +22,8 @@
 @property KCItemList * selectedItemList;
 
 @property (strong, nonatomic) IBOutlet UITableView *orderTable;
+
+@property id <DismissFatherViewController> dismisViewDelegate;
 
 @property (strong, nonatomic) IBOutlet UITextView *finalRequirementView;
 @property (strong, nonatomic) IBOutlet UITextField *tipsField;

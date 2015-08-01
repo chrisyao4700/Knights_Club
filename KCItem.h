@@ -15,6 +15,7 @@
 @property NSNumber * kc_quantity;
 @property NSString * kc_requirement;
 @property NSDictionary * contentDictionary;
+@property NSDictionary * dataDictionary;
 
 -(id) initWithDish: (KCDish *) selectedDish
        andQuantity:(NSInteger) quantity
@@ -22,4 +23,6 @@
       andImageData: (NSData *) imageData;
 
 -(id) initWithDictionary: (NSDictionary *) dictionary;
+
+-(id) initWithDataDictionary: (NSDictionary *) dataDictionary;
 @end

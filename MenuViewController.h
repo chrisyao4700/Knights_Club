@@ -11,12 +11,13 @@
 #import "KCImageHandler.h"
 #import "SearchMenuViewController.h"
 #import "MenuDetailViewController.h"
+#import "CustomerViewController.h"
 #import "CartViewController.h"
 #import "KCConnectDish.h"
-#import "KCItemList.h"
+#import "KCItemListHandler.h"
 #import "DismissFatherViewController.h"
 
-@interface MenuViewController : UIViewController
+@interface MenuViewController : UIViewController<DismissFatherViewController>
 
 @property id <DismissFatherViewController> closeControllerDelegate;
 

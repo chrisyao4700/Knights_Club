@@ -24,6 +24,7 @@ andImageData:(NSData *)imageData{
         _kc_imageData = imageData;
         
         _contentDictionary = [self configContentDictionary];
+        _dataDictionary = [self configDataDictionary];
         
     }
     return self;
@@ -37,8 +38,29 @@ andImageData:(NSData *)imageData{
         _kc_quantity = [dictionary objectForKey:@"Quantity"];
         _kc_requirement = [dictionary objectForKey:@"Requirement"];
         _kc_imageData = [dictionary objectForKey:@"Image_Data"];
+        
+        
+        _dataDictionary = [self configDataDictionary];
     }
     return self;
+    
+}
+
+-(id) initWithDataDictionary: (NSDictionary *) dataDictionary{
+    self = [super init];
+    if (self) {
+        _dataDictionary = dataDictionary;
+        
+        _kc_selectedDish = [[KCDish alloc] initWithContentDictionary:[dataDictionary objectForKey:@"SelectedDish"]];
+        _kc_quantity = [dataDictionary objectForKey:@"Quantity"];
+        _kc_requirement = [dataDictionary objectForKey:@"Requirement"];
+        _kc_imageData = [dataDictionary objectForKey:@"Image_Data"];
+        
+        
+        _contentDictionary = [self configContentDictionary];
+    }
+    return self;
+
     
 }
 
@@ -47,6 +69,20 @@ andImageData:(NSData *)imageData{
     NSMutableArray * valueArray = [[NSMutableArray alloc] init];
     
     [valueArray addObject:_kc_selectedDish];
+    [valueArray addObject:_kc_quantity];
+    [valueArray addObject:_kc_requirement];
+    [valueArray addObject:_kc_imageData];
+    
+    NSDictionary * tmp = [[NSDictionary alloc]initWithObjects:valueArray forKeys:keysArray];
+    
+    return tmp;
+    
+}
+-(NSDictionary *) configDataDictionary{
+    NSArray * keysArray = @[@"SelectedDish", @"Quantity",@"Requirement",@"Image_Data"];
+    NSMutableArray * valueArray = [[NSMutableArray alloc] init];
+    
+    [valueArray addObject:_kc_selectedDish.contentDictionary];
     [valueArray addObject:_kc_quantity];
     [valueArray addObject:_kc_requirement];
     [valueArray addObject:_kc_imageData];

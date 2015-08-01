@@ -44,5 +44,17 @@
     return insertConnection;
 }
 
++(NSURLConnection *) editCustomerTodatabaseWithCustomer:(KCCustomer *) customer
+                                            andDelegate:(id) connectionDelegate{
+    NSString *strURL = [[NSString alloc]initWithFormat:@"http://chrisyao4700.com/Knights_Club/Knights_Customer/knights_customer_edit.php%@",[customer createURL]];
+    NSURL *insertURL = [NSURL URLWithString:strURL];
+    NSLog(@"%@", strURL);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:insertURL];
+    [request setHTTPMethod:@"GET"];
+    NSURLConnection * insertConnection = [NSURLConnection connectionWithRequest:request delegate:connectionDelegate];
+    
+    return insertConnection;
+    
+}
 
 @end

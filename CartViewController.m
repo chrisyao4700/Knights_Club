@@ -44,6 +44,12 @@
 
 -(void) initAllVars{
     screenRect = [[UIScreen mainScreen] bounds];
+    if (!_selectedItemList) {
+        _selectedItemList = [KCItemListHandler readItemListFromFile];
+    }
+    if(_dismisViewDelegate){
+    [_dismisViewDelegate closeFatherController];
+    }
     
     _tipsField.delegate = self;
     isUped = NO;
@@ -86,7 +92,8 @@
 
 -(void)updateItemList: (KCItemList *) updatedList{
     _selectedItemList = updatedList;
-    [self initAllVars];
+    //[self initAllVars];
+    [_orderTable reloadData];
 }
 
 - (IBAction)tipsChange:(id)sender {
@@ -96,9 +103,7 @@
     _totalChargeLabel.text = str_totalPrice;
 }
 
-- (IBAction)hitBack:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+
 
 - (IBAction)hitCheckOut:(id)sender {
 }
@@ -111,6 +116,12 @@
 - (IBAction)hitEvent:(id)sender {
 }
 - (IBAction)hitMe:(id)sender {
+    [self performSegueWithIdentifier:@"cartToMe" sender:self];
+}
+- (IBAction)hitClear:(id)sender {
+    [KCItemListHandler deleteItemListInFile];
+    [_selectedItemList resetList];
+    [_orderTable reloadData];
 }
 
 /* Table View */
@@ -288,6 +299,11 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"cartToMe"]) {
+        [KCItemListHandler saveItemListToFileWithList:_selectedItemList];
+    }
+    
+    
     if ([[segue identifier] isEqualToString:@"cartToDetail"]) {
         MenuDetailViewController * mdvc = (MenuDetailViewController *)[segue destinationViewController];
         mdvc.selectedItemList = _selectedItemList;

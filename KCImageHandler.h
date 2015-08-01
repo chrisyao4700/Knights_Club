@@ -12,4 +12,6 @@
 +(void) saveImagesToLocalFileWithImageDictionary: (NSDictionary *) image_dictionary;
 
 +(NSDictionary *) readImagesFromFile;
+
++(void) deleteImagesInFile;
 @end
