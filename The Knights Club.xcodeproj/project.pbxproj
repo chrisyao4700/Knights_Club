@@ -13,6 +13,9 @@
 		C35529401B6B66A70093D62C /* KCCustomerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C355293F1B6B66A70093D62C /* KCCustomerHandler.m */; };
 		C35529431B6C03E60093D62C /* KCItemListHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C35529421B6C03E60093D62C /* KCItemListHandler.m */; };
 		C3A074E31B6CCDF50082540E /* KCOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A074E21B6CCDF50082540E /* KCOrder.m */; };
+		C3A074E61B6CE4F60082540E /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A074E51B6CE4F60082540E /* PaymentViewController.m */; };
+		C3A075391B6E358F0082540E /* PaymentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A075381B6E358F0082540E /* PaymentTableViewCell.m */; };
+		C3A0753C1B6E44160082540E /* KCConnectOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A0753B1B6E44160082540E /* KCConnectOrder.m */; };
 		C3BCBBB41B688ECA001B97D2 /* KCDish.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB31B688ECA001B97D2 /* KCDish.m */; };
 		C3BCBBB71B688F90001B97D2 /* KCConnectDish.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB61B688F90001B97D2 /* KCConnectDish.m */; };
 		C3BCBBBA1B698D58001B97D2 /* SearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB91B698D58001B97D2 /* SearchMenuViewController.m */; };
@@ -63,6 +66,12 @@
 		C35529421B6C03E60093D62C /* KCItemListHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCItemListHandler.m; sourceTree = "<group>"; };
 		C3A074E11B6CCDF50082540E /* KCOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCOrder.h; sourceTree = "<group>"; };
 		C3A074E21B6CCDF50082540E /* KCOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCOrder.m; sourceTree = "<group>"; };
+		C3A074E41B6CE4F60082540E /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
+		C3A074E51B6CE4F60082540E /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
+		C3A075371B6E358F0082540E /* PaymentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentTableViewCell.h; sourceTree = "<group>"; };
+		C3A075381B6E358F0082540E /* PaymentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentTableViewCell.m; sourceTree = "<group>"; };
+		C3A0753A1B6E44160082540E /* KCConnectOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCConnectOrder.h; sourceTree = "<group>"; };
+		C3A0753B1B6E44160082540E /* KCConnectOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCConnectOrder.m; sourceTree = "<group>"; };
 		C3BCBBB21B688ECA001B97D2 /* KCDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCDish.h; sourceTree = "<group>"; };
 		C3BCBBB31B688ECA001B97D2 /* KCDish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCDish.m; sourceTree = "<group>"; };
 		C3BCBBB51B688F90001B97D2 /* KCConnectDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCConnectDish.h; sourceTree = "<group>"; };
@@ -256,6 +265,10 @@
 		C3CF65341B67505F00167D70 /* KC Pay */ = {
 			isa = PBXGroup;
 			children = (
+				C3A074E41B6CE4F60082540E /* PaymentViewController.h */,
+				C3A074E51B6CE4F60082540E /* PaymentViewController.m */,
+				C3A075371B6E358F0082540E /* PaymentTableViewCell.h */,
+				C3A075381B6E358F0082540E /* PaymentTableViewCell.m */,
 			);
 			name = "KC Pay";
 			sourceTree = "<group>";
@@ -263,6 +276,8 @@
 		C3CF65351B675C0500167D70 /* KC Abstract */ = {
 			isa = PBXGroup;
 			children = (
+				C3A0753A1B6E44160082540E /* KCConnectOrder.h */,
+				C3A0753B1B6E44160082540E /* KCConnectOrder.m */,
 				C3CF653C1B67E54A00167D70 /* KCCustomer.h */,
 				C3CF653D1B67E54A00167D70 /* KCCustomer.m */,
 				C3CF653F1B67E85C00167D70 /* KCConnectCustomer.h */,
@@ -392,10 +407,13 @@
 				C3BCBBD11B6ABAEC001B97D2 /* KCItem.m in Sources */,
 				C3BCBBDA1B6ADC92001B97D2 /* CartTableViewCell.m in Sources */,
 				C35529401B6B66A70093D62C /* KCCustomerHandler.m in Sources */,
+				C3A0753C1B6E44160082540E /* KCConnectOrder.m in Sources */,
 				C3CF650F1B674F7C00167D70 /* AppDelegate.m in Sources */,
 				C3BCBBCA1B69E00F001B97D2 /* DishDetailScrllViewController.m in Sources */,
+				C3A075391B6E358F0082540E /* PaymentTableViewCell.m in Sources */,
 				C3BCBBB41B688ECA001B97D2 /* KCDish.m in Sources */,
 				C3BCBBB71B688F90001B97D2 /* KCConnectDish.m in Sources */,
+				C3A074E61B6CE4F60082540E /* PaymentViewController.m in Sources */,
 				C3CF65381B675C4000167D70 /* SignInViewController.m in Sources */,
 				C355293D1B6B64F60093D62C /* CustomerViewController.m in Sources */,
 				C3C773F31B6CBDA6003DF48B /* EventViewController.m in Sources */,

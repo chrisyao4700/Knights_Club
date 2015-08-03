@@ -19,6 +19,8 @@
     NSString * updatedPassword;
     NSString * updatedEmail;
     NSString * updatedGUNum;
+    
+    
 }
 
 @end

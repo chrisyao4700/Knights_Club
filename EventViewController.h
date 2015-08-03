@@ -12,7 +12,7 @@
 #import "CartViewController.h"
 #import "CustomerViewController.h"
 
-@interface EventViewController : UIViewController<DismissFatherViewController>
+@interface EventViewController : UIViewController<DismissFatherViewController,UIWebViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWebView *contentWebView;
 

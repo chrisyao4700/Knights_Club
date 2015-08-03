@@ -111,6 +111,7 @@
 
 
 - (IBAction)hitCheckOut:(id)sender {
+    [self performSegueWithIdentifier:@"cartToPay" sender:self];
 }
 
 - (IBAction)hitMenu:(id)sender {
@@ -308,10 +309,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"cartToMe"]) {
         [KCItemListHandler saveItemListToFileWithList:_selectedItemList];
-    }
-    
-    
-    if ([[segue identifier] isEqualToString:@"cartToDetail"]) {
+    }else if ([[segue identifier] isEqualToString:@"cartToDetail"]) {
         MenuDetailViewController * mdvc = (MenuDetailViewController *)[segue destinationViewController];
         mdvc.selectedItemList = _selectedItemList;
         mdvc.currentDish = [selectedItem kc_selectedDish];
@@ -329,6 +327,23 @@
     }else if ([segue.identifier isEqualToString:@"cartToEvent"]){
         EventViewController * evc = (EventViewController *) [segue destinationViewController];
         evc.dismissFatherViewDelegate = self;
+    }else if ([segue.identifier isEqualToString:@"cartToPay"]){
+        PaymentViewController * pvc = (PaymentViewController *) [segue destinationViewController];
+        pvc.itemList = _selectedItemList;
+        if (_tipsField.text.floatValue) {
+            pvc.tips = [NSNumber numberWithFloat:_tipsField.text.floatValue];
+        }else{
+            pvc.tips = [NSNumber numberWithInt:0];
+        }
+        if (_finalRequirementView.text) {
+            pvc.finalRequirement = _finalRequirementView.text;
+        }
+        pvc.tax = _taxValueLabel.text;
+        pvc.total = _totalChargeLabel.text;
+        pvc.refreshDelegate = self;
+        pvc.orderTotal = _orderPriceLabel.text;
+        
+        
     }
    
 }

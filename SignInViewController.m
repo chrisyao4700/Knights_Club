@@ -116,7 +116,7 @@
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
     
-    progressView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    progressView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     [progressView setCenter:CGPointMake(screenRect.size.width/2.0, screenRect.size.height/2.0)]; // I do this because I'm in landscape mode
     [self.view addSubview:progressView];

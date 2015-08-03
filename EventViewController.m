@@ -11,6 +11,8 @@
 @interface EventViewController (){
     CGRect screenRect;
     NSURLRequest * homeRequest;
+    
+    UIActivityIndicatorView * progressView;
 }
 
 @end
@@ -60,6 +62,11 @@
     [_eventItem setWidth:screenRect.size.width/5];
     [_cartItem setWidth:screenRect.size.width/5];
     
+    progressView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+
+    [progressView setCenter:CGPointMake(screenRect.size.width/2.0, screenRect.size.height/2.0)]; // I do this because I'm in landscape mode
+    [self.view addSubview:progressView];
+    
     
     
     UIImageView * backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
@@ -68,6 +75,17 @@
 
     
 }
+
+-(void)webViewDidStartLoad:(UIWebView *)webView{
+    [progressView startAnimating];
+    
+}
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    [progressView stopAnimating];
+    
+}
+
+
 
 
 #pragma mark - Navigation
