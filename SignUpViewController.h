@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "KCConnectCustomer.h"
+#import "KCCustomerHandler.h"
+#import "MenuViewController.h"
 
-@interface SignUpViewController : UIViewController
+@interface SignUpViewController : UIViewController<UIAlertViewDelegate,UITextFieldDelegate,DismissFatherViewController>
 @property NSString * netWorkID;
 @property NSString * netWorkPassword;
 

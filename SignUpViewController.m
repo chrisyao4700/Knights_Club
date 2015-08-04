@@ -72,7 +72,9 @@
     
 }
 
-
+-(void)closeFatherController{
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
 -(void) initAllVars{
     if (_netWorkID) {
         _usernameField.text = _netWorkID;
@@ -87,6 +89,11 @@
     _usernameField.placeholder = @"(e.g.  yao002)";
     _emailField.placeholder = @"(e.g. yao002@knights.gannon.edu)";
     
+    _usernameField.delegate = self;
+    _passwordField.delegate = self;
+    _repasswordField.delegate = self;
+    _emailField.delegate = self;
+    _campusNumField.delegate = self;
     comfirmPasswordAlert = [[UIAlertView alloc] initWithTitle:@"Different Passwords"
                                                       message:@"Please enter the same password."
                                                      delegate:nil
@@ -102,12 +109,26 @@
                                                   delegate:nil
                                          cancelButtonTitle:@"Let's Roll!"
                                          otherButtonTitles:nil];
+    signUpFinishAlert.tag = 100;
+    signUpFinishAlert.delegate = self;
+    
     missInformation = [[UIAlertView alloc] initWithTitle:@"Incomplete Information"
                                                  message:@"Please Enter all the information."
                                                 delegate:nil
                                        cancelButtonTitle:@"OK"
                                        otherButtonTitles:nil];
 
+    
+}
+
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (alertView.tag == 100) {
+        if (buttonIndex == 0) {// 1st Other Button
+            [KCCustomerHandler saveCustomerToFileWithCustomer:_customer];
+            [self performSegueWithIdentifier:@"signUpMenu" sender:self];  
+        }
+    }
     
 }
 
@@ -122,15 +143,131 @@
     [badConnectionAlert show];
 }
 
+/*Text Field*/
+#define kOFFSET_FOR_KEYBOARD 200.0
 
-/*
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
+
+-(BOOL) textFieldShouldReturn: (UITextField *) textField {
+    [self.usernameField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+    [self.repasswordField resignFirstResponder];
+    [self.emailField resignFirstResponder];
+    [self.campusNumField resignFirstResponder];
+    
+    return YES;
+    
+}
+
+
+-(void)keyboardWillShow {
+    // Animate the current view out of the way
+    if (self.view.frame.origin.y >= 0)
+    {
+        [self setViewMovedUp:YES];
+    }
+    else if (self.view.frame.origin.y < 0)
+    {
+        [self setViewMovedUp:NO];
+    }
+}
+
+-(void)keyboardWillHide {
+    if (self.view.frame.origin.y >= 44)
+    {
+        [self setViewMovedUp:YES];
+    }
+    else if (self.view.frame.origin.y < 0)
+    {
+        [self setViewMovedUp:NO];
+    }
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)sender
+{
+    
+    //move the main view, so that the keyboard does not hide it.
+    if  (self.view.frame.origin.y >= 44)
+    {
+        [self setViewMovedUp:YES];
+    }
+    
+}
+
+//method to move the view up/down whenever the keyboard is shown/dismissed
+-(void)setViewMovedUp:(BOOL)movedUp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+    
+    CGRect rect = self.view.frame;
+    //CGRect textViewRect = self.requirementView.frame;
+    if (movedUp)
+    {
+        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
+        // 2. increase the size of the view so that the area behind the keyboard is covered up.
+        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
+        //rect.size.height += kOFFSET_FOR_KEYBOARD;
+        //textViewRect.origin.y -= kOFFSET_FOR_KEYBOARD;
+    }
+    else
+    {
+        // revert back to the normal state.
+        rect.origin.y += kOFFSET_FOR_KEYBOARD;
+        //rect.size.height -= kOFFSET_FOR_KEYBOARD;
+        //textViewRect.origin.y += kOFFSET_FOR_KEYBOARD;
+    }
+    self.view.frame = rect;
+    //_requirementView.frame = textViewRect;
+    
+    [UIView commitAnimations];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+}
+
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"signUpMenu"]) {
+        MenuViewController * mvc = (MenuViewController *) [segue destinationViewController];
+        mvc.closeControllerDelegate = self;
+    }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end

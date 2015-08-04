@@ -16,4 +16,10 @@
 
 +(NSURLConnection *) saveCustomerToDatabaseWithCustomer: (KCCustomer *) customer
                                             andDelegate: (id) connectionDelegate;
+
++(NSURLConnection *) editCustomerTodatabaseWithCustomer:(KCCustomer *) customer
+                                            andDelegate:(id) connectionDelegate;
+
+
+
 @end

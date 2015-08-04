@@ -12,6 +12,8 @@
     NSMutableData *  _downloadedData;
     UIAlertView * wrongPassword;
     UIAlertView * noCustomer;
+    
+    UIActivityIndicatorView * progressView;
 }
 
 @end
@@ -21,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initAllVars];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -29,7 +32,9 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)hitLogOn:(id)sender {
+    
      [KCConnectCustomer readCustomerFromDatabaseWithUsername:_userNameField.text andPassword:_passwordField.text andDelegate:self];
+    [progressView startAnimating];
    // [self performSegueWithIdentifier:@"loginMenu" sender:self];
     
 }
@@ -38,7 +43,9 @@
     [self performSegueWithIdentifier:@"toSignUp" sender:self];
 }
 
-
+-(void)closeFatherController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
@@ -49,11 +56,13 @@
 {
     // Append the newly downloaded data
     [_downloadedData appendData:data];
+     [progressView stopAnimating];
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+   
     NSError *error;
-    NSString * dataString = [NSString stringWithUTF8String:[_downloadedData bytes]];
+   NSString *dataString = [[NSString alloc] initWithData:_downloadedData encoding:NSUTF8StringEncoding];
     if ([dataString isEqualToString:@"No Result Found"]) {
         [noCustomer show];
     } else{
@@ -61,7 +70,8 @@
         _loginCustomer = [[KCCustomer alloc]initWithContentDictionary:dataDictionary];
         
         if ([_passwordField.text isEqualToString:[_loginCustomer networkPassword]]) {
-            [self performSegueWithIdentifier:@"signInRestaurantHunting" sender:self];
+            [KCCustomerHandler saveCustomerToFileWithCustomer:_loginCustomer];
+            [self performSegueWithIdentifier:@"loginMenu" sender:self];
         }else{
             [wrongPassword show];
         }
@@ -77,10 +87,23 @@
 }
 
 -(void) initAllVars{
+    if (_dismisViewDelegate) {
+        [_dismisViewDelegate closeFatherController];
+    }
+    _loginCustomer = [KCCustomerHandler readCustomerFromFile];
+    if (_loginCustomer) {
+        _userNameField.text = _loginCustomer.networkID;
+        _passwordField.text = _loginCustomer.networkPassword;
+        [KCConnectCustomer readCustomerFromDatabaseWithUsername:_userNameField.text andPassword:_passwordField.text andDelegate:self];
+    }
+    
+    
     _passwordField.secureTextEntry = YES;
     
     _userNameField.placeholder = @"(e.g. yao002)";
     _passwordField.placeholder = @"Sign Up before Using GU ID";
+    
+    
     
     wrongPassword=  [[UIAlertView alloc] initWithTitle:@"Wrong Password"
                                                message:@"Please Check your Password."
@@ -92,6 +115,18 @@
                                            delegate:nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
+    
+    progressView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    [progressView setCenter:CGPointMake(screenRect.size.width/2.0, screenRect.size.height/2.0)]; // I do this because I'm in landscape mode
+    [self.view addSubview:progressView];
+    
+    
+}
+-(BOOL) textFieldShouldReturn: (UITextField *) textField {
+    [self.userNameField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+    return YES;
     
 }
 
@@ -109,6 +144,12 @@
             suvc.netWorkPassword = _passwordField.text;
         }
         
+    } else if([segue.identifier isEqualToString:@"loginMenu"]){
+        
+            MenuViewController * mvc = (MenuViewController *) [segue destinationViewController];
+            mvc.closeControllerDelegate = self;
+        
+
     }
     
     // Get the new view controller using [segue destinationViewController].

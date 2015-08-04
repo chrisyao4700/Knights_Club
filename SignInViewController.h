@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "SignUpViewController.h"
+#import "MenuViewController.h"
+#import "KCCustomerHandler.h"
 
-@interface SignInViewController : UIViewController
+
+@interface SignInViewController : UIViewController<DismissFatherViewController>
 @property KCCustomer * loginCustomer;
+@property id <DismissFatherViewController> dismisViewDelegate;
 @property (strong, nonatomic) IBOutlet UITextField *userNameField;
 
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
