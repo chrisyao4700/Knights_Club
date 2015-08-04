@@ -128,7 +128,7 @@
 
 -(void) configHeaders{
     if (isEditing == NO) {
-        headers = @[@"GU ID", @"Password", @"E-mail", @"Campus Card #", @"",@""];
+        headers = @[@"GU ID", @"Password", @"E-mail", @"Campus Card #", @"Order",@""];
     }else{
         headers = @[@"GU ID", @"Password", @"E-mail", @"Campus Card #"];
     }
