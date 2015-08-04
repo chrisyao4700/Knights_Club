@@ -49,11 +49,28 @@
 
     
 }
++(NSURLConnection *) readOrderFromDatabaseWithColumn:(NSString *) column
+                                            andValue:(NSString *) value
+                                         andDelegate:(id) delegate{
+    NSString *strURL = [[NSString alloc]initWithFormat:@"http://chrisyao4700.com/Knights_Club/Knights_Order/order_choose.php?Column=%@&Value=%@",column,value];
+    strURL = [KCConnectOrder urlHandler:strURL];
+    NSURL *insertURL = [NSURL URLWithString:strURL];
+    NSLog(@"%@", strURL);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:insertURL];
+    [request setHTTPMethod:@"GET"];
+    NSURLConnection * selectConnection =  [NSURLConnection connectionWithRequest:request delegate:delegate];
+    
+    return selectConnection;
+}
+
 
 +(NSString *) urlHandler: (NSString *) value{
+
+    
     value = [value stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     value = [value stringByReplacingOccurrencesOfString:@"'" withString:@"%27"];
-   // value = [value stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
+    //value = [value stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
+   // 
     value = [value stringByReplacingOccurrencesOfString:@"," withString:@"%2C"];
     value = [value stringByReplacingOccurrencesOfString:@"$" withString:@"%24"];
     
@@ -62,5 +79,39 @@
     
 }
 
+
++(void) saveOrderToFileWithOrder: (KCOrder *) order{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    //NSLog(@"%@",documentsDirectory);
+    NSString * dataPath = [[NSString alloc]initWithFormat:@"%@%@",documentsDirectory,@"/KC_Current_Order.plist"];
+    if (order) {
+        [[order contentDictionary] writeToFile:dataPath atomically:YES];
+    }
+
+}
++(KCOrder *) readOrderFromFile{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    //NSLog(@"%@",documentsDirectory);
+    NSString * dataPath = [[NSString alloc]initWithFormat:@"%@%@",documentsDirectory,@"/KC_Current_Order.plist"];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:dataPath]) {
+        NSDictionary * contentDictionary = [NSDictionary dictionaryWithContentsOfFile:dataPath];
+        KCOrder * order = [[KCOrder alloc] initWithContentDictionary:contentDictionary];
+        return order;
+    }else{
+        return nil;
+    }
+
+}
++(void) deleteOrderFile{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    //NSLog(@"%@",documentsDirectory);
+    NSString * dataPath = [[NSString alloc]initWithFormat:@"%@%@",documentsDirectory,@"/KC_Current_Order.plist"];
+    NSError * error;
+    [[NSFileManager defaultManager] removeItemAtPath:dataPath error:&error];
+}
 
 @end

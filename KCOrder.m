@@ -26,13 +26,14 @@
                                                         dateStyle:NSDateFormatterNoStyle
                                                         timeStyle:NSDateFormatterShortStyle];
         
-          _kc_orderState= @"Unpayed";
+          _kc_orderState= @"Unaccepted";
         _kc_order_paymentType = paymentType;
         _kc_order_paymentInfo = paymentInfo;
+        
+        
         _kc_orderString = [self configOrderString];
         _kc_orderTitle = [self configOrderTitle];
-      
-        
+        _kc_customer_name = _kc_customer.networkID;
         
         
         _contentDictionary = [self configContentDictionary];
@@ -43,8 +44,36 @@
 }
 
 -(id)initWithContentDictionary:(NSDictionary *)contentDictionary{
-    return nil;
+    self = [super init];
+    if (self) {
+        _onlineElementsKey = [KCOrder configOnlineElementsKey];
+        
+        _contentDictionary = contentDictionary;
+        
+        _kc_orderTitle = [contentDictionary objectForKey:@"Title"];
+        _kc_orderString = [contentDictionary objectForKey:@"Content"];
+        _kc_orderState = [contentDictionary objectForKey:@"State"];
+        _kc_order_paymentType = [contentDictionary objectForKey:@"Payment_Type"];
+        _kc_order_paymentInfo = [contentDictionary objectForKey:@"Payment_Info"];
+        _kc_order_date = [contentDictionary objectForKey:@"Date"];
+        _kc_order_time = [contentDictionary objectForKey:@"Time"];
+        _kc_customer_name = [contentDictionary objectForKey:@"Customer"];
+        _kc_menu_items = [contentDictionary objectForKey:@"Menu_Items"];
+    }
+    
+    return self;
 }
+
++(NSArray *)configOnlineElementsKey{
+    
+    
+    
+    NSArray * keys = @[@"Title", @"Content", @"State", @"Payment_Type", @"Payment_Info", @"Date", @"Time", @"Customer", @"Menu_Items"];
+    
+    return keys;
+    
+}
+
 
 
 
@@ -64,6 +93,7 @@
 }
 
 -(NSString *) configOrderString{
+    NSMutableString * menuItemStr = [[NSMutableString alloc] init];
     NSMutableString * contentStr =[[NSMutableString alloc]initWithString:@"Payment Type:"];
     [contentStr appendFormat:@" %@.//",_kc_order_paymentType];
     float price = 0.0;
@@ -71,6 +101,7 @@
     for (int i = 0;i<_kc_order_itemList.count;i++) {
         NSDictionary * itemDic = [_kc_order_itemList objectAtIndex:i];
         KCDish * dish = [[KCDish alloc] initWithContentDictionary:[itemDic objectForKey:@"SelectedDish"]];
+        [menuItemStr appendFormat:@"%@,",dish.dishName];
         NSNumber* quantity = [itemDic objectForKey:@"Quantity"];
         NSString * requirement = [itemDic objectForKey:@"Requirement"];
         float quan_int = quantity.floatValue;
@@ -84,6 +115,7 @@
         [contentStr appendFormat:@"Item%d: %@/Quantity:%@/Subtotal:$%.2f/Requirement: %@//", itemCount, dish.dishName,quantity, itemprice, requirement];
         price += itemprice;
         itemCount ++;
+        _kc_menu_items = [[NSString alloc]initWithString:[menuItemStr substringToIndex:[menuItemStr length] - 1]];
         
     }
     [contentStr appendFormat:@"Order: $%.2f/", price];
@@ -106,15 +138,6 @@
     
 }
 
-+(NSArray *)configOnlineElementsKey{
-    
-
-    
-    NSArray * keys = @[@"Title", @"Content", @"State", @"Payment_Type", @"Payment_Info", @"Date", @"Time"];
-    
-    return keys;
-    
-}
 
 -(NSDictionary *) configContentDictionary {
     NSMutableArray * valueArray = [[NSMutableArray alloc] init];
@@ -125,6 +148,8 @@
     [valueArray addObject:_kc_order_paymentInfo];
     [valueArray addObject:_kc_order_date];
     [valueArray addObject:_kc_order_time];
+    [valueArray addObject:_kc_customer_name];
+    [valueArray addObject:_kc_menu_items];
     
     NSDictionary * dic = [[NSDictionary alloc] initWithObjects:valueArray forKeys:_onlineElementsKey];
     return dic;
@@ -138,8 +163,6 @@
     for(NSString * key in _onlineElementsKey){
         
         NSString * value = [_contentDictionary objectForKey:key];
-        value = [value stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-        value = [value stringByReplacingOccurrencesOfString:@"'" withString:@"%27"];
         value = [value stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
         NSString *item = [[NSString alloc]initWithFormat:@"%@=%@&", key,value];
         [str appendString:item];

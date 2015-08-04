@@ -19,4 +19,7 @@
 
 +(NSURLConnection *) editCustomerTodatabaseWithCustomer:(KCCustomer *) customer
                                             andDelegate:(id) connectionDelegate;
+
+
+
 @end

@@ -15,4 +15,11 @@
 +(NSURLConnection *) insertOrderToDatabase:(KCOrder *) order
                                andDelegate:(id) delegate;
 
++(NSURLConnection *) readOrderFromDatabaseWithColumn:(NSString *) column
+                                            andValue:(NSString *) value
+                                         andDelegate:(id) delegate;
++(void) saveOrderToFileWithOrder: (KCOrder *) order;
++(KCOrder *) readOrderFromFile;
++(void) deleteOrderFile;
+
 @end

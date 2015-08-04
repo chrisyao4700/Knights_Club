@@ -28,6 +28,8 @@
 @property NSString * kc_order_paymentInfo;
 @property NSString * kc_order_date;
 @property NSString * kc_order_time;
+@property NSString * kc_customer_name;
+@property NSString * kc_menu_items;
 
 
 

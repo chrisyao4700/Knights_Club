@@ -194,6 +194,7 @@
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag == 26) {
+        [KCConnectOrder saveOrderToFileWithOrder:currentOrder];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 

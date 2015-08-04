@@ -20,6 +20,11 @@
     NSString * updatedEmail;
     NSString * updatedGUNum;
     
+    NSString * originName;
+    NSString * originPassword;
+    NSString * originEmail;
+    NSString * originGUNum;
+    
     
 }
 
@@ -52,13 +57,17 @@
     if (isEditing == NO) {
         isEditing =YES;
         [_editButton setTitle:@"Done" forState:UIControlStateNormal];
-        [_customer_infoView reloadData];
-    }else{
+        
+            }else{
         isEditing = NO;
         [_editButton setTitle:@"Edit" forState:UIControlStateNormal];
-        [_customer_infoView reloadData];
+        
         [self infoEndEdit];
     }
+    [self configHeaders];
+    [_customer_infoView reloadData];
+
+    
 }
 - (IBAction)pushLogout:(id)sender {
     [KCCustomerHandler deleteCustomerFile];
@@ -78,7 +87,7 @@
     [_dismisViewDelegate closeFatherController];
     
     isEditing = NO;
-    headers = @[@"GU ID", @"Password", @"E-mail", @"Campus Card #"];
+   
     _defaultCustomer = [KCCustomerHandler readCustomerFromFile];
     tableContent = [_defaultCustomer contentArray];
     
@@ -86,6 +95,12 @@
     updatedPassword = _defaultCustomer.networkPassword;
     updatedEmail = _defaultCustomer.email;
     updatedGUNum = _defaultCustomer.guNumber;
+    
+    originName = _defaultCustomer.networkID;
+    originPassword = _defaultCustomer.networkPassword;
+    originEmail = _defaultCustomer.email;
+    originGUNum = _defaultCustomer.guNumber;
+    
     
     screenRect = [[UIScreen mainScreen] bounds];
     [_menuItem setWidth:screenRect.size.width/5];
@@ -99,17 +114,36 @@
     backgroundImageView.image = [UIImage imageNamed:@"Background"];
     [self.view insertSubview:backgroundImageView atIndex:0];
 
-    
+    [self configHeaders];
     
     [_customer_infoView reloadData];
 }
+-(BOOL) checkCustomerChanged{
+    if ([originPassword isEqualToString:updatedPassword]&& [originEmail isEqualToString:updatedEmail] && [originGUNum isEqualToString:updatedGUNum]) {
+        return NO;
+    }else {
+        return YES;
+    }
+}
+
+-(void) configHeaders{
+    if (isEditing == NO) {
+        headers = @[@"GU ID", @"Password", @"E-mail", @"Campus Card #", @"",@""];
+    }else{
+        headers = @[@"GU ID", @"Password", @"E-mail", @"Campus Card #"];
+    }
+    
+}
 
 -(void) infoEndEdit{
-    KCCustomer * updatedCustomer = [[KCCustomer alloc]initWithNetworkID:updatedName andPassword:updatedPassword andEmail:updatedEmail andGUNumber:updatedGUNum];
-    _defaultCustomer = updatedCustomer;
-    tableContent = _defaultCustomer.contentArray;
-    [KCCustomerHandler saveCustomerToFileWithCustomer:updatedCustomer];
-    [KCConnectCustomer editCustomerTodatabaseWithCustomer:updatedCustomer andDelegate:self];
+    if ([self checkCustomerChanged] == YES) {
+        KCCustomer * updatedCustomer = [[KCCustomer alloc]initWithNetworkID:updatedName andPassword:updatedPassword andEmail:updatedEmail andGUNumber:updatedGUNum];
+        _defaultCustomer = updatedCustomer;
+        tableContent = _defaultCustomer.contentArray;
+        [KCCustomerHandler saveCustomerToFileWithCustomer:updatedCustomer];
+        [KCConnectCustomer editCustomerTodatabaseWithCustomer:updatedCustomer andDelegate:self];
+    }
+    
 }
 
 
@@ -118,7 +152,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
     // Return the number of sections.
-    return tableContent.count;
+    return headers.count;
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
    
@@ -133,38 +167,56 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CustomerViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"contentCell" forIndexPath:indexPath];
-    
-    
-    
-    
-    
-    cell.contentField.text = tableContent[indexPath.section];
-    cell.contentField.delegate = self;
-    cell.contentField.tag = indexPath.section;
-    
-    if (isEditing == NO) {
-        cell.light_imageView.image = [UIImage imageNamed:@"light_green"];
-        cell.contentField.enabled = NO;
-    }else{
-        cell.light_imageView.image = [UIImage imageNamed:@"light_red"];
-        cell.contentField.enabled = YES;
-    }
-    if (indexPath.section == 1) {
-        cell.contentField.secureTextEntry = YES;
+    if (indexPath.section<4) {
+        CustomerViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"contentCell" forIndexPath:indexPath];
+        cell.contentField.text = tableContent[indexPath.section];
         
+        cell.contentField.delegate = self;
+        cell.contentField.tag = indexPath.section;
+        cell.userInteractionEnabled = NO;
+        
+        if (isEditing == NO) {
+            cell.light_imageView.image = [UIImage imageNamed:@"light_green"];
+            cell.contentField.enabled = NO;
+        }else{
+            cell.light_imageView.image = [UIImage imageNamed:@"light_red"];
+            cell.contentField.enabled = YES;
+            cell.userInteractionEnabled = YES;
+        }
+        if (indexPath.section == 1) {
+            cell.contentField.secureTextEntry = YES;
+            
+        }
+        if (indexPath.section ==0) {
+            cell.contentField.enabled =NO;
+        }
+        return cell;
+    }else if (indexPath.section ==4) {
+        if (isEditing == NO) {
+            UITableViewCell * orderCell = [tableView dequeueReusableCellWithIdentifier:@"orderCell"];
+            orderCell.textLabel.text = @"Current Order";
+            orderCell.selectionStyle = UITableViewCellSelectionStyleBlue ;
+            return orderCell;
+        }else{
+            return nil;
+        }
+        
+    }else if (indexPath.section == 5){
+        UITableViewCell * orderCell = [tableView dequeueReusableCellWithIdentifier:@"orderCell"];
+        orderCell.textLabel.text = @"My Orders";
+        orderCell.selectionStyle = UITableViewCellSelectionStyleBlue ;
+        return orderCell;
+
+    }else{
+    return nil;
     }
-    if (indexPath.section ==0) {
-        cell.contentField.enabled =NO;
-    }
     
-    
-    
-    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (indexPath.section == 5) {
+        [self performSegueWithIdentifier:@"customerToDetail" sender:self];
+    }
     
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField{
@@ -174,10 +226,13 @@
             break;
         case 1:
             updatedPassword = textField.text;
-            case 2:
+            break;
+        case 2:
             updatedEmail= textField.text;
-            case 3:
+            break;
+        case 3:
             updatedGUNum= textField.text;
+            break;
         default:
             break;
     }

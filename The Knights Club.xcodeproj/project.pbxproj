@@ -16,6 +16,9 @@
 		C3A074E61B6CE4F60082540E /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A074E51B6CE4F60082540E /* PaymentViewController.m */; };
 		C3A075391B6E358F0082540E /* PaymentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A075381B6E358F0082540E /* PaymentTableViewCell.m */; };
 		C3A0753C1B6E44160082540E /* KCConnectOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A0753B1B6E44160082540E /* KCConnectOrder.m */; };
+		C3A0754E1B70D7040082540E /* OrderPresentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A0754D1B70D7040082540E /* OrderPresentViewController.m */; };
+		C3A075511B70D72E0082540E /* OrderPresentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A075501B70D72E0082540E /* OrderPresentTableViewCell.m */; };
+		C3A075541B70E91D0082540E /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A075531B70E91D0082540E /* OrderDetailViewController.m */; };
 		C3BCBBB41B688ECA001B97D2 /* KCDish.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB31B688ECA001B97D2 /* KCDish.m */; };
 		C3BCBBB71B688F90001B97D2 /* KCConnectDish.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB61B688F90001B97D2 /* KCConnectDish.m */; };
 		C3BCBBBA1B698D58001B97D2 /* SearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB91B698D58001B97D2 /* SearchMenuViewController.m */; };
@@ -72,6 +75,12 @@
 		C3A075381B6E358F0082540E /* PaymentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentTableViewCell.m; sourceTree = "<group>"; };
 		C3A0753A1B6E44160082540E /* KCConnectOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCConnectOrder.h; sourceTree = "<group>"; };
 		C3A0753B1B6E44160082540E /* KCConnectOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCConnectOrder.m; sourceTree = "<group>"; };
+		C3A0754C1B70D7040082540E /* OrderPresentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderPresentViewController.h; sourceTree = "<group>"; };
+		C3A0754D1B70D7040082540E /* OrderPresentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderPresentViewController.m; sourceTree = "<group>"; };
+		C3A0754F1B70D72E0082540E /* OrderPresentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderPresentTableViewCell.h; sourceTree = "<group>"; };
+		C3A075501B70D72E0082540E /* OrderPresentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderPresentTableViewCell.m; sourceTree = "<group>"; };
+		C3A075521B70E91D0082540E /* OrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
+		C3A075531B70E91D0082540E /* OrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
 		C3BCBBB21B688ECA001B97D2 /* KCDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCDish.h; sourceTree = "<group>"; };
 		C3BCBBB31B688ECA001B97D2 /* KCDish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCDish.m; sourceTree = "<group>"; };
 		C3BCBBB51B688F90001B97D2 /* KCConnectDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCConnectDish.h; sourceTree = "<group>"; };
@@ -241,10 +250,16 @@
 		C3CF65311B67500D00167D70 /* KC Customer */ = {
 			isa = PBXGroup;
 			children = (
+				C3A0754C1B70D7040082540E /* OrderPresentViewController.h */,
+				C3A0754D1B70D7040082540E /* OrderPresentViewController.m */,
 				C35529361B6B63AC0093D62C /* CustomerViewTableViewCell.h */,
 				C35529371B6B63AC0093D62C /* CustomerViewTableViewCell.m */,
 				C355293B1B6B64F60093D62C /* CustomerViewController.h */,
 				C355293C1B6B64F60093D62C /* CustomerViewController.m */,
+				C3A0754F1B70D72E0082540E /* OrderPresentTableViewCell.h */,
+				C3A075501B70D72E0082540E /* OrderPresentTableViewCell.m */,
+				C3A075521B70E91D0082540E /* OrderDetailViewController.h */,
+				C3A075531B70E91D0082540E /* OrderDetailViewController.m */,
 			);
 			name = "KC Customer";
 			sourceTree = "<group>";
@@ -414,6 +429,7 @@
 				C3BCBBB41B688ECA001B97D2 /* KCDish.m in Sources */,
 				C3BCBBB71B688F90001B97D2 /* KCConnectDish.m in Sources */,
 				C3A074E61B6CE4F60082540E /* PaymentViewController.m in Sources */,
+				C3A075511B70D72E0082540E /* OrderPresentTableViewCell.m in Sources */,
 				C3CF65381B675C4000167D70 /* SignInViewController.m in Sources */,
 				C355293D1B6B64F60093D62C /* CustomerViewController.m in Sources */,
 				C3C773F31B6CBDA6003DF48B /* EventViewController.m in Sources */,
@@ -426,9 +442,11 @@
 				C3CF65441B67F52500167D70 /* MenuViewController.m in Sources */,
 				C3CF653B1B675C5C00167D70 /* SignUpViewController.m in Sources */,
 				C35529391B6B63AC0093D62C /* CustomerViewTableViewCell.m in Sources */,
+				C3A075541B70E91D0082540E /* OrderDetailViewController.m in Sources */,
 				C3BCBBD41B6ABB0F001B97D2 /* KCHandleItem.m in Sources */,
 				C3BCBBD71B6AD540001B97D2 /* CartViewController.m in Sources */,
 				C3CF65471B6802EE00167D70 /* MenuTableViewCell.m in Sources */,
+				C3A0754E1B70D7040082540E /* OrderPresentViewController.m in Sources */,
 				C35529351B6B5AB10093D62C /* KCImageHandler.m in Sources */,
 				C35529431B6C03E60093D62C /* KCItemListHandler.m in Sources */,
 				C3CF650C1B674F7C00167D70 /* main.m in Sources */,
