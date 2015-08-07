@@ -78,40 +78,64 @@
     return [[NSMutableString alloc] initWithString: value] ;
     
 }
-
-
-+(void) saveOrderToFileWithOrder: (KCOrder *) order{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    //NSLog(@"%@",documentsDirectory);
-    NSString * dataPath = [[NSString alloc]initWithFormat:@"%@%@",documentsDirectory,@"/KC_Current_Order.plist"];
-    if (order) {
-        [[order contentDictionary] writeToFile:dataPath atomically:YES];
++(KCOrder *) fetchOrderFromList:(NSArray *) list andKey:(NSString *) key{
+    for (NSDictionary* dict in list) {
+        if ([[dict objectForKey:@"Title"] isEqualToString:key]) {
+            return [[KCOrder alloc] initWithLocalDictionary:dict];
+        }
     }
-
+    return nil;
 }
-+(KCOrder *) readOrderFromFile{
+
++(NSArray *) readOrdersFromFile{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     //NSLog(@"%@",documentsDirectory);
-    NSString * dataPath = [[NSString alloc]initWithFormat:@"%@%@",documentsDirectory,@"/KC_Current_Order.plist"];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:dataPath]) {
-        NSDictionary * contentDictionary = [NSDictionary dictionaryWithContentsOfFile:dataPath];
-        KCOrder * order = [[KCOrder alloc] initWithContentDictionary:contentDictionary];
-        return order;
+    NSString * dataPath = [[NSString alloc]initWithFormat:@"%@%@",documentsDirectory,@"/KC_Order_List.plist"];
+    NSArray * list = [NSArray arrayWithContentsOfFile:dataPath];
+    if (list) {
+        return list;
     }else{
-        return nil;
+    return nil;
     }
 
+    
 }
-+(void) deleteOrderFile{
++(void)saveOrdersToFile:(NSArray *)orderList{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     //NSLog(@"%@",documentsDirectory);
-    NSString * dataPath = [[NSString alloc]initWithFormat:@"%@%@",documentsDirectory,@"/KC_Current_Order.plist"];
+    NSString * dataPath = [[NSString alloc]initWithFormat:@"%@%@",documentsDirectory,@"/KC_Order_List.plist"];
+    
+    if (orderList) {
+        [orderList writeToFile:dataPath atomically:YES];
+        
+    }
+    
+}
++(void) addOrderToList:(KCOrder *) order{
+    
+    
+    NSMutableArray * list = [[NSMutableArray alloc] initWithArray:[KCConnectOrder readOrdersFromFile]];
+    if (list) {
+        [list addObject:order.localDictionary];
+    }else{
+        list = [[NSMutableArray alloc] init];
+        [list addObject:order.localDictionary];
+    }
+    [KCConnectOrder saveOrdersToFile:list];
+
+}
++(void) deleteOrderList{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    //NSLog(@"%@",documentsDirectory);
+    NSString * dataPath = [[NSString alloc]initWithFormat:@"%@%@",documentsDirectory,@"/KC_Order_List.plist"];
+
     NSError * error;
     [[NSFileManager defaultManager] removeItemAtPath:dataPath error:&error];
+
 }
+
 
 @end

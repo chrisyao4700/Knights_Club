@@ -16,5 +16,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *tittleLabel;
 
 @end

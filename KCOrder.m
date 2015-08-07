@@ -22,9 +22,13 @@
         _kc_order_date = [NSDateFormatter localizedStringFromDate:[NSDate date]
                                                         dateStyle:NSDateFormatterShortStyle
                                                         timeStyle:NSDateFormatterNoStyle];
-        _kc_order_time = [NSDateFormatter localizedStringFromDate:[NSDate date]
-                                                        dateStyle:NSDateFormatterNoStyle
-                                                        timeStyle:NSDateFormatterShortStyle];
+     
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"HH:mm"];
+        _kc_order_time = [formatter stringFromDate:[NSDate date]];
+      
+       
+        
         
           _kc_orderState= @"Unaccepted";
         _kc_order_paymentType = paymentType;
@@ -37,6 +41,7 @@
         
         
         _contentDictionary = [self configContentDictionary];
+        _localDictionary = [self configLocalDictionary];
         
     }
     
@@ -92,6 +97,17 @@
     
 }
 
+-(id) initWithLocalDictionary:(NSDictionary *)localDictionary{
+    self = [super init];
+    if (self) {
+        _localDictionary = localDictionary;
+        
+        _kc_orderTitle = [localDictionary objectForKey:@"Title"];
+        _kc_order_itemList = [localDictionary objectForKey:@"ItemList"];
+    }
+    return self;
+}
+
 -(NSString *) configOrderString{
     NSMutableString * menuItemStr = [[NSMutableString alloc] init];
     NSMutableString * contentStr =[[NSMutableString alloc]initWithString:@"Payment Type:"];
@@ -136,6 +152,18 @@
   //  NSLog(@"%@", contentStr);
     return contentStr;
     
+}
+
+-(NSDictionary *) configLocalDictionary{
+    NSMutableArray * values = [[NSMutableArray alloc] init];
+    
+    [values addObject:_kc_orderTitle];
+    [values addObject:_kc_order_itemList];
+    
+    NSArray * keys = @[@"Title", @"ItemList"];
+    
+    NSDictionary * localDict = [[NSDictionary alloc] initWithObjects:values forKeys:keys];
+    return localDict;
 }
 
 

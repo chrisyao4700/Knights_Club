@@ -9,9 +9,18 @@
 #import "OrderDetailViewController.h"
 
 @interface OrderDetailViewController (){
-    KCOrder * currentOrder;
+   
     UIAlertView * noOrderAlert;
     NSMutableData * _downloadedData;
+    NSString * mode;
+    CGRect screenRect;
+    
+    NSArray * selectedItemListData;
+    KCItemList * selectedItemList;
+    UIImageView* qrImageView;
+    
+    BOOL qrIsShowing;
+    
 }
 
 @end
@@ -31,31 +40,91 @@
 - (IBAction)hitBack:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+- (IBAction)hitQRButton:(id)sender {
+    if (qrIsShowing == NO) {
+        qrIsShowing = YES;
+        [_qrButton setTitle:@"Dismiss" forState:UIControlStateNormal];
+        qrImageView.hidden = NO;
+        _orderContentView.hidden = YES;
+        
+  
+    }else{
+        qrIsShowing = NO;
+        [_qrButton setTitle:@"QR Code" forState:UIControlStateNormal];
+        qrImageView.hidden = YES;
+        _orderContentView.hidden =NO;
+
+        
+    }
+}
 
 -(void) initAllVars{
-    currentOrder = [KCConnectOrder readOrderFromFile];
+    mode = [self checkOrderMode];
+    if (mode) {
+        if ([mode isEqualToString:@"Current"]) {
+            [self initWithModeCurrent];
+        }else if([mode isEqualToString:@"Previous"]){
+            [self initWithModePrevious];
+        }
+    }
+    
+    screenRect = [[UIScreen mainScreen] bounds];
+    
+    UIImageView * backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
+    backgroundImageView.image = [UIImage imageNamed:@"Background"];
+    [self.view insertSubview:backgroundImageView atIndex:0];
+
+    
+    CGRect imageFrame = CGRectMake(screenRect.size.width/2 - 100, screenRect.size.height/2 -100, 200, 200);
+    qrImageView = [[UIImageView alloc]initWithFrame:imageFrame];
+    [self.view addSubview:qrImageView];
+    
+    qrImageView.image = [KCQRCodeHandler generateQRCodeImageWithString:[_currentOrder kc_orderTitle]];
+    
+    qrImageView.hidden = YES;
+    [_qrButton setTitle:@"QR Code" forState:UIControlStateNormal];
+    qrIsShowing = NO;
+    
+    
+    
+    
+}
+-(NSString *) checkOrderMode{
+    if ([_currentOrder.kc_orderState isEqualToString:@"Unaccepted"] || [_currentOrder.kc_orderState isEqualToString:@"Accepted"]||[_currentOrder.kc_orderState isEqualToString:@"Cooked"]) {
+        return @"Current";
+    }else{
+        return @"Previous";
+    }
+    
+    
+}
+-(void) initWithModeCurrent{
+   // currentOrder = [KCConnectOrder readOrderFromFile];
     noOrderAlert = [[UIAlertView alloc]initWithTitle:@"No Order" message:@"You don't have any order on process" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    if (!currentOrder) {
+    if (!_currentOrder) {
         [noOrderAlert show];
     }else{
         [self updateLabel:self];
         NSTimer* timer = [NSTimer timerWithTimeInterval:30.0f target:self selector:@selector(updateLabel:) userInfo:nil repeats:YES];
         [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
         [self configElementsWithOrder];
+       // _toolBar.hidden = YES;
         
     }
-   
-    
-    
-    
-    
-    
-    
+
+}
+-(void) initWithModePrevious{
+    noOrderAlert = [[UIAlertView alloc]initWithTitle:@"No Order" message:@"You don't have any order on process" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    if (!_currentOrder) {
+        [noOrderAlert show];
+    }else{
+        [self configElementsWithOrder];
+    }
 }
 
 -(void) updateLabel:(id) sender{
    
-    [KCConnectOrder readOrderFromDatabaseWithColumn:@"Title" andValue:currentOrder.kc_orderTitle andDelegate:self];
+    [KCConnectOrder readOrderFromDatabaseWithColumn:@"Title" andValue:_currentOrder.kc_orderTitle andDelegate:self];
     
 }
 
@@ -64,8 +133,8 @@
 
 
 -(void) configElementsWithOrder{
-    _titleLabel.text = currentOrder.kc_orderTitle;
-    _stateLabel.text = currentOrder.kc_orderState;
+    _titleLabel.text = _currentOrder.kc_orderTitle;
+    _stateLabel.text = _currentOrder.kc_orderState;
     
     if ([_stateLabel.text isEqualToString:@"Unaccepted"]||[_stateLabel.text isEqualToString:@"Denied"]) {
         _state_image.image = [UIImage imageNamed:@"light_red"];
@@ -73,7 +142,7 @@
     }else if([_stateLabel.text isEqualToString:@"Accepted"] ||[_stateLabel.text isEqualToString:@"Cooked"]||[_stateLabel.text isEqualToString:@"Finished"]){
         _state_image.image = [UIImage imageNamed:@"light_green"];
     }
-    _orderContentView.text =  [currentOrder.kc_orderString stringByReplacingOccurrencesOfString:@"/" withString:@"\n"];
+    _orderContentView.text =  [_currentOrder.kc_orderString stringByReplacingOccurrencesOfString:@"/" withString:@"\n"];
     
     _orderContentView.editable = NO;
 }
@@ -97,20 +166,38 @@
     KCOrder * order = [[KCOrder alloc]initWithContentDictionary:[jsonArray objectAtIndex:0]];
     
     if (order) {
-        currentOrder = order;
+        _currentOrder = order;
         [self configElementsWithOrder];
     }
 }
+- (IBAction)pushOrderAgain:(id)sender {
+    KCOrder * localOrder = [KCConnectOrder fetchOrderFromList:[KCConnectOrder readOrdersFromFile] andKey:_currentOrder.kc_orderTitle];
+    NSArray * selectedItems = localOrder.kc_order_itemList;
+    selectedItemList = [[KCItemList alloc] initWithDataArray:selectedItems];
+    [self performSegueWithIdentifier:@"orderToCart" sender:self];
+}
+
+ 
+- (IBAction)pushDelete:(id)sender {
+    
+}
 
 
-/*
-#pragma mark - Navigation
+
+#pragma mark -
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"orderToCart"]) {
+        CartViewController * ctvc = (CartViewController *)[segue destinationViewController];
+        ctvc.selectedItemList =selectedItemList;
+        
+        
+        }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end

@@ -56,11 +56,11 @@
 - (IBAction)hitEdit:(id)sender {
     if (isEditing == NO) {
         isEditing =YES;
-        [_editButton setTitle:@"Done" forState:UIControlStateNormal];
+        [_editButton setImage:[UIImage imageNamed:@"kc_done.bt"] forState:UIControlStateNormal];
         
             }else{
         isEditing = NO;
-        [_editButton setTitle:@"Edit" forState:UIControlStateNormal];
+       [_editButton setImage:[UIImage imageNamed:@"kc_edit_bt"] forState:UIControlStateNormal];
         
         [self infoEndEdit];
     }
@@ -73,6 +73,7 @@
     [KCCustomerHandler deleteCustomerFile];
     [KCImageHandler deleteImagesInFile];
     [KCItemListHandler deleteItemListInFile];
+    [KCConnectOrder deleteOrderList];
     sleep(1);
     [self performSegueWithIdentifier:@"meToLogin" sender:self];
     
@@ -103,16 +104,15 @@
     
     
     screenRect = [[UIScreen mainScreen] bounds];
-    [_menuItem setWidth:screenRect.size.width/5];
-    [_meItem setWidth:screenRect.size.width/5];
-    [_eventItem setWidth:screenRect.size.width/5];
-    [_cartItem setWidth:screenRect.size.width/5];
-    
-    
     
     UIImageView * backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
     backgroundImageView.image = [UIImage imageNamed:@"Background"];
     [self.view insertSubview:backgroundImageView atIndex:0];
+  
+    
+       
+    
+    
 
     [self configHeaders];
     
@@ -128,7 +128,7 @@
 
 -(void) configHeaders{
     if (isEditing == NO) {
-        headers = @[@"GU ID", @"Password", @"E-mail", @"Campus Card #", @"Order",@""];
+        headers = @[@"GU ID", @"Password", @"E-mail", @"Campus Card #", @"Orders"];
     }else{
         headers = @[@"GU ID", @"Password", @"E-mail", @"Campus Card #"];
     }
@@ -162,7 +162,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     // Return the number of rows in the section.
+//    if (section == 4) {
+//        return 2;
+//    }else{
     return 1;
+   // }
 }
 
 
@@ -192,30 +196,28 @@
         }
         return cell;
     }else if (indexPath.section ==4) {
-        if (isEditing == NO) {
-            UITableViewCell * orderCell = [tableView dequeueReusableCellWithIdentifier:@"orderCell"];
-            orderCell.textLabel.text = @"Current Order";
-            orderCell.selectionStyle = UITableViewCellSelectionStyleBlue ;
+    
+    
+    
+             UITableViewCell * orderCell = [tableView dequeueReusableCellWithIdentifier:@"orderCell"];
+           
+                
+                orderCell.textLabel.text = @"My Orders";
+                orderCell.selectionStyle = UITableViewCellSelectionStyleBlue ;
+            
             return orderCell;
-        }else{
-            return nil;
-        }
         
-    }else if (indexPath.section == 5){
-        UITableViewCell * orderCell = [tableView dequeueReusableCellWithIdentifier:@"orderCell"];
-        orderCell.textLabel.text = @"My Orders";
-        orderCell.selectionStyle = UITableViewCellSelectionStyleBlue ;
-        return orderCell;
-
+       
     }else{
-    return nil;
+        return nil;
     }
     
+
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 5) {
-        [self performSegueWithIdentifier:@"customerToDetail" sender:self];
+    if (indexPath.section ==4 ) {
+        [self performSegueWithIdentifier:@"customerToOrder" sender:self];
     }
     
 }

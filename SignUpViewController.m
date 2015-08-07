@@ -13,6 +13,8 @@
     UIAlertView * badConnectionAlert;
     UIAlertView * signUpFinishAlert;
     UIAlertView * missInformation;
+    
+    CGRect screenRect;
 }
 
 @end
@@ -83,6 +85,12 @@
     if (_netWorkPassword) {
         _passwordField.text = _netWorkPassword;
     }
+    
+    screenRect = [[UIScreen mainScreen] bounds];
+    
+    UIImageView * backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
+    backgroundImageView.image = [UIImage imageNamed:@"Background"];
+    [self.view insertSubview:backgroundImageView atIndex:0];
     
     _passwordField.secureTextEntry = YES;
     _repasswordField.secureTextEntry = YES;

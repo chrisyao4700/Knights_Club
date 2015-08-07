@@ -18,8 +18,12 @@
 +(NSURLConnection *) readOrderFromDatabaseWithColumn:(NSString *) column
                                             andValue:(NSString *) value
                                          andDelegate:(id) delegate;
-+(void) saveOrderToFileWithOrder: (KCOrder *) order;
-+(KCOrder *) readOrderFromFile;
-+(void) deleteOrderFile;
+
+
++(NSArray *) readOrdersFromFile;
++(void) saveOrdersToFile:(NSArray *) orderList;
++(void) addOrderToList:(KCOrder *) order;
++(void) deleteOrderList;
++(KCOrder *) fetchOrderFromList:(NSArray *) list andKey:(NSString *) key;
 
 @end

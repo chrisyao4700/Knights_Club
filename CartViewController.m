@@ -53,13 +53,7 @@
     
     _tipsField.delegate = self;
     isUped = NO;
-    
-    [_menuItem setWidth:screenRect.size.width/5];
-    [_meItem setWidth:screenRect.size.width/5];
-    [_eventItem setWidth:screenRect.size.width/5];
-    [_cartItem setWidth:screenRect.size.width/5];
-    
-   
+       
     
     UIImageView * backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
     backgroundImageView.image = [UIImage imageNamed:@"Background"];
@@ -202,9 +196,7 @@
     
 }
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    CGRect viewRect  = self.view.frame;
-    viewRect.origin.y = 0;
-    self.view.frame = viewRect;
+   
     return YES;
 }
 

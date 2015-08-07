@@ -81,13 +81,13 @@
 -(void) pickPaymentTypeWithIndex: (NSInteger) index{
      _paymentType = [paymentKeys objectAtIndex:index];
     if (index == 0) {
-        _paymentTypeView.image = [UIImage imageNamed:@"gu_glod"];
+        _paymentTypeView.image = [UIImage imageNamed:@"gu_gold_icon.png"];
     }else if(index == 1){
-        _paymentTypeView.image = [UIImage imageNamed:@"cash"];
+        _paymentTypeView.image = [UIImage imageNamed:@"kc_cash_icon.png"];
     }else if (index == 2){
-        _paymentTypeView.image = [UIImage imageNamed:@"paypal"];
+        _paymentTypeView.image = [UIImage imageNamed:@"kc_paypal_icon.png"];
     }else if (index == 3){
-        _paymentTypeView.image = [UIImage imageNamed:@"credit_card"];
+        _paymentTypeView.image = [UIImage imageNamed:@"kc_credit_icon.png"];
     }
         
 }
@@ -142,13 +142,13 @@
     PaymentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"contentCell" forIndexPath:indexPath];
     cell.choiceLabel.text = [paymentKeys objectAtIndex:indexPath.section];
     if (indexPath.section == 0) {
-        cell.choiceImage.image = [UIImage imageNamed:@"gu_glod"];
+        cell.choiceImage.image = [UIImage imageNamed:@"gu_gold_icon.png"];
     }else if(indexPath.section == 1) {
-        cell.choiceImage.image = [UIImage imageNamed:@"cash"];
+        cell.choiceImage.image = [UIImage imageNamed:@"kc_cash_icon.png"];
     }else if(indexPath.section == 2) {
-        cell.choiceImage.image = [UIImage imageNamed:@"paypal"];
+        cell.choiceImage.image = [UIImage imageNamed:@"kc_paypal_icon.png"];
     }else if(indexPath.section == 3) {
-        cell.choiceImage.image = [UIImage imageNamed:@"credit_card"];
+        cell.choiceImage.image = [UIImage imageNamed:@"kc_credit_icon.png"];
     }
     return cell;
 }
@@ -194,7 +194,7 @@
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag == 26) {
-        [KCConnectOrder saveOrderToFileWithOrder:currentOrder];
+        [KCConnectOrder addOrderToList:currentOrder];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 

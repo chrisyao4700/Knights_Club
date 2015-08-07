@@ -121,18 +121,19 @@
     if (!_selectedItemList) {
         _selectedItemList = [[KCItemList alloc]init];
     }
+    screenRect = [[UIScreen mainScreen] bounds];
     
+    UIImageView * backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
+    backgroundImageView.image = [UIImage imageNamed:@"Background"];
+    [self.view insertSubview:backgroundImageView atIndex:0];
   
     _imageDictionary = [[NSMutableDictionary alloc]init];
     knightsClubMenu = [[NSMutableArray alloc]init];
     sectionList = [[NSMutableArray alloc]init];
     
-    screenRect = [[UIScreen mainScreen] bounds];
     
-    [_menuItem setWidth:screenRect.size.width/5];
-    [_meItem setWidth:screenRect.size.width/5];
-    [_eventItem setWidth:screenRect.size.width/5];
-    [_cartItem setWidth:screenRect.size.width/5];
+    
+    
     
     
    

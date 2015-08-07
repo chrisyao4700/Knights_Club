@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KCConnectOrder.h"
+#import "KCCustomerHandler.h"
+#import "OrderPresentTableViewCell.h"
+#import "KCImageHandler.h"
+#import "OrderDetailViewController.h"
 
 @interface OrderPresentViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UITableView *orderContentView;
 
 @end

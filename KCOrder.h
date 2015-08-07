@@ -35,6 +35,7 @@
 
 @property NSDictionary * contentDictionary;
 @property NSArray * onlineElementsKey;
+@property NSDictionary * localDictionary;
 
 
 
@@ -51,6 +52,8 @@
 
 
 -(id) initWithContentDictionary:(NSDictionary *) contentDictionary;
+
+-(id) initWithLocalDictionary: (NSDictionary *) localDictionary;
 
 -(NSString *) createLinkURL;
 

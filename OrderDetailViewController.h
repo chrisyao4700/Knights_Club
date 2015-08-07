@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "KCConnectOrder.h"
+#import "CartViewController.h"
+#import "KCQRCodeHandler.h"
 
 @interface OrderDetailViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
@@ -15,5 +17,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *stateLabel;
 @property (strong, nonatomic) IBOutlet UITextView *orderContentView;
 @property (strong, nonatomic) IBOutlet UIToolbar *toolBar;
+@property KCOrder * currentOrder;
+
+@property (strong, nonatomic) IBOutlet UIButton *qrButton;
 
 @end

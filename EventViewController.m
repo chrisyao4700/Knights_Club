@@ -57,15 +57,13 @@
     [_contentWebView loadRequest:homeRequest];
     
     screenRect = [[UIScreen mainScreen] bounds];
-    [_menuItem setWidth:screenRect.size.width/5];
-    [_meItem setWidth:screenRect.size.width/5];
-    [_eventItem setWidth:screenRect.size.width/5];
-    [_cartItem setWidth:screenRect.size.width/5];
+    
     
     progressView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 
     [progressView setCenter:CGPointMake(screenRect.size.width/2.0, screenRect.size.height/2.0)]; // I do this because I'm in landscape mode
     [self.view addSubview:progressView];
+    [progressView startAnimating];
     
     
     
@@ -77,7 +75,7 @@
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView{
-    [progressView startAnimating];
+    
     
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{

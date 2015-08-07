@@ -14,6 +14,8 @@
     UIAlertView * noCustomer;
     
     UIActivityIndicatorView * progressView;
+    
+    CGRect screenRect;
 }
 
 @end
@@ -44,7 +46,7 @@
 }
 
 -(void)closeFatherController{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -97,6 +99,12 @@
         [KCConnectCustomer readCustomerFromDatabaseWithUsername:_userNameField.text andPassword:_passwordField.text andDelegate:self];
     }
     
+    screenRect = [[UIScreen mainScreen] bounds];
+    
+    UIImageView * backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
+    backgroundImageView.image = [UIImage imageNamed:@"Background"];
+    [self.view insertSubview:backgroundImageView atIndex:0];
+    
     
     _passwordField.secureTextEntry = YES;
     
@@ -117,8 +125,9 @@
                                   otherButtonTitles:nil];
     
     progressView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    
     [progressView setCenter:CGPointMake(screenRect.size.width/2.0, screenRect.size.height/2.0)]; // I do this because I'm in landscape mode
+    
     [self.view addSubview:progressView];
     
     
