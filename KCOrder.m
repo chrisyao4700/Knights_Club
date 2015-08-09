@@ -19,18 +19,19 @@
         _kc_order_tips = orderTips;
         _kc_order_finalRequirement = finalRequirement;
         _kc_customer = customer;
-        _kc_order_date = [NSDateFormatter localizedStringFromDate:[NSDate date]
-                                                        dateStyle:NSDateFormatterShortStyle
-                                                        timeStyle:NSDateFormatterNoStyle];
+        
+        NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MM:dd:yyyy"];
+        _kc_order_date = [dateFormatter stringFromDate:[NSDate date]];
      
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"HH:mm"];
-        _kc_order_time = [formatter stringFromDate:[NSDate date]];
+        NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+        [timeFormatter setDateFormat:@"HH:mm"];
+        _kc_order_time = [timeFormatter stringFromDate:[NSDate date]];
       
        
         
         
-          _kc_orderState= @"Unaccepted";
+          _kc_orderState= @"Waiting";
         _kc_order_paymentType = paymentType;
         _kc_order_paymentInfo = paymentInfo;
         
@@ -86,6 +87,7 @@
     NSMutableString * titleStr = [[NSMutableString alloc] initWithString:@"KCORD"];
     NSString * date = [_kc_order_date stringByReplacingOccurrencesOfString:@"/" withString:@""];
     NSString * time = [_kc_order_time stringByReplacingOccurrencesOfString:@" " withString:@""];
+    date = [date stringByReplacingOccurrencesOfString:@":" withString:@""];
     time = [time stringByReplacingOccurrencesOfString:@":" withString:@""];
     
     
@@ -144,7 +146,7 @@
     [contentStr appendFormat:@"Final Requirement: %@/", _kc_order_finalRequirement];
     NSString * date = [_kc_order_date stringByReplacingOccurrencesOfString:@"/" withString:@""];
     NSString * time = [_kc_order_time stringByReplacingOccurrencesOfString:@" " withString:@""];
-    time = [time stringByReplacingOccurrencesOfString:@":" withString:@""];
+    //time = [time stringByReplacingOccurrencesOfString:@":" withString:@""];
 
     [contentStr appendFormat:@"Time: %@ %@/",date,time];
     [contentStr appendFormat:@"GU Card: %@", _kc_customer.guNumber];

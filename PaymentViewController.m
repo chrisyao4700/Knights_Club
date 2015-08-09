@@ -24,6 +24,8 @@
     UIActivityIndicatorView * progressView;
     
     UIAlertView * successNote;
+    
+  
 }
 
 @end
@@ -170,7 +172,25 @@
     sleep(1);
     insertConnection = [KCConnectOrder insertOrderToDatabase:currentOrder andDelegate:self];
 }
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+   // NSError *error;
+    NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    if ([dataString isEqualToString:@"Nope"]) {
+        UIAlertView * orderFail = [[UIAlertView alloc] initWithTitle:@"Order Fail" message:@"Processing last order, please wait." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [orderFail show];
+        
+    }else if ([dataString isEqualToString:@"Yes"]){
+       
+            [self orderDidPlaced];
+        [progressView stopAnimating];
+        
 
+    }
+}
+
+    
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     if (connection == emailConnection) {
@@ -178,9 +198,6 @@
     
     }if (connection ==insertConnection) {
         dataConnected =YES;
-    }
-    if ((emailConnected ==YES) &&(dataConnected =YES)) {
-        [self orderDidPlaced];
     }
 }
 -(void) orderDidPlaced{

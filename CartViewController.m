@@ -105,7 +105,12 @@
 
 
 - (IBAction)hitCheckOut:(id)sender {
+    if (!_selectedItemList || _selectedItemList.dataArray.count == 0) {
+        UIAlertView * emptyCart = [[UIAlertView alloc] initWithTitle:@"Empty Cart" message:@"Sorry, you don't have anything in cart." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [emptyCart show];
+    }else{
     [self performSegueWithIdentifier:@"cartToPay" sender:self];
+    }
 }
 
 - (IBAction)hitMenu:(id)sender {
