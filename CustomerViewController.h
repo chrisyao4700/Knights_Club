@@ -23,10 +23,15 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *editButton;
 @property (strong, nonatomic) IBOutlet UITableView *customer_infoView;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *menuItem;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *cartItem;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *eventItem;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *meItem;
+@property (strong, nonatomic) IBOutlet UIImageView *bannerImageView;
+
+@property (strong, nonatomic) IBOutlet UIButton *menuButton;
+
+@property (strong, nonatomic) IBOutlet UIButton *cartButton;
+@property (strong, nonatomic) IBOutlet UIButton *eventButton;
+@property (strong, nonatomic) IBOutlet UIButton *meButton;
+
+@property (strong, nonatomic) IBOutlet UIView *toolBarView;
 
 @property KCCustomer * defaultCustomer;
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DishDetailScrllViewController.h"
+#import "RefreshViewControllerProtocol.h"
 #import "KCConnectDish.h"
 #import "KCItemList.h"
 #import "DetailBackToCartRefresh.h"
@@ -16,7 +17,7 @@
 @interface MenuDetailViewController : UIViewController<UITextViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIButton *addCartButton;
-
+@property id <RefreshViewControllerProtocol> refreshDelegate;
 @property NSData * imageData;
 @property KCDish * currentDish;
 @property KCItemList * selectedItemList;

@@ -44,16 +44,17 @@
 
 -(void) initAllVars{
     screenRect = [[UIScreen mainScreen] bounds];
-    if (!_selectedItemList) {
-        _selectedItemList = [KCItemListHandler readItemListFromFile];
-    }
-    if(_dismisViewDelegate){
-    [_dismisViewDelegate closeFatherController];
-    }
+   
+    _selectedItemList = [KCItemListHandler readItemListFromFile];
+    
+//    if(_dismisViewDelegate){
+//    [_dismisViewDelegate closeFatherController];
+//    }
     
     _tipsField.delegate = self;
     isUped = NO;
-       
+    
+    [self configToolBar];
     
     UIImageView * backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
     backgroundImageView.image = [UIImage imageNamed:@"Background"];
@@ -125,11 +126,63 @@
     [self performSegueWithIdentifier:@"cartToMe" sender:self];
 }
 - (IBAction)hitClear:(id)sender {
-    [KCItemListHandler deleteItemListInFile];
+    //[KCItemListHandler deleteItemListInFile];
     [_selectedItemList resetList];
-    [self configLabels];
+    [KCItemListHandler saveItemListToFileWithList:_selectedItemList];
+    //[self viewDidLoad];
+    [self performSegueWithIdentifier:@"cartToMenu" sender:self];
+    //[self configLabels];
+    //[self configToolBar];
    // [_orderTable reloadData];
 }
+
+-(void) configToolBar{
+    CGFloat buttonWidth = screenRect.size.width/4;
+    CGFloat buttonHeight = 60;
+    
+    
+    
+    _menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonWidth, buttonHeight)];
+    [_menuButton addTarget:self action:@selector(hitMenu:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [_menuButton setBackgroundImage: [UIImage imageNamed:@"kc_menu_tbi"] forState:UIControlStateNormal];
+    [_toolBarView addSubview:_menuButton];
+    
+    _cartButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth, 0, buttonWidth, buttonHeight)];
+    [_cartButton addTarget:self action:@selector(hitCart:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    if ([KCItemListHandler cartIsEmpty] ==YES) {
+        [_cartButton setBackgroundImage: [UIImage imageNamed:@"kc_ecart_sel"] forState:UIControlStateNormal];
+    }else{
+        [_cartButton setBackgroundImage: [UIImage imageNamed:@"kc_fcart_sel"] forState:UIControlStateNormal];
+    }
+
+    [_toolBarView addSubview:_cartButton];
+    
+    
+    ///////----------------------------
+    _eventButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth *2, 0, buttonWidth, buttonHeight)];
+    [_eventButton addTarget:self action:@selector(hitEvent:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [_eventButton setBackgroundImage: [UIImage imageNamed:@"kc_event_tbi"] forState:UIControlStateNormal];
+    [_toolBarView addSubview:_eventButton];
+    
+    ///////----------------------------
+    
+    _meButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth*3, 0, buttonWidth, buttonHeight)];
+    [_meButton addTarget:self action:@selector(hitMe:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [_meButton setBackgroundImage: [UIImage imageNamed:@"kc_me_tbi"] forState:UIControlStateNormal];
+    [_toolBarView addSubview:_meButton];
+    
+    
+    
+}
+
 
 /* Table View */
 

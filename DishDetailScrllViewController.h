@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "KCConnectDish.h"
 
+
 @interface DishDetailScrllViewController : UIViewController
 
 @property KCDish * selectedDish;
 @property NSData * imageData;
+
+
 
 @property (strong, nonatomic) IBOutlet UIImageView *dish_imageView;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;

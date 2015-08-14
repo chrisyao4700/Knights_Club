@@ -203,7 +203,7 @@
 -(void) orderDidPlaced{
     [progressView stopAnimating];
     [KCItemListHandler deleteItemListInFile];
-    KCItemList *list = [[KCItemList alloc]init];
+     KCItemList *list = [[KCItemList alloc]init];
     [_refreshDelegate updateItemList:list];
     [successNote show];
     

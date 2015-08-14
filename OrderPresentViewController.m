@@ -148,7 +148,7 @@
         
     }if ([mode isEqualToString:@"CurrentOrder"]) {
         NSMutableArray * tmpContent = [[NSMutableArray alloc] init];
-        [tmpContent addObjectsFromArray:[orderDataDictionary objectForKey:@"Unaccepted"]];
+        [tmpContent addObjectsFromArray:[orderDataDictionary objectForKey:@"Waiting"]];
         [tmpContent addObjectsFromArray:[orderDataDictionary objectForKey:@"Accepted"]];
         [tmpContent addObjectsFromArray:[orderDataDictionary objectForKey:@"Cooked"]];
         tableContent = tmpContent;
@@ -236,8 +236,11 @@
     }else if (images.count == 2){
         cell.first_item.image = [UIImage imageWithData:[images objectAtIndex:0]];
         cell.second_item.image = [UIImage imageWithData:[images objectAtIndex:1]];
+        [cell.third_item setHidden:YES];
     }else{
         cell.first_item.image = [UIImage imageWithData:[images objectAtIndex:0]];
+        [cell.second_item setHidden:YES];
+        [cell.third_item setHidden:YES];
     }
     
     cell.dateLabel.text = order.kc_order_date;
