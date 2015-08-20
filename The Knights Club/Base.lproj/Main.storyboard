@@ -1463,7 +1463,7 @@
                                             <constraint firstAttribute="width" constant="60" id="FD3-oq-F2b"/>
                                             <constraint firstAttribute="height" constant="35" id="n3B-lM-2Vc"/>
                                         </constraints>
-                                        <state key="normal" title="Edit" image="kc_edit_bt">
+                                        <state key="normal" title="Edit" image="kc_edit_btn">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1949,10 +1949,10 @@
                         <viewControllerLayoutGuide type="bottom" id="GnO-X4-Nlr"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dyb-cZ-ImK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="278"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhy-ch-7CO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhy-ch-7CO">
                                 <rect key="frame" x="16" y="183" width="568" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="838-uj-Km1"/>
@@ -1961,7 +1961,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MqO-Hl-mOm">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MqO-Hl-mOm">
                                 <rect key="frame" x="16" y="221" width="568" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="ALW-AG-v5E"/>
@@ -2000,7 +2000,7 @@
         <image name="kc_check_out_bt" width="909" height="307"/>
         <image name="kc_confirm_bt" width="1181" height="394"/>
         <image name="kc_done.bt" width="787" height="394"/>
-        <image name="kc_edit_bt" width="1398" height="596"/>
+        <image name="kc_edit_btn" width="787" height="394"/>
         <image name="kc_home_bt" width="800" height="800"/>
         <image name="kc_log_out_bt" width="1181" height="394"/>
         <image name="kc_remove_item_bt" width="909" height="307"/>
