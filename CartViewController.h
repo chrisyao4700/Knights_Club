@@ -31,13 +31,15 @@
 @property (strong, nonatomic) IBOutlet UILabel *taxValueLabel;
 @property (strong, nonatomic) IBOutlet UILabel *orderPriceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *totalChargeLabel;
+@property (strong, nonatomic) IBOutlet UIView *toolBarView;
 
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *menuItem;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *cartItem;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *eventItem;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *meItem;
 @property (strong, nonatomic) IBOutlet UIButton *checkoutButton;
 
 
+@property (strong, nonatomic) IBOutlet UIButton *menuButton;
+
+@property (strong, nonatomic) IBOutlet UIButton *cartButton;
+@property (strong, nonatomic) IBOutlet UIButton *eventButton;
+@property (strong, nonatomic) IBOutlet UIButton *meButton;
 
 @end

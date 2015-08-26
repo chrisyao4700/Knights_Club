@@ -12,6 +12,7 @@
 		C355293D1B6B64F60093D62C /* CustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C355293C1B6B64F60093D62C /* CustomerViewController.m */; };
 		C35529401B6B66A70093D62C /* KCCustomerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C355293F1B6B66A70093D62C /* KCCustomerHandler.m */; };
 		C35529431B6C03E60093D62C /* KCItemListHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C35529421B6C03E60093D62C /* KCItemListHandler.m */; };
+		C383B5C51B7B519300DD280D /* KCMenuHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C383B5C41B7B519300DD280D /* KCMenuHandler.m */; };
 		C3A074E31B6CCDF50082540E /* KCOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A074E21B6CCDF50082540E /* KCOrder.m */; };
 		C3A074E61B6CE4F60082540E /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A074E51B6CE4F60082540E /* PaymentViewController.m */; };
 		C3A075391B6E358F0082540E /* PaymentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A075381B6E358F0082540E /* PaymentTableViewCell.m */; };
@@ -27,7 +28,6 @@
 		C3BCBBCA1B69E00F001B97D2 /* DishDetailScrllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBC81B69E00F001B97D2 /* DishDetailScrllViewController.m */; };
 		C3BCBBCE1B6ABADD001B97D2 /* KCItemList.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBCD1B6ABADD001B97D2 /* KCItemList.m */; };
 		C3BCBBD11B6ABAEC001B97D2 /* KCItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBD01B6ABAEC001B97D2 /* KCItem.m */; };
-		C3BCBBD41B6ABB0F001B97D2 /* KCHandleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBD31B6ABB0F001B97D2 /* KCHandleItem.m */; };
 		C3BCBBD71B6AD540001B97D2 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBD61B6AD540001B97D2 /* CartViewController.m */; };
 		C3BCBBDA1B6ADC92001B97D2 /* CartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBD91B6ADC92001B97D2 /* CartTableViewCell.m */; };
 		C3C773F31B6CBDA6003DF48B /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C773F11B6CBDA6003DF48B /* EventViewController.m */; };
@@ -68,6 +68,9 @@
 		C355293F1B6B66A70093D62C /* KCCustomerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCCustomerHandler.m; sourceTree = "<group>"; };
 		C35529411B6C03E60093D62C /* KCItemListHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCItemListHandler.h; sourceTree = "<group>"; };
 		C35529421B6C03E60093D62C /* KCItemListHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCItemListHandler.m; sourceTree = "<group>"; };
+		C383B5B81B7B210200DD280D /* RefreshViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshViewControllerProtocol.h; sourceTree = "<group>"; };
+		C383B5C31B7B519300DD280D /* KCMenuHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCMenuHandler.h; sourceTree = "<group>"; };
+		C383B5C41B7B519300DD280D /* KCMenuHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCMenuHandler.m; sourceTree = "<group>"; };
 		C3A074E11B6CCDF50082540E /* KCOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCOrder.h; sourceTree = "<group>"; };
 		C3A074E21B6CCDF50082540E /* KCOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCOrder.m; sourceTree = "<group>"; };
 		C3A074E41B6CE4F60082540E /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
@@ -98,8 +101,6 @@
 		C3BCBBCD1B6ABADD001B97D2 /* KCItemList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCItemList.m; sourceTree = "<group>"; };
 		C3BCBBCF1B6ABAEC001B97D2 /* KCItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCItem.h; sourceTree = "<group>"; };
 		C3BCBBD01B6ABAEC001B97D2 /* KCItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCItem.m; sourceTree = "<group>"; };
-		C3BCBBD21B6ABB0F001B97D2 /* KCHandleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCHandleItem.h; sourceTree = "<group>"; };
-		C3BCBBD31B6ABB0F001B97D2 /* KCHandleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCHandleItem.m; sourceTree = "<group>"; };
 		C3BCBBD51B6AD540001B97D2 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
 		C3BCBBD61B6AD540001B97D2 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 		C3BCBBD81B6ADC92001B97D2 /* CartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartTableViewCell.h; sourceTree = "<group>"; };
@@ -149,6 +150,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C383B5981B7735F600DD280D /* KC UIElement */ = {
+			isa = PBXGroup;
+			children = (
+				C3CF65451B6802EE00167D70 /* MenuTableViewCell.h */,
+				C3CF65461B6802EE00167D70 /* MenuTableViewCell.m */,
+				C35529361B6B63AC0093D62C /* CustomerViewTableViewCell.h */,
+				C35529371B6B63AC0093D62C /* CustomerViewTableViewCell.m */,
+				C3A0754F1B70D72E0082540E /* OrderPresentTableViewCell.h */,
+				C3A075501B70D72E0082540E /* OrderPresentTableViewCell.m */,
+				C35529321B6B55D70093D62C /* DismissFatherViewController.h */,
+				C3BCBBD81B6ADC92001B97D2 /* CartTableViewCell.h */,
+				C3BCBBD91B6ADC92001B97D2 /* CartTableViewCell.m */,
+				C35529311B6B3EDA0093D62C /* DetailBackToCartRefresh.h */,
+				C3A075371B6E358F0082540E /* PaymentTableViewCell.h */,
+				C3A075381B6E358F0082540E /* PaymentTableViewCell.m */,
+				C383B5B81B7B210200DD280D /* RefreshViewControllerProtocol.h */,
+			);
+			name = "KC UIElement";
+			sourceTree = "<group>";
+		};
 		C3C773EF1B6CBD77003DF48B /* KC Event */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +182,7 @@
 		C3CF64FD1B674F7C00167D70 = {
 			isa = PBXGroup;
 			children = (
+				C383B5981B7735F600DD280D /* KC UIElement */,
 				C3C773EF1B6CBD77003DF48B /* KC Event */,
 				C3CF65351B675C0500167D70 /* KC Abstract */,
 				C3CF65341B67505F00167D70 /* KC Pay */,
@@ -227,8 +249,6 @@
 			children = (
 				C3CF65421B67F52500167D70 /* MenuViewController.h */,
 				C3CF65431B67F52500167D70 /* MenuViewController.m */,
-				C3CF65451B6802EE00167D70 /* MenuTableViewCell.h */,
-				C3CF65461B6802EE00167D70 /* MenuTableViewCell.m */,
 				C3BCBBB81B698D58001B97D2 /* SearchMenuViewController.h */,
 				C3BCBBB91B698D58001B97D2 /* SearchMenuViewController.m */,
 				C3BCBBBE1B69AB9F001B97D2 /* MenuDetailViewController.h */,
@@ -255,12 +275,8 @@
 			children = (
 				C3A0754C1B70D7040082540E /* OrderPresentViewController.h */,
 				C3A0754D1B70D7040082540E /* OrderPresentViewController.m */,
-				C35529361B6B63AC0093D62C /* CustomerViewTableViewCell.h */,
-				C35529371B6B63AC0093D62C /* CustomerViewTableViewCell.m */,
 				C355293B1B6B64F60093D62C /* CustomerViewController.h */,
 				C355293C1B6B64F60093D62C /* CustomerViewController.m */,
-				C3A0754F1B70D72E0082540E /* OrderPresentTableViewCell.h */,
-				C3A075501B70D72E0082540E /* OrderPresentTableViewCell.m */,
 				C3A075521B70E91D0082540E /* OrderDetailViewController.h */,
 				C3A075531B70E91D0082540E /* OrderDetailViewController.m */,
 			);
@@ -270,12 +286,8 @@
 		C3CF65331B67505700167D70 /* KC Cart */ = {
 			isa = PBXGroup;
 			children = (
-				C35529321B6B55D70093D62C /* DismissFatherViewController.h */,
 				C3BCBBD51B6AD540001B97D2 /* CartViewController.h */,
 				C3BCBBD61B6AD540001B97D2 /* CartViewController.m */,
-				C3BCBBD81B6ADC92001B97D2 /* CartTableViewCell.h */,
-				C3BCBBD91B6ADC92001B97D2 /* CartTableViewCell.m */,
-				C35529311B6B3EDA0093D62C /* DetailBackToCartRefresh.h */,
 			);
 			name = "KC Cart";
 			sourceTree = "<group>";
@@ -285,8 +297,6 @@
 			children = (
 				C3A074E41B6CE4F60082540E /* PaymentViewController.h */,
 				C3A074E51B6CE4F60082540E /* PaymentViewController.m */,
-				C3A075371B6E358F0082540E /* PaymentTableViewCell.h */,
-				C3A075381B6E358F0082540E /* PaymentTableViewCell.m */,
 			);
 			name = "KC Pay";
 			sourceTree = "<group>";
@@ -312,14 +322,14 @@
 				C3A074E21B6CCDF50082540E /* KCOrder.m */,
 				C3BCBBCF1B6ABAEC001B97D2 /* KCItem.h */,
 				C3BCBBD01B6ABAEC001B97D2 /* KCItem.m */,
-				C3BCBBD21B6ABB0F001B97D2 /* KCHandleItem.h */,
-				C3BCBBD31B6ABB0F001B97D2 /* KCHandleItem.m */,
 				C35529331B6B5AB10093D62C /* KCImageHandler.h */,
 				C35529341B6B5AB10093D62C /* KCImageHandler.m */,
 				C35529411B6C03E60093D62C /* KCItemListHandler.h */,
 				C35529421B6C03E60093D62C /* KCItemListHandler.m */,
 				C355293E1B6B66A70093D62C /* KCCustomerHandler.h */,
 				C355293F1B6B66A70093D62C /* KCCustomerHandler.m */,
+				C383B5C31B7B519300DD280D /* KCMenuHandler.h */,
+				C383B5C41B7B519300DD280D /* KCMenuHandler.m */,
 			);
 			name = "KC Abstract";
 			sourceTree = "<group>";
@@ -373,6 +383,11 @@
 				TargetAttributes = {
 					C3CF65051B674F7C00167D70 = {
 						CreatedOnToolsVersion = 6.4;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 					C3CF651E1B674F7C00167D70 = {
 						CreatedOnToolsVersion = 6.4;
@@ -436,6 +451,7 @@
 				C3A074E61B6CE4F60082540E /* PaymentViewController.m in Sources */,
 				C3A075511B70D72E0082540E /* OrderPresentTableViewCell.m in Sources */,
 				C3CF65381B675C4000167D70 /* SignInViewController.m in Sources */,
+				C383B5C51B7B519300DD280D /* KCMenuHandler.m in Sources */,
 				C355293D1B6B64F60093D62C /* CustomerViewController.m in Sources */,
 				C3C773F31B6CBDA6003DF48B /* EventViewController.m in Sources */,
 				C3BCBBCE1B6ABADD001B97D2 /* KCItemList.m in Sources */,
@@ -449,7 +465,6 @@
 				C3A075EE1B73806A0082540E /* KCQRCodeHandler.m in Sources */,
 				C35529391B6B63AC0093D62C /* CustomerViewTableViewCell.m in Sources */,
 				C3A075541B70E91D0082540E /* OrderDetailViewController.m in Sources */,
-				C3BCBBD41B6ABB0F001B97D2 /* KCHandleItem.m in Sources */,
 				C3BCBBD71B6AD540001B97D2 /* CartViewController.m in Sources */,
 				C3CF65471B6802EE00167D70 /* MenuTableViewCell.m in Sources */,
 				C3A0754E1B70D7040082540E /* OrderPresentViewController.m in Sources */,
@@ -581,9 +596,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "The Knights Club/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -591,9 +614,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "The Knights Club/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -3,7 +3,15 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "c_log_on_bt.png"
+      "filename" : "c_logon_btn.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

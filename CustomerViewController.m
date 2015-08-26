@@ -42,6 +42,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
 - (IBAction)hitMenuItem:(id)sender {
     [self performSegueWithIdentifier:@"meToMenu" sender:self];
 }
@@ -110,8 +113,10 @@
     [self.view insertSubview:backgroundImageView atIndex:0];
   
     
-       
     
+    [self configToolBar];
+//    //[_bannerImageView ]
+//    _bannerImageView.image = [UIImage imageNamed:@"NewBanner"];
     
 
     [self configHeaders];
@@ -125,6 +130,54 @@
         return YES;
     }
 }
+
+-(void) configToolBar{
+    CGFloat buttonWidth = screenRect.size.width/4;
+    CGFloat buttonHeight = 60;
+    
+    
+    
+    _menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonWidth, buttonHeight)];
+    [_menuButton addTarget:self action:@selector(hitMenuItem:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [_menuButton setBackgroundImage: [UIImage imageNamed:@"kc_menu_tbi"] forState:UIControlStateNormal];
+    [_toolBarView addSubview:_menuButton];
+    
+    _cartButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth, 0, buttonWidth, buttonHeight)];
+    [_cartButton addTarget:self action:@selector(hitCartItem:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    if ([KCItemListHandler cartIsEmpty] ==YES) {
+        [_cartButton setBackgroundImage: [UIImage imageNamed:@"kc_cart_tbi"] forState:UIControlStateNormal];
+    }else{
+        [_cartButton setBackgroundImage: [UIImage imageNamed:@"kc_fcart_tbi"] forState:UIControlStateNormal];
+    }
+
+    [_toolBarView addSubview:_cartButton];
+  
+    
+        ///////----------------------------
+    _eventButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth *2, 0, buttonWidth, buttonHeight)];
+    [_eventButton addTarget:self action:@selector(hitEventItem:) forControlEvents:UIControlEventTouchUpInside];
+    
+
+    [_eventButton setBackgroundImage: [UIImage imageNamed:@"kc_event_tbi"] forState:UIControlStateNormal];
+    [_toolBarView addSubview:_eventButton];
+    
+     ///////----------------------------
+    
+    _meButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth*3, 0, buttonWidth, buttonHeight)];
+    [_meButton addTarget:self action:@selector(hitMeItem:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [_meButton setBackgroundImage: [UIImage imageNamed:@"kc_me_sel"] forState:UIControlStateNormal];
+    [_toolBarView addSubview:_meButton];
+    
+    
+
+}
+
 
 -(void) configHeaders{
     if (isEditing == NO) {

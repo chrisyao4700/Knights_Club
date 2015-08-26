@@ -46,6 +46,9 @@
     backgroundImageView.image = [UIImage imageNamed:@"Background"];
      [self.view insertSubview:backgroundImageView atIndex:0];
     
+    if (!_selectedItemList) {
+        _selectedItemList =  [KCItemListHandler readItemListFromFile];
+    }
    
     
 }

@@ -90,7 +90,7 @@
     
 }
 -(NSString *) checkOrderMode{
-    if ([_currentOrder.kc_orderState isEqualToString:@"Unaccepted"] || [_currentOrder.kc_orderState isEqualToString:@"Accepted"]||[_currentOrder.kc_orderState isEqualToString:@"Cooked"]) {
+    if ([_currentOrder.kc_orderState isEqualToString:@"Waiting"] || [_currentOrder.kc_orderState isEqualToString:@"Accepted"]||[_currentOrder.kc_orderState isEqualToString:@"Cooked"]) {
         return @"Current";
     }else{
         return @"Previous";
@@ -105,7 +105,7 @@
         [noOrderAlert show];
     }else{
         [self updateLabel:self];
-        NSTimer* timer = [NSTimer timerWithTimeInterval:30.0f target:self selector:@selector(updateLabel:) userInfo:nil repeats:YES];
+        NSTimer* timer = [NSTimer timerWithTimeInterval:5.0f target:self selector:@selector(updateLabel:) userInfo:nil repeats:YES];
         [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
         [self configElementsWithOrder];
        // _toolBar.hidden = YES;
@@ -136,7 +136,7 @@
     _titleLabel.text = _currentOrder.kc_orderTitle;
     _stateLabel.text = _currentOrder.kc_orderState;
     
-    if ([_stateLabel.text isEqualToString:@"Unaccepted"]||[_stateLabel.text isEqualToString:@"Denied"]) {
+    if ([_stateLabel.text isEqualToString:@"Waiting"]||[_stateLabel.text isEqualToString:@"Denied"]) {
         _state_image.image = [UIImage imageNamed:@"light_red"];
         
     }else if([_stateLabel.text isEqualToString:@"Accepted"] ||[_stateLabel.text isEqualToString:@"Cooked"]||[_stateLabel.text isEqualToString:@"Finished"]){
@@ -171,12 +171,28 @@
     }
 }
 - (IBAction)pushOrderAgain:(id)sender {
-    KCOrder * localOrder = [KCConnectOrder fetchOrderFromList:[KCConnectOrder readOrdersFromFile] andKey:_currentOrder.kc_orderTitle];
-    NSArray * selectedItems = localOrder.kc_order_itemList;
-    selectedItemList = [[KCItemList alloc] initWithDataArray:selectedItems];
+//    KCOrder * localOrder = [KCConnectOrder fetchOrderFromList:[KCConnectOrder readOrdersFromFile] andKey:_currentOrder.kc_orderTitle];
+//    NSArray * selectedItems = localOrder.kc_order_itemList;
+//    selectedItemList = [[KCItemList alloc] initWithDataArray:selectedItems];
+//    [self performSegueWithIdentifier:@"orderToCart" sender:self];
+    
+    NSDictionary * menu = [KCMenuHandler readMenuFromFile];
+    NSDictionary * images= [KCImageHandler readImagesFromFile];
+    KCItemList * list = [[KCItemList alloc] init];
+    for (NSString * name in [self configDishNamesByOrder:_currentOrder]) {
+        NSData * imgData = [images objectForKey:name];
+        [list addItem:[[KCItem alloc] initWithDish:[[KCDish alloc] initWithContentDictionary: [menu objectForKey:name]] andQuantity:1 andRequirement:@"" andImageData:imgData]];
+    }
+    [KCItemListHandler saveItemListToFileWithList:list];
+    
     [self performSegueWithIdentifier:@"orderToCart" sender:self];
+    
+    
 }
-
+-(NSArray *) configDishNamesByOrder:(KCOrder *) order{
+    NSString * itemList = order.kc_menu_items;
+    return [itemList componentsSeparatedByString:@","];
+}
  
 - (IBAction)pushDelete:(id)sender {
     

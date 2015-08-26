@@ -13,6 +13,7 @@
 +(void) saveItemListToFileWithList: (KCItemList *) list;
 +(KCItemList *) readItemListFromFile;
 +(void) deleteItemListInFile;
++(BOOL) cartIsEmpty;
 
 
 @end

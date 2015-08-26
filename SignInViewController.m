@@ -13,8 +13,10 @@
     UIAlertView * wrongPassword;
     UIAlertView * noCustomer;
     
-    UIActivityIndicatorView * progressView;
     
+    NSURLConnection * loginConnection;
+    UIActivityIndicatorView * progressView;
+ 
     CGRect screenRect;
 }
 
@@ -24,6 +26,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+        //facebookLoginButton.readPermissions = @[@"pulbic_profile", @"email"];
+ 
+    
+   
+
     [self initAllVars];
     
     // Do any additional setup after loading the view.
@@ -35,7 +42,7 @@
 }
 - (IBAction)hitLogOn:(id)sender {
     
-     [KCConnectCustomer readCustomerFromDatabaseWithUsername:_userNameField.text andPassword:_passwordField.text andDelegate:self];
+     loginConnection = [KCConnectCustomer readCustomerFromDatabaseWithUsername:_userNameField.text andPassword:_passwordField.text andDelegate:self];
     [progressView startAnimating];
    // [self performSegueWithIdentifier:@"loginMenu" sender:self];
     
@@ -51,35 +58,44 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    _downloadedData = [[NSMutableData alloc] init];
+    if (connection == loginConnection) {
+        _downloadedData = [[NSMutableData alloc] init];
+    }
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     // Append the newly downloaded data
-    [_downloadedData appendData:data];
-     [progressView stopAnimating];
+    
+    if (connection == loginConnection) {
+        [_downloadedData appendData:data];
+        [progressView stopAnimating];
+    }
+    
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-   
-    NSError *error;
-   NSString *dataString = [[NSString alloc] initWithData:_downloadedData encoding:NSUTF8StringEncoding];
-    if ([dataString isEqualToString:@"No Result Found"]) {
-        [noCustomer show];
-    } else{
-        NSDictionary * dataDictionary = [NSJSONSerialization JSONObjectWithData:_downloadedData options:NSJSONReadingAllowFragments error:&error];
-        _loginCustomer = [[KCCustomer alloc]initWithContentDictionary:dataDictionary];
-        
-        if ([_passwordField.text isEqualToString:[_loginCustomer networkPassword]]) {
-            [KCCustomerHandler saveCustomerToFileWithCustomer:_loginCustomer];
-            [self performSegueWithIdentifier:@"loginMenu" sender:self];
-        }else{
-            [wrongPassword show];
+    if (connection == loginConnection) {
+        NSError *error;
+        NSString *dataString = [[NSString alloc] initWithData:_downloadedData encoding:NSUTF8StringEncoding];
+        if ([dataString isEqualToString:@"No Result Found"]) {
+            [noCustomer show];
+        } else{
+            NSDictionary * dataDictionary = [NSJSONSerialization JSONObjectWithData:_downloadedData options:NSJSONReadingAllowFragments error:&error];
+            _loginCustomer = [[KCCustomer alloc]initWithContentDictionary:dataDictionary];
+            
+            if ([_passwordField.text isEqualToString:[_loginCustomer networkPassword]]) {
+                [KCCustomerHandler saveCustomerToFileWithCustomer:_loginCustomer];
+                [self performSegueWithIdentifier:@"loginMenu" sender:self];
+            }else{
+                [wrongPassword show];
+            }
+            
         }
 
     }
-        // NSLog(@"Username: %@, Sex: %@, Nickname: %@", [_loginCustomer username], [_loginCustomer sex], [_loginCustomer nickname]);
+           // NSLog(@"Username: %@, Sex: %@, Nickname: %@", [_loginCustomer username], [_loginCustomer sex], [_loginCustomer nickname]);
     
 }
 
@@ -89,14 +105,14 @@
 }
 
 -(void) initAllVars{
-    if (_dismisViewDelegate) {
-        [_dismisViewDelegate closeFatherController];
-    }
+//    if (_dismisViewDelegate) {
+//        [_dismisViewDelegate closeFatherController];
+//    }
     _loginCustomer = [KCCustomerHandler readCustomerFromFile];
     if (_loginCustomer) {
         _userNameField.text = _loginCustomer.networkID;
         _passwordField.text = _loginCustomer.networkPassword;
-        [KCConnectCustomer readCustomerFromDatabaseWithUsername:_userNameField.text andPassword:_passwordField.text andDelegate:self];
+       loginConnection = [KCConnectCustomer readCustomerFromDatabaseWithUsername:_userNameField.text andPassword:_passwordField.text andDelegate:self];
     }
     
     screenRect = [[UIScreen mainScreen] bounds];
@@ -131,6 +147,7 @@
     [self.view addSubview:progressView];
     
     
+    
 }
 -(BOOL) textFieldShouldReturn: (UITextField *) textField {
     [self.userNameField resignFirstResponder];
@@ -138,7 +155,6 @@
     return YES;
     
 }
-
 
 #pragma mark - Navigation
 

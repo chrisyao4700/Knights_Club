@@ -137,11 +137,11 @@
         
     }
     [contentStr appendFormat:@"Order: $%.2f/", price];
-    float tax = price * 0.06;
-    [contentStr appendFormat:@"Tax: $%.2f/", tax];
-    [contentStr appendFormat:@"Tips: $%.2f/", _kc_order_tips.floatValue];
-    price += _kc_order_tips.floatValue;
-    price += tax;
+   // float tax = price * 0.06;
+   // [contentStr appendFormat:@"Tax: $%.2f/", tax];
+   // [contentStr appendFormat:@"Tips: $%.2f/", _kc_order_tips.floatValue];
+   // price += _kc_order_tips.floatValue;
+   // price += tax;
     [contentStr appendFormat:@"Total: $%.2f/", price];
     [contentStr appendFormat:@"Final Requirement: %@/", _kc_order_finalRequirement];
     NSString * date = [_kc_order_date stringByReplacingOccurrencesOfString:@"/" withString:@""];

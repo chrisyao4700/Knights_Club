@@ -46,6 +46,53 @@
     [_contentWebView goBack];
 }
 
+-(void) configToolBar{
+    CGFloat buttonWidth = screenRect.size.width/4;
+    CGFloat buttonHeight = 60;
+    
+    
+    
+    _menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonWidth, buttonHeight)];
+    [_menuButton addTarget:self action:@selector(hitMenu:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [_menuButton setBackgroundImage: [UIImage imageNamed:@"kc_menu_tbi"] forState:UIControlStateNormal];
+    [_toolBarView addSubview:_menuButton];
+    
+    _cartButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth, 0, buttonWidth, buttonHeight)];
+    [_cartButton addTarget:self action:@selector(hitCart:) forControlEvents:UIControlEventTouchUpInside];
+    
+    if ([KCItemListHandler cartIsEmpty] ==YES) {
+        [_cartButton setBackgroundImage: [UIImage imageNamed:@"kc_cart_tbi"] forState:UIControlStateNormal];
+    }else{
+        [_cartButton setBackgroundImage: [UIImage imageNamed:@"kc_fcart_tbi"] forState:UIControlStateNormal];
+    }
+    
+    [_toolBarView addSubview:_cartButton];
+    
+    
+    ///////----------------------------
+    _eventButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth *2, 0, buttonWidth, buttonHeight)];
+    [_eventButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [_eventButton setBackgroundImage: [UIImage imageNamed:@"kc_event_sel"] forState:UIControlStateNormal];
+    [_toolBarView addSubview:_eventButton];
+    
+    ///////----------------------------
+    
+    _meButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth*3, 0, buttonWidth, buttonHeight)];
+    [_meButton addTarget:self action:@selector(hitMe:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [_meButton setBackgroundImage: [UIImage imageNamed:@"kc_me_tbi"] forState:UIControlStateNormal];
+    [_toolBarView addSubview:_meButton];
+    
+    
+    
+}
+
+
 -(void) closeFatherController{
     [self dismissViewControllerAnimated:NO completion:nil];
 }
@@ -64,6 +111,8 @@
     [progressView setCenter:CGPointMake(screenRect.size.width/2.0, screenRect.size.height/2.0)]; // I do this because I'm in landscape mode
     [self.view addSubview:progressView];
     [progressView startAnimating];
+    
+    [self configToolBar];
     
     
     

@@ -48,6 +48,9 @@
     if (_updateItemListDelegate) {
         [_updateItemListDelegate updateItemList:_selectedItemList];
     }
+    if (_refreshDelegate) {
+        [_refreshDelegate updateFatherViewController];
+    }
     
        [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -59,6 +62,9 @@
     
     if (!_selectedItemList) {
       _selectedItemList =  [KCItemListHandler readItemListFromFile];
+    }
+    if (!_selectedItemList) {
+        _selectedItemList = [[KCItemList alloc] init];
     }
     isFromCart = NO;
     isEmpty = YES;
@@ -90,6 +96,7 @@
     if (_si_requirement.length > 0) {
         isEmpty = NO;
     }
+    [_backButton setImage:[UIImage imageNamed:@"kc_undo_bt"] forState:UIControlStateNormal];
     _quantityLabel.text = _si_quantity.stringValue;
     [_quantitySlider setValue:_si_quantity.floatValue animated:YES];
     _requirementView.text = _si_requirement;

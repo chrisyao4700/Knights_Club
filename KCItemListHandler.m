@@ -46,4 +46,13 @@
 
     
 }
+
++(BOOL) cartIsEmpty{
+    KCItemList * list = [KCItemListHandler readItemListFromFile];
+    if (list.dataArray.count != 0) {
+        return NO;
+    }else{
+        return YES;
+    }
+}
 @end

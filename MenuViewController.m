@@ -16,7 +16,9 @@
     NSMutableArray * sectionList;
     NSMutableArray * sectionDataArray;
     NSDictionary * retrivedMenu;
-        
+    
+    NSArray *jsonArray;
+    
     
     KCDish * selectedDish;
     CGRect  screenRect;
@@ -105,24 +107,34 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSError *error;
-    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:_downloadedData options:NSJSONReadingAllowFragments error:&error];
+    jsonArray= [NSJSONSerialization JSONObjectWithData:_downloadedData options:NSJSONReadingAllowFragments error:&error];
+   // NSMutableDictionary * tmpDict =[[NSMutableDictionary alloc] init];
+    NSMutableArray * dishNames =[[NSMutableArray alloc] init];
+    NSMutableArray * dishData = [[NSMutableArray alloc] init];
     for (NSDictionary * contentDictionary in jsonArray) {
         KCDish * dish = [[KCDish alloc] initWithContentDictionary:contentDictionary];
         [knightsClubMenu addObject:dish];
+        [dishNames addObject:dish.dishName];
+        [dishData addObject:dish.contentDictionary];
+        //[tmpDict setValue:dish forKey:dish.dishName];
       
         }
+    
      [self configTableData];
+    retrivedMenu = [[NSDictionary alloc] initWithObjects:dishData forKeys:dishNames];
+    [KCMenuHandler saveMenuToFile:retrivedMenu];
 }
 -(void) initAllVars{
-    [_closeControllerDelegate closeFatherController];
-    if (!_selectedItemList) {
-        _selectedItemList = [KCItemListHandler readItemListFromFile];
-    }
-    if (!_selectedItemList) {
-        _selectedItemList = [[KCItemList alloc]init];
-    }
+   // [_closeControllerDelegate closeFatherController];
+//    if (!_selectedItemList) {
+//        _selectedItemList = [KCItemListHandler readItemListFromFile];
+//    }
+//    if (!_selectedItemList) {
+//        _selectedItemList = [[KCItemList alloc]init];
+//    }
     screenRect = [[UIScreen mainScreen] bounds];
     
+    [self configToolBar];
     UIImageView * backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
     backgroundImageView.image = [UIImage imageNamed:@"Background"];
     [self.view insertSubview:backgroundImageView atIndex:0];
@@ -130,15 +142,56 @@
     _imageDictionary = [[NSMutableDictionary alloc]init];
     knightsClubMenu = [[NSMutableArray alloc]init];
     sectionList = [[NSMutableArray alloc]init];
+
+}
+
+-(void) configToolBar{
+    CGFloat buttonWidth = screenRect.size.width/4;
+    CGFloat buttonHeight = 60;
     
     
     
+    _menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonWidth, buttonHeight)];
+    [_menuButton addTarget:self action:@selector(hitMenu:) forControlEvents:UIControlEventTouchUpInside];
     
     
+    [_menuButton setBackgroundImage: [UIImage imageNamed:@"kc_menu_sel"] forState:UIControlStateNormal];
+    [_toolBarView addSubview:_menuButton];
     
-   
+    _cartButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth, 0, buttonWidth, buttonHeight)];
+    [_cartButton addTarget:self action:@selector(hitCart:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    if ([KCItemListHandler cartIsEmpty] ==YES) {
+        [_cartButton setBackgroundImage: [UIImage imageNamed:@"kc_cart_tbi"] forState:UIControlStateNormal];
+    }else{
+        [_cartButton setBackgroundImage: [UIImage imageNamed:@"kc_fcart_tbi"] forState:UIControlStateNormal];
+    }
+
+    [_toolBarView addSubview:_cartButton];
+    
+    
+    ///////----------------------------
+    _eventButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth *2, 0, buttonWidth, buttonHeight)];
+    [_eventButton addTarget:self action:@selector(hitEvent:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [_eventButton setBackgroundImage: [UIImage imageNamed:@"kc_event_tbi"] forState:UIControlStateNormal];
+    [_toolBarView addSubview:_eventButton];
+    
+    ///////----------------------------
+    
+    _meButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth*3, 0, buttonWidth, buttonHeight)];
+    [_meButton addTarget:self action:@selector(hitMe:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [_meButton setBackgroundImage: [UIImage imageNamed:@"kc_me_tbi"] forState:UIControlStateNormal];
+    [_toolBarView addSubview:_meButton];
+    
+    
     
 }
+
 
 -(void) configTableData{
     sectionDataArray = [[NSMutableArray alloc]init];
@@ -177,6 +230,8 @@
    
     
 }
+
+
 -(NSString *) configLoadingImageNameWithInterger: (NSInteger) row{
     NSString * img_name = [NSString stringWithFormat:@"lulu%zd", row];
     return img_name;
@@ -214,7 +269,13 @@
 -(void)closeFatherController{
     [self dismissViewControllerAnimated:NO completion:nil];
 }
-
+-(void)updateFatherViewController{
+    if ([KCItemListHandler cartIsEmpty] ==YES) {
+        [_cartButton setBackgroundImage: [UIImage imageNamed:@"kc_cart_tbi"] forState:UIControlStateNormal];
+    }else{
+        [_cartButton setBackgroundImage: [UIImage imageNamed:@"kc_fcart_tbi"] forState:UIControlStateNormal];
+    }
+}
 
 #pragma mark - Navigation
 
@@ -231,7 +292,10 @@
         MenuDetailViewController * mdvc = (MenuDetailViewController *)[segue destinationViewController];
         KCDish * copy_dish = [[KCDish alloc]initWithContentArray:[selectedDish.contentArray copy]];
         mdvc.currentDish =  copy_dish;
-        mdvc.selectedItemList = _selectedItemList;
+        //mdvc.selectedItemList = _selectedItemList;
+        //mdvc.updateItemListDelegate =self;
+        mdvc.refreshDelegate = self;
+        
         if ([_imageDictionary objectForKey:selectedDish.dishName]) {
             mdvc.imageData = [[_imageDictionary objectForKey:selectedDish.dishName] copy];
         }else{
@@ -241,7 +305,7 @@
         }
     }else if ([segue.identifier isEqualToString:@"menuToCart"] ){
         CartViewController * cvc = (CartViewController *) [segue destinationViewController];
-        cvc.selectedItemList = _selectedItemList;
+       // cvc.selectedItemList = _selectedItemList;
         cvc.dismisViewDelegate = self;
       //  [self dismissViewControllerAnimated:YES completion:nil];
         
