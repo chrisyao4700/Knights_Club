@@ -16,7 +16,9 @@
     NSMutableArray * sectionList;
     NSMutableArray * sectionDataArray;
     NSDictionary * retrivedMenu;
-        
+    
+    NSArray *jsonArray;
+    
     
     KCDish * selectedDish;
     CGRect  screenRect;
@@ -105,7 +107,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSError *error;
-    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:_downloadedData options:NSJSONReadingAllowFragments error:&error];
+    jsonArray= [NSJSONSerialization JSONObjectWithData:_downloadedData options:NSJSONReadingAllowFragments error:&error];
    // NSMutableDictionary * tmpDict =[[NSMutableDictionary alloc] init];
     NSMutableArray * dishNames =[[NSMutableArray alloc] init];
     NSMutableArray * dishData = [[NSMutableArray alloc] init];
@@ -124,12 +126,12 @@
 }
 -(void) initAllVars{
    // [_closeControllerDelegate closeFatherController];
-    if (!_selectedItemList) {
-        _selectedItemList = [KCItemListHandler readItemListFromFile];
-    }
-    if (!_selectedItemList) {
-        _selectedItemList = [[KCItemList alloc]init];
-    }
+//    if (!_selectedItemList) {
+//        _selectedItemList = [KCItemListHandler readItemListFromFile];
+//    }
+//    if (!_selectedItemList) {
+//        _selectedItemList = [[KCItemList alloc]init];
+//    }
     screenRect = [[UIScreen mainScreen] bounds];
     
     [self configToolBar];
@@ -268,7 +270,11 @@
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 -(void)updateFatherViewController{
-    [self viewDidLoad];
+    if ([KCItemListHandler cartIsEmpty] ==YES) {
+        [_cartButton setBackgroundImage: [UIImage imageNamed:@"kc_cart_tbi"] forState:UIControlStateNormal];
+    }else{
+        [_cartButton setBackgroundImage: [UIImage imageNamed:@"kc_fcart_tbi"] forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark - Navigation
@@ -286,7 +292,8 @@
         MenuDetailViewController * mdvc = (MenuDetailViewController *)[segue destinationViewController];
         KCDish * copy_dish = [[KCDish alloc]initWithContentArray:[selectedDish.contentArray copy]];
         mdvc.currentDish =  copy_dish;
-        mdvc.selectedItemList = _selectedItemList;
+        //mdvc.selectedItemList = _selectedItemList;
+        //mdvc.updateItemListDelegate =self;
         mdvc.refreshDelegate = self;
         
         if ([_imageDictionary objectForKey:selectedDish.dishName]) {
@@ -298,7 +305,7 @@
         }
     }else if ([segue.identifier isEqualToString:@"menuToCart"] ){
         CartViewController * cvc = (CartViewController *) [segue destinationViewController];
-        cvc.selectedItemList = _selectedItemList;
+       // cvc.selectedItemList = _selectedItemList;
         cvc.dismisViewDelegate = self;
       //  [self dismissViewControllerAnimated:YES completion:nil];
         

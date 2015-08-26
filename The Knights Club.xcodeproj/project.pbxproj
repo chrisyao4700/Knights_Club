@@ -28,7 +28,6 @@
 		C3BCBBCA1B69E00F001B97D2 /* DishDetailScrllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBC81B69E00F001B97D2 /* DishDetailScrllViewController.m */; };
 		C3BCBBCE1B6ABADD001B97D2 /* KCItemList.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBCD1B6ABADD001B97D2 /* KCItemList.m */; };
 		C3BCBBD11B6ABAEC001B97D2 /* KCItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBD01B6ABAEC001B97D2 /* KCItem.m */; };
-		C3BCBBD41B6ABB0F001B97D2 /* KCHandleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBD31B6ABB0F001B97D2 /* KCHandleItem.m */; };
 		C3BCBBD71B6AD540001B97D2 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBD61B6AD540001B97D2 /* CartViewController.m */; };
 		C3BCBBDA1B6ADC92001B97D2 /* CartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBD91B6ADC92001B97D2 /* CartTableViewCell.m */; };
 		C3C773F31B6CBDA6003DF48B /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C773F11B6CBDA6003DF48B /* EventViewController.m */; };
@@ -102,8 +101,6 @@
 		C3BCBBCD1B6ABADD001B97D2 /* KCItemList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCItemList.m; sourceTree = "<group>"; };
 		C3BCBBCF1B6ABAEC001B97D2 /* KCItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCItem.h; sourceTree = "<group>"; };
 		C3BCBBD01B6ABAEC001B97D2 /* KCItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCItem.m; sourceTree = "<group>"; };
-		C3BCBBD21B6ABB0F001B97D2 /* KCHandleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCHandleItem.h; sourceTree = "<group>"; };
-		C3BCBBD31B6ABB0F001B97D2 /* KCHandleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCHandleItem.m; sourceTree = "<group>"; };
 		C3BCBBD51B6AD540001B97D2 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
 		C3BCBBD61B6AD540001B97D2 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 		C3BCBBD81B6ADC92001B97D2 /* CartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartTableViewCell.h; sourceTree = "<group>"; };
@@ -325,8 +322,6 @@
 				C3A074E21B6CCDF50082540E /* KCOrder.m */,
 				C3BCBBCF1B6ABAEC001B97D2 /* KCItem.h */,
 				C3BCBBD01B6ABAEC001B97D2 /* KCItem.m */,
-				C3BCBBD21B6ABB0F001B97D2 /* KCHandleItem.h */,
-				C3BCBBD31B6ABB0F001B97D2 /* KCHandleItem.m */,
 				C35529331B6B5AB10093D62C /* KCImageHandler.h */,
 				C35529341B6B5AB10093D62C /* KCImageHandler.m */,
 				C35529411B6C03E60093D62C /* KCItemListHandler.h */,
@@ -388,6 +383,11 @@
 				TargetAttributes = {
 					C3CF65051B674F7C00167D70 = {
 						CreatedOnToolsVersion = 6.4;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 					C3CF651E1B674F7C00167D70 = {
 						CreatedOnToolsVersion = 6.4;
@@ -465,7 +465,6 @@
 				C3A075EE1B73806A0082540E /* KCQRCodeHandler.m in Sources */,
 				C35529391B6B63AC0093D62C /* CustomerViewTableViewCell.m in Sources */,
 				C3A075541B70E91D0082540E /* OrderDetailViewController.m in Sources */,
-				C3BCBBD41B6ABB0F001B97D2 /* KCHandleItem.m in Sources */,
 				C3BCBBD71B6AD540001B97D2 /* CartViewController.m in Sources */,
 				C3CF65471B6802EE00167D70 /* MenuTableViewCell.m in Sources */,
 				C3A0754E1B70D7040082540E /* OrderPresentViewController.m in Sources */,
@@ -597,9 +596,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "The Knights Club/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -607,9 +614,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "The Knights Club/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

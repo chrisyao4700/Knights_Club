@@ -33,6 +33,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initAllVars];
+    _totalChargeLabel.hidden =YES;
+    _taxValueLabel.hidden = YES;
+    _tipsField.hidden = YES;
     // Do any additional setup after loading the view.
 }
 
@@ -43,9 +46,13 @@
 }
 
 -(void) initAllVars{
+    
+    
     screenRect = [[UIScreen mainScreen] bounds];
    
-    _selectedItemList = [KCItemListHandler readItemListFromFile];
+    if (!_selectedItemList) {
+        _selectedItemList =  [KCItemListHandler readItemListFromFile];
+    }
     
 //    if(_dismisViewDelegate){
 //    [_dismisViewDelegate closeFatherController];

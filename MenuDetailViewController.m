@@ -63,6 +63,9 @@
     if (!_selectedItemList) {
       _selectedItemList =  [KCItemListHandler readItemListFromFile];
     }
+    if (!_selectedItemList) {
+        _selectedItemList = [[KCItemList alloc] init];
+    }
     isFromCart = NO;
     isEmpty = YES;
     CGPoint addButton_center = CGPointMake(screenRect.size.width/2, screenRect.size.height - 25);

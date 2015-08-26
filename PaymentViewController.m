@@ -57,7 +57,7 @@
     _orderPriceLabel.text = _orderTotal;
     _taxPriceLabel.text = _tax;
     _tipsLabel.text = _tips.stringValue;
-    _totalPriceLabel.text = _total;
+    _totalPriceLabel.text = _orderTotal;
     
     paymentKeys = @[@"GU GOLD", @"Cash",@"PayPal",@"Cards"];
     paymentDescriptions = @[@"Pay with Campus Card #", @"Pay Cash when Picking up",@"Pay with Your PayPal Account", @"Pay with Your Credit Card"];
