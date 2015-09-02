@@ -13,6 +13,7 @@
 #import "KCMenuHandler.h"
 #import "KCItemListHandler.h"
 #import "KCImageHandler.h"
+
 @interface OrderDetailViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *state_image;

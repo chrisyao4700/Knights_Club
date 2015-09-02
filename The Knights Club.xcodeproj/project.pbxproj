@@ -21,6 +21,7 @@
 		C3A075511B70D72E0082540E /* OrderPresentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A075501B70D72E0082540E /* OrderPresentTableViewCell.m */; };
 		C3A075541B70E91D0082540E /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A075531B70E91D0082540E /* OrderDetailViewController.m */; };
 		C3A075EE1B73806A0082540E /* KCQRCodeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A075ED1B73806A0082540E /* KCQRCodeHandler.m */; };
+		C3A1EF311B94FF48008B0923 /* QRCodeScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A1EF301B94FF48008B0923 /* QRCodeScanViewController.m */; };
 		C3BCBBB41B688ECA001B97D2 /* KCDish.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB31B688ECA001B97D2 /* KCDish.m */; };
 		C3BCBBB71B688F90001B97D2 /* KCConnectDish.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB61B688F90001B97D2 /* KCConnectDish.m */; };
 		C3BCBBBA1B698D58001B97D2 /* SearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCBBB91B698D58001B97D2 /* SearchMenuViewController.m */; };
@@ -87,6 +88,9 @@
 		C3A075531B70E91D0082540E /* OrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
 		C3A075EC1B73806A0082540E /* KCQRCodeHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCQRCodeHandler.h; sourceTree = "<group>"; };
 		C3A075ED1B73806A0082540E /* KCQRCodeHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCQRCodeHandler.m; sourceTree = "<group>"; };
+		C3A1EF2F1B94FF48008B0923 /* QRCodeScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeScanViewController.h; sourceTree = "<group>"; };
+		C3A1EF301B94FF48008B0923 /* QRCodeScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeScanViewController.m; sourceTree = "<group>"; };
+		C3A1EF321B950DD5008B0923 /* ScanOrderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanOrderProtocol.h; sourceTree = "<group>"; };
 		C3BCBBB21B688ECA001B97D2 /* KCDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCDish.h; sourceTree = "<group>"; };
 		C3BCBBB31B688ECA001B97D2 /* KCDish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCDish.m; sourceTree = "<group>"; };
 		C3BCBBB51B688F90001B97D2 /* KCConnectDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCConnectDish.h; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 				C3A075371B6E358F0082540E /* PaymentTableViewCell.h */,
 				C3A075381B6E358F0082540E /* PaymentTableViewCell.m */,
 				C383B5B81B7B210200DD280D /* RefreshViewControllerProtocol.h */,
+				C3A1EF321B950DD5008B0923 /* ScanOrderProtocol.h */,
 			);
 			name = "KC UIElement";
 			sourceTree = "<group>";
@@ -279,6 +284,8 @@
 				C355293C1B6B64F60093D62C /* CustomerViewController.m */,
 				C3A075521B70E91D0082540E /* OrderDetailViewController.h */,
 				C3A075531B70E91D0082540E /* OrderDetailViewController.m */,
+				C3A1EF2F1B94FF48008B0923 /* QRCodeScanViewController.h */,
+				C3A1EF301B94FF48008B0923 /* QRCodeScanViewController.m */,
 			);
 			name = "KC Customer";
 			sourceTree = "<group>";
@@ -383,6 +390,7 @@
 				TargetAttributes = {
 					C3CF65051B674F7C00167D70 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 2Z2BT68B55;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 0;
@@ -471,6 +479,7 @@
 				C35529351B6B5AB10093D62C /* KCImageHandler.m in Sources */,
 				C35529431B6C03E60093D62C /* KCItemListHandler.m in Sources */,
 				C3CF650C1B674F7C00167D70 /* main.m in Sources */,
+				C3A1EF311B94FF48008B0923 /* QRCodeScanViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

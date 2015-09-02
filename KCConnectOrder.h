@@ -25,5 +25,9 @@
 +(void) addOrderToList:(KCOrder *) order;
 +(void) deleteOrderList;
 +(KCOrder *) fetchOrderFromList:(NSArray *) list andKey:(NSString *) key;
-
++(NSData *) setOrderStateWithOrderTitle:(NSString*) orderTitle
+                               andState:(NSString *) orderState
+                            andDelegate:(id) delegate;
++(NSData *) readOrderWithTitle:(NSString *) orderTitle
+                   andDelegate:(id) delegate;
 @end

@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-        //facebookLoginButton.readPermissions = @[@"pulbic_profile", @"email"];
+        
  
     
    

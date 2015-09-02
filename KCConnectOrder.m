@@ -136,6 +136,35 @@
     [[NSFileManager defaultManager] removeItemAtPath:dataPath error:&error];
 
 }
++(NSData *) setOrderStateWithOrderTitle:(NSString*) orderTitle
+                               andState:(NSString *) orderState
+                            andDelegate:(id) delegate{
+    
+    NSString *strURL = [[NSString alloc]initWithFormat:@"http://chrisyao4700.com/Knights_Club/Knights_Order/kc_order_setState.php?Order_Name=%@&Order_State=%@",orderTitle,orderState];
+    NSURL *insertURL = [NSURL URLWithString:strURL];
+    NSLog(@"%@", strURL);
+    //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:insertURL];
+    NSData * data = [NSData dataWithContentsOfURL:insertURL];
+    //[request setHTTPMethod:@"GET"];
+    //NSURLConnection * insertConnection =  [NSURLConnection connectionWithRequest:request delegate:delegate];
+    
+    return  data;
+    
+}
+
++(NSData *) readOrderWithTitle:(NSString *) orderTitle
+                   andDelegate:(id) delegate{
+    NSString *strURL = [[NSString alloc]initWithFormat:@"http://chrisyao4700.com/Knights_Club/Knights_Order/order_choose.php?Column=Title&Value=%@",orderTitle];
+    NSURL *insertURL = [NSURL URLWithString:strURL];
+    NSLog(@"%@", strURL);
+    //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:insertURL];
+    NSData * data = [NSData dataWithContentsOfURL:insertURL];
+    //[request setHTTPMethod:@"GET"];
+    //NSURLConnection * insertConnection =  [NSURLConnection connectionWithRequest:request delegate:delegate];
+    
+    return  data;
+
+}
 
 
 @end

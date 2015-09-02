@@ -25,6 +25,9 @@
     NSString * originEmail;
     NSString * originGUNum;
     
+    UIAlertView * successAlert;
+    UIAlertView * failAlert;
+    
     
 }
 
@@ -105,6 +108,8 @@
     originEmail = _defaultCustomer.email;
     originGUNum = _defaultCustomer.guNumber;
     
+    successAlert =[[UIAlertView alloc] initWithTitle:@"Scan Order Successfully" message:@"You are all set, you can pick up your food at anytime." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    failAlert =[[UIAlertView alloc] initWithTitle:@"Wrong Order" message:@"This is not your order." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
     screenRect = [[UIScreen mainScreen] bounds];
     
@@ -181,9 +186,9 @@
 
 -(void) configHeaders{
     if (isEditing == NO) {
-        headers = @[@"GU ID", @"Password", @"E-mail", @"Campus Card #", @"Orders"];
+        headers = @[@"GU ID", @"Password", @"E-mail", @"Campus Card #", @"Orders",@"Status"];
     }else{
-        headers = @[@"GU ID", @"Password", @"E-mail", @"Campus Card #"];
+        headers = @[@"GU ID", @"Password", @"E-mail", @"Campus Card #",@"Status"];
     }
     
 }
@@ -215,11 +220,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     // Return the number of rows in the section.
-//    if (section == 4) {
-//        return 2;
-//    }else{
+    if (section == 4) {
+       return 2;
+    }else{
     return 1;
-   // }
+    }
 }
 
 
@@ -251,16 +256,39 @@
     }else if (indexPath.section ==4) {
     
     
-    
-             UITableViewCell * orderCell = [tableView dequeueReusableCellWithIdentifier:@"orderCell"];
-           
-                
-                orderCell.textLabel.text = @"My Orders";
-                orderCell.selectionStyle = UITableViewCellSelectionStyleBlue ;
+        if (indexPath.row == 0) {
+            UITableViewCell * orderCell = [tableView dequeueReusableCellWithIdentifier:@"orderCell"];
+            
+            
+            orderCell.textLabel.text = @"My Orders";
+            orderCell.selectionStyle = UITableViewCellSelectionStyleBlue ;
             
             return orderCell;
+        }else if (indexPath.row == 1){
+            UITableViewCell * orderCell = [tableView dequeueReusableCellWithIdentifier:@"orderCell"];
+            
+            
+            orderCell.textLabel.text = @"Scan Order QRCode";
+            orderCell.selectionStyle = UITableViewCellSelectionStyleBlue ;
+            
+            return orderCell;
+
+        }else{
+            return nil;
+        }
+        
         
        
+    }else if (indexPath.section == 5){
+        
+        UITableViewCell * orderCell = [tableView dequeueReusableCellWithIdentifier:@"orderCell"];
+        
+        
+        orderCell.textLabel.text = @"Log Out";
+        orderCell.selectionStyle = UITableViewCellSelectionStyleBlue ;
+        
+        return orderCell;
+
     }else{
         return nil;
     }
@@ -270,7 +298,14 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section ==4 ) {
-        [self performSegueWithIdentifier:@"customerToOrder" sender:self];
+        if (indexPath.row == 0 ) {
+             [self performSegueWithIdentifier:@"customerToOrder" sender:self];
+        }else if(indexPath.row == 1){
+            [self performSegueWithIdentifier:@"customerToScan" sender:self];
+        }
+       
+    }else if(indexPath.section == 5){
+        [self pushLogout:self];
     }
     
 }
@@ -293,7 +328,35 @@
     }
     
 }
+-(void)selectOrderWithTitle:(NSString *)title{
+    NSData * echoData =[KCConnectOrder readOrderWithTitle:title andDelegate:self];
+    NSError *error;
+    NSDictionary * orderDict = [NSJSONSerialization JSONObjectWithData:echoData
+                                                               options:kNilOptions
+                                                                 error:&error][0];
+    
 
+    
+    NSString * fuck = [orderDict objectForKey:@"Customer"];
+
+
+    if ([fuck isEqualToString:_defaultCustomer.networkID]) {
+        echoData = [KCConnectOrder setOrderStateWithOrderTitle:title andState:@"Finished" andDelegate:self];
+        NSString * echoString = [[NSString alloc] initWithData:echoData encoding:NSUTF8StringEncoding];
+        
+        if ([echoString isEqualToString:@"New State: 'Finished'"]) {
+            // [progressView stopAnimating];
+            // [self configLabelAndTextView];
+            [successAlert show];
+        }
+
+    }else{
+        [failAlert show];
+    }
+    
+   
+   
+}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -310,6 +373,11 @@
     }else if ([segue.identifier isEqualToString:@"meToEvent"]){
         EventViewController * evc = (EventViewController *) [segue destinationViewController];
         evc.dismissFatherViewDelegate = self;
+    }else if([segue.identifier isEqualToString:@"customerToOrder"]){
+        
+    }else if([segue.identifier isEqualToString:@"customerToScan"]){
+        QRCodeScanViewController * qrcsvc = (QRCodeScanViewController *)[segue destinationViewController];
+        qrcsvc.selectOrderDelegate = self;
     }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

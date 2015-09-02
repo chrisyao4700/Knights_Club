@@ -16,8 +16,9 @@
 #import "SignInViewController.h"
 #import "MenuViewController.h"
 #import "CartViewController.h"
+#import "QRCodeScanViewController.h"
 
-@interface CustomerViewController : UIViewController <UITextFieldDelegate,DismissFatherViewController>
+@interface CustomerViewController : UIViewController <UITextFieldDelegate,DismissFatherViewController,ScanOrderProtocol>
 
 @property id <DismissFatherViewController> dismisViewDelegate;
 
